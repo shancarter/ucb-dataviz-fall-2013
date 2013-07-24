@@ -21,7 +21,9 @@
   <img style="-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="http://28.media.tumblr.com/tumblr_lmg4t59VZQ1qzekdio1_500.gif">
   <div class="intro">
     <p>This course teaches some of the skills and techniques necessary for displaying statistical information effectively in journalism. Obtaining, interpreting, visualizing and displaying data are essential skills for journalists in the 21st Century. Students will scrutinize techniques used in previously published projects and will also analyze data on their own, evaluating and producing charts and diagrams using a variety of desktop software, web tools and basic programming.</p>
+    <button class="blamo">Blamo</button>
   </div>
+
 
   <div>
     <h3>Class Schedule</h3>
@@ -67,6 +69,23 @@ var rainbowLetters = headline.selectAll("span")
 
 d3.timer(function(t) {
   rainbowLetters.style("color", function(d, i) { return colors(t + i); })
+});
+
+d3.select(".blamo").on("click", function() {
+  var p = d3.selectAll("p").each(function() {
+    console.log(this)
+    var n = d3.select(this),
+        l = n.text().split("")
+        n.text("");
+
+    n.selectAll(".rainbow")
+        .data(l)
+      .enter().append("span")
+        .attr("class", "rainbow")
+        .text(function(d) { return d; })
+        .style("color", function(d, i) { return colors(i); })
+
+  })
 })
 
 
