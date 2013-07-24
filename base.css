@@ -1,0 +1,96 @@
+body {
+  margin:0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Trebuchet MS", Futura;
+}
+
+header {
+  text-transform: uppercase;
+  padding: 10px 0;
+  font-size: 13px;
+  margin: 20px auto;
+  width: 600px;
+  border-bottom: solid 1px #ddd;
+  color: #999;
+}
+
+.main {
+  margin:20px auto;
+  width:600px;
+}
+
+h1 {
+  font-family: Georgia;
+  font-size: 50px;
+  font-weight: normal;
+  margin: 30px 0 20px;
+}
+
+h2 {
+  border-top: solid 1px #ddd;
+  font-family: Georgia;
+  font-size: 24px;
+  font-weight: normal;
+  margin: 30px 0 20px;
+  padding: 20px 0 0 0;
+}
+
+h3 {
+  border-top: solid 1px #ddd;
+  font-family: Georgia;
+  font-size: 24px;
+  font-weight: normal;
+  margin: 30px 0 20px;
+  padding: 20px 0 0 0;
+
+}
+
+h4 {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+h5 {
+  font-weight:normal;
+  text-transform:uppercase;
+  font-size:11px;
+}
+
+p {
+  font-family: Georgia;
+  color: #444;
+  font-size: 17px;
+  margin-top:6px;
+  line-height: 1.5em;
+}
+
+.g-week {
+  width: 100%;
+  display: inline-block;
+  margin: 10px 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+  padding: 2px 0 20px;
+}
+
+.g-class-name {
+  float:left;
+  width:10%;
+}
+
+.g-class-date {
+ float:left;
+ width:10%;
+}
+
+.g-class-title {
+  font-size: 20px;
+  float: left;
+  width: 80%;
+  font-family: georgia;
+}
+
+.g-inactive {
+  text-decoration: none;
+  color:#666;
+}
