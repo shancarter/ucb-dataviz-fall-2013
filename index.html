@@ -58,39 +58,43 @@ headline.selectAll("span")
     .data(letters)
   .enter().append("span")
     .text(function(d) { return d; })
-    .style("color", function(d, i) { return colors(i); })
+    // .style("color", function(d, i) { return colors(i); })
+
+d3.timer(function(t) {
+  headline.selectAll("span")
+    .style("color", function(d, i) { return colors(t + i); })
+})
 
 
+// d3.tsv("classes/classes.tsv", function(err, classes) {
 
-d3.tsv("classes/classes.tsv", function(err, classes) {
+//   var table = d3.select(".class-calendar").append("div");
 
-  var table = d3.select(".class-calendar").append("div");
+//   var row =  table.selectAll("div")
+//       .data(classes)
+//       .enter()
+//       .append("div")
+//       .classed("g-week", true);
 
-  var row =  table.selectAll("div")
-      .data(classes)
-      .enter()
-      .append("div")
-      .classed("g-week", true);
+//   var classdate = row.append("div")
+//       .text(function(d) { return d.date; })
+//       .classed("g-class-date", true);
 
-  var classdate = row.append("div")
-      .text(function(d) { return d.date; })
-      .classed("g-class-date", true);
+//   var classname = row.append("div")
+//       .text(function(d) { return d.classname; })
+//       .classed("g-class-name", true);
 
-  var classname = row.append("div")
-      .text(function(d) { return d.classname; })
-      .classed("g-class-name", true);
+//   var classtitle = row.append("div");
 
-  var classtitle = row.append("div");
-
-  var classlink = classtitle.append("a")
-      .text(function(d) { return d.title; })
-      .classed("g-class-title", true)
-      .classed("g-inactive", function(d) { return !d.slug; })
-      .attr("href", function(d) {
-        var link = "weeks/" + d.slug + ".html";
-        return !d.slug === true ? "" : link;
-      });
-});
+//   var classlink = classtitle.append("a")
+//       .text(function(d) { return d.title; })
+//       .classed("g-class-title", true)
+//       .classed("g-inactive", function(d) { return !d.slug; })
+//       .attr("href", function(d) {
+//         var link = "weeks/" + d.slug + ".html";
+//         return !d.slug === true ? "" : link;
+//       });
+// });
 
 
 </script>
