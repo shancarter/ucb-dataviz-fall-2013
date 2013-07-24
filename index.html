@@ -65,10 +65,13 @@ var rainbowLetters = headline.selectAll("span")
     .data(letters)
   .enter().append("span")
     .text(function(d) { return d; })
+    .style("position", "relative")
     // .style("color", function(d, i) { return colors(i); })
 
 d3.timer(function(t) {
-  rainbowLetters.style("color", function(d, i) { return colors(t + i); })
+  rainbowLetters
+      .style("color", function(d, i) { return colors(t + i); })
+      .style("top", function() { return Math.random() * 4 + "px"; })
 });
 
 d3.select(".blamo").on("click", function() {
