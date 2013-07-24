@@ -49,6 +49,17 @@
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script type="text/javascript">
+var colors = d3.scale.category20b();
+var headline = d3.select("h1");
+var letters = headline.text().split("");
+headline.text("");
+headline.selectAll("span")
+    .data(letters)
+  .enter().append("span")
+    .text(function(d) { return d; })
+    .style("color", function(d, i) { return colors(i); })
+
+
 
 d3.tsv("classes/classes.tsv", function(err, classes) {
 
