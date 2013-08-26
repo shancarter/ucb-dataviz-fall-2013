@@ -65,33 +65,6 @@ p {
   line-height: 1.5em;
 }
 
-.g-week {
-  width: 100%;
-  display: inline-block;
-  margin: 10px 0;
-  border-bottom: 1px solid #ccc;
-  font-size: 13px;
-  padding: 2px 0 20px;
-}
-
-.g-class-name {
-  float:left;
-  width:10%;
-}
-
-.g-class-date {
- float:left;
- width:10%;
-}
-
-.g-class-title {
-  font-size: 20px;
-  float: left;
-  width: 80%;
-  font-family: georgia;
-}
-
-.g-inactive {
-  text-decoration: none;
-  color:#666;
+a {
+  color: #004276;
 }

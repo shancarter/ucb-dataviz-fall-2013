@@ -10,10 +10,40 @@
   .intro {
     margin: 20px 0;
   }
+
+  .class-calendar ol {
+    font-family: "Helvetica Neue";
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+  }
+  .class-calendar a {
+    text-decoration: none;
+    display: block;
+    padding: 14px 0;
+    border-top: solid 1px rgba(0, 0, 0, 0.03);
+  }
+  .class-calendar a:hover {
+    text-decoration: underline;
+  }
+  .class-calendar .date {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: normal;
+    padding-right: 20px;
+    color: rgba(0, 0, 0, 0.4);
+    display: inline-block;
+    width: 4.5em;
+
+  }
+  .class-calendar .title {
+    font-weight: bold;
+  }
+
 </style>
 
 <header>
-  <div>J221 — Fall 2013</div>
+  <div>UCB — Fall 2013</div>
 </header>
 
 <div class="main">
@@ -21,14 +51,76 @@
   <img style="width: 100%;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="http://28.media.tumblr.com/tumblr_lmg4t59VZQ1qzekdio1_500.gif">
   <div class="intro">
     <p>This course teaches some of the skills and techniques necessary for displaying statistical information effectively in journalism. Obtaining, interpreting, visualizing and displaying data are essential skills for journalists in the 21st Century. Students will scrutinize techniques used in previously published projects and will also analyze data on their own, evaluating and producing charts and diagrams using a variety of desktop software, web tools and basic programming.</p>
-    <button class="blamo">Blamo</button>
   </div>
 
 
   <div>
     <h3>Class Schedule</h3>
     <p>Class meets on Thursdays from 4 to 7 p.m.</p>
-    <div class="class-calendar"></div>
+    <div class="class-calendar">
+      <ol>
+        <li><a href="classes/01/index.html">
+          <span class="date">Aug. 29</span>
+          <span class="title">Introductions</span>
+        </a></li>
+        <li><a href="classes/02/index.html">
+          <span class="date">Sept. 5</span>
+          <span class="title">Internet sausage making basics, examples of data journalism</span>
+        </a></li>
+        <li><a href="classes/03/index.html">
+          <span class="date">Sept. 12</span>
+          <span class="title">An introduction to mapping</span>
+        </a></li>
+        <li><a href="classes/04/index.html">
+          <span class="date">Sept. 19</span>
+          <span class="title">Introduction to Excel and asking data questions</span>
+        </a></li>
+        <li><a href="classes/05/index.html">
+          <span class="date">Sept. 26</span>
+          <span class="title">More Excel practice</span>
+        </a></li>
+        <li><a href="classes/06/index.html">
+          <span class="date">Oct. 3</span>
+          <span class="title">Using the Chrome Inspector</span>
+        </a></li>
+        <li><a href="classes/07/index.html">
+          <span class="date">Oct. 10</span>
+          <span class="title">Charts</span>
+        </a></li>
+        <li><a href="classes/08/index.html">
+          <span class="date">Oct. 17</span>
+          <span class="title">Scraping, cleaning</span>
+        </a></li>
+        <li><a href="classes/09/index.html">
+          <span class="date">Oct. 24</span>
+          <span class="title"></span>
+        </a></li>
+        <li><a href="classes/10/index.html">
+          <span class="date">Oct. 31</span>
+          <span class="title"></span>
+        </a></li>
+        <li><a href="classes/11/index.html">
+          <span class="date">Nov. 7</span>
+          <span class="title"></span>
+        </a></li>
+        <li><a href="classes/12/index.html">
+          <span class="date">Nov. 14</span>
+          <span class="title">Project help</span>
+        </a></li>
+        <li><a href="classes/13/index.html">
+          <span class="date">Nov. 21</span>
+          <span class="title">Project help</span>
+        </a></li>
+        <li><a href="classes/14/index.html">
+          <span class="date">Dec. 5</span>
+          <span class="title">Project help</span>
+        </a></li>
+        <li><a href="classes/15/index.html">
+          <span class="date">Dec. 12</span>
+          <span class="title">Presentations</span>
+        </a></li>
+      </ol>
+    </div>
   </div>
 
   <div class="policies">
@@ -89,38 +181,7 @@ d3.select(".blamo").on("click", function() {
         .style("color", function(d, i) { return colors(i); })
 
   })
-})
-
-
-// d3.tsv("classes/classes.tsv", function(err, classes) {
-
-//   var table = d3.select(".class-calendar").append("div");
-
-//   var row =  table.selectAll("div")
-//       .data(classes)
-//       .enter()
-//       .append("div")
-//       .classed("g-week", true);
-
-//   var classdate = row.append("div")
-//       .text(function(d) { return d.date; })
-//       .classed("g-class-date", true);
-
-//   var classname = row.append("div")
-//       .text(function(d) { return d.classname; })
-//       .classed("g-class-name", true);
-
-//   var classtitle = row.append("div");
-
-//   var classlink = classtitle.append("a")
-//       .text(function(d) { return d.title; })
-//       .classed("g-class-title", true)
-//       .classed("g-inactive", function(d) { return !d.slug; })
-//       .attr("href", function(d) {
-//         var link = "weeks/" + d.slug + ".html";
-//         return !d.slug === true ? "" : link;
-//       });
-// });
+});
 
 
 </script>
