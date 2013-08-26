@@ -8,11 +8,15 @@ body {
 header {
   text-transform: uppercase;
   padding: 10px 0;
-  font-size: 13px;
+  font-size: 12px;
   margin: 20px auto;
   width: 600px;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
   color: #999;
+}
+
+header .stepper {
+  float: right;
 }
 
 .main {
@@ -28,7 +32,7 @@ h1 {
 }
 
 h2 {
-  border-top: solid 1px #ddd;
+  border-top: solid 1px rgba(0, 0, 0, 0.2);
   font-family: Georgia;
   font-size: 24px;
   font-weight: normal;
@@ -37,7 +41,7 @@ h2 {
 }
 
 h3 {
-  border-top: solid 1px #ddd;
+  border-top: solid 1px rgba(0, 0, 0, 0.15);
   font-family: Georgia;
   font-size: 24px;
   font-weight: normal;

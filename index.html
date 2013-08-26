@@ -42,15 +42,13 @@
 
 </style>
 
-<header>
-  <div>UCB — Fall 2013</div>
-</header>
+<header><span>UCB — Fall 2013</span></header>
 
 <div class="main">
   <h1>Data Visualization</h1>
-  <img style="width: 100%;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="http://28.media.tumblr.com/tumblr_lmg4t59VZQ1qzekdio1_500.gif">
+  <img style="width: 100%;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="ghostbusters.gif">
   <div class="intro">
-    <p>This course teaches some of the skills and techniques necessary for displaying statistical information effectively in journalism. Obtaining, interpreting, visualizing and displaying data are essential skills for journalists in the 21st Century. Students will scrutinize techniques used in previously published projects and will also analyze data on their own, evaluating and producing charts and diagrams using a variety of desktop software, web tools and basic programming.</p>
+    <p>This course teaches some of the skills and techniques necessary for displaying statistical information effectively in journalism. Students will scrutinize techniques used in previously published projects and will also analyze data on their own, evaluating and producing static and interactive visualizations using a mix of desktop applications, <a href="http://en.wikipedia.org/wiki/Command-line_interface">command-line tools</a> and basic programming. We will primarily focus on <a href="http://office.microsoft.com/en-us/excel/">Excel</a>, <a href="http://cran.us.r-project.org/">R</a> and <a href="http://d3js.org/">D3</a>.</p>
   </div>
 
 
@@ -59,63 +57,63 @@
     <p>Class meets on Thursdays from 4 to 7 p.m.</p>
     <div class="class-calendar">
       <ol>
-        <li><a href="classes/01/index.html">
+        <li><a href="classes/01">
           <span class="date">Aug. 29</span>
           <span class="title">Introductions</span>
         </a></li>
-        <li><a href="classes/02/index.html">
+        <li><a href="classes/02">
           <span class="date">Sept. 5</span>
           <span class="title">Internet sausage making basics, examples of data journalism</span>
         </a></li>
-        <li><a href="classes/03/index.html">
+        <li><a href="classes/03">
           <span class="date">Sept. 12</span>
           <span class="title">An introduction to mapping</span>
         </a></li>
-        <li><a href="classes/04/index.html">
+        <li><a href="classes/04">
           <span class="date">Sept. 19</span>
           <span class="title">Introduction to Excel and asking data questions</span>
         </a></li>
-        <li><a href="classes/05/index.html">
+        <li><a href="classes/05">
           <span class="date">Sept. 26</span>
           <span class="title">More Excel practice</span>
         </a></li>
-        <li><a href="classes/06/index.html">
+        <li><a href="classes/06">
           <span class="date">Oct. 3</span>
           <span class="title">Using the Chrome Inspector</span>
         </a></li>
-        <li><a href="classes/07/index.html">
+        <li><a href="classes/07">
           <span class="date">Oct. 10</span>
           <span class="title">Charts</span>
         </a></li>
-        <li><a href="classes/08/index.html">
+        <li><a href="classes/08">
           <span class="date">Oct. 17</span>
           <span class="title">Scraping, cleaning</span>
         </a></li>
-        <li><a href="classes/09/index.html">
+        <li><a href="classes/09">
           <span class="date">Oct. 24</span>
           <span class="title"></span>
         </a></li>
-        <li><a href="classes/10/index.html">
+        <li><a href="classes/10">
           <span class="date">Oct. 31</span>
           <span class="title"></span>
         </a></li>
-        <li><a href="classes/11/index.html">
+        <li><a href="classes/11">
           <span class="date">Nov. 7</span>
           <span class="title"></span>
         </a></li>
-        <li><a href="classes/12/index.html">
+        <li><a href="classes/12">
           <span class="date">Nov. 14</span>
           <span class="title">Project help</span>
         </a></li>
-        <li><a href="classes/13/index.html">
+        <li><a href="classes/13">
           <span class="date">Nov. 21</span>
           <span class="title">Project help</span>
         </a></li>
-        <li><a href="classes/14/index.html">
+        <li><a href="classes/14">
           <span class="date">Dec. 5</span>
           <span class="title">Project help</span>
         </a></li>
-        <li><a href="classes/15/index.html">
+        <li><a href="classes/15">
           <span class="date">Dec. 12</span>
           <span class="title">Presentations</span>
         </a></li>
@@ -148,43 +146,8 @@
 
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-var colors = d3.scale.category20b();
-var headline = d3.select("h1");
-var letters = headline.text().split("");
-headline.text("");
-var rainbowLetters = headline.selectAll("span")
-    .data(letters)
-  .enter().append("span")
-    .text(function(d) { return d; })
-    .style("position", "relative")
-    // .style("color", function(d, i) { return colors(i); })
-
-d3.timer(function(t) {
-  rainbowLetters
-      .style("color", function(d, i) { return colors(t + i); })
-      .style("top", function() { return Math.random() * 4 + "px"; })
-});
-
-d3.select(".blamo").on("click", function() {
-  var p = d3.selectAll("p").each(function() {
-    console.log(this)
-    var n = d3.select(this),
-        l = n.text().split("")
-        n.text("");
-
-    n.selectAll(".rainbow")
-        .data(l)
-      .enter().append("span")
-        .attr("class", "rainbow")
-        .text(function(d) { return d; })
-        .style("color", function(d, i) { return colors(i); })
-
-  })
-});
-
-
-</script>
+<script src="/base.js" charset="utf-8"></script>
+<script type="text/javascript"></script>
 
 
 </body>
