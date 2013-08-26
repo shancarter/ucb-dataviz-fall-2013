@@ -19,10 +19,12 @@
     margin-top: 20px;
   }
   .class-calendar a {
+    position: relative;
     text-decoration: none;
     display: block;
     margin-bottom: 2px;
     font-size: 15px;
+    line-height: 1.4em;
     border-left: solid 2px rgba(0, 0, 0, 0.06);
     background: rgba(0,255,0,0.08);
     transition: all 0.3s linear;
@@ -35,14 +37,28 @@
   }
   .class-calendar .date {
     font-weight: normal;
-    display: inline-block;
-    width: 4em;
-    padding: 14px 10px;
-    margin-right: 15px;
+    position: absolute;
+    top: 11px;
+    left: 10px;
 
   }
   .class-calendar .title {
     font-weight: bold;
+    padding: 10px 20px 10px 100px;
+    display: block;
+  }
+
+  .class-calendar .title h5 {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .class-calendar .description {
+    font-weight: normal;
+    opacity: 0.5;
+    margin-top: 10px;
+    display: block;
   }
 
 </style>
@@ -63,49 +79,109 @@
     <div class="class-calendar">
       <ol>
         <li><a href="classes/01">
-          <span class="date">Aug. 29</span><span class="title">Introductions</span>
+          <span class="date">Aug. 29</span>
+          <span class="title">
+            <h5>Introductions</h5>
+            <span class="description">Quick 30 minute class, a survey of students.</span>
+          </span>
         </a></li>
         <li><a href="classes/02">
-          <span class="date">Sept. 5</span><span class="title">Internet sausage making basics</span>
+          <span class="date">Sept. 5</span>
+          <span class="title">
+            <h5>Internet sausage making basics</h5>
+            <span class="description">Setting up github, the terminal, R and node</span>
+          </span>
         </a></li>
         <li><a href="classes/03">
-          <span class="date">Sept. 12</span><span class="title">An introduction to mapping</span>
+          <span class="date">Sept. 12</span>
+          <span class="title">
+            <h5>An introduction to R</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
         <li><a href="classes/04">
-          <span class="date">Sept. 19</span><span class="title">Introduction to Excel and asking data questions</span>
+          <span class="date">Sept. 19</span>
+          <span class="title">
+            <h5>An introduction to D3</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
         <li><a href="classes/05">
-          <span class="date">Sept. 26</span><span class="title">More Excel practice</span>
+          <span class="date">Sept. 26</span>
+          <span class="title">
+            <h5>Maps!</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
         <li><a href="classes/06">
-          <span class="date">Oct. 3</span><span class="title">Using the Chrome Inspector</span>
+          <span class="date">Oct. 3</span>
+          <span class="title">
+            <h5>One dataset, three ways</h5>
+            <span class="description">Take a familiar dataset and visualize it three different ways: a map and a couple of charts. When to use a map, when not to, and when to combine the two.</span>
+          </span>
         </a></li>
         <li><a href="classes/07">
-          <span class="date">Oct. 10</span><span class="title">Charts</span>
+          <span class="date">Oct. 10</span>
+          <span class="title">
+            <h5>“Add a slider to it!”</h5>
+            <span class="description">Always an instinct to add a slider for time-based datasets, but that is wrong. Making small multiples.</span>
+          </span>
         </a></li>
         <li><a href="classes/08">
-          <span class="date">Oct. 17</span><span class="title">Scraping, cleaning</span>
+          <span class="date">Oct. 17</span>
+          <span class="title">
+            <h5>When and how to invent chart forms</h5>
+            <span class="description">How and why you might need to experiment with crazy ideas.</span>
+          </span>
         </a></li>
         <li><a href="classes/09">
-          <span class="date">Oct. 24</span><span class="title"></span>
+          <span class="date">Oct. 24</span>
+          <span class="title">
+            <h5>Making things pretty</h5>
+            <span class="description">Making good design decisions to aid comprehension. What is the payoff in making things look cool? What's the tradeoff? How do you make something approachable, eye-catching and informative?</span>
+          </span>
         </a></li>
         <li><a href="classes/10">
-          <span class="date">Oct. 31</span><span class="title"></span>
+          <span class="date">Oct. 31</span>
+          <span class="title">
+            <h5>Visualizing California</h5>
+            <span class="description">Show where to download public data about California and do some detailed mapping.</span>
+          </span>
         </a></li>
         <li><a href="classes/11">
-          <span class="date">Nov. 7</span><span class="title"></span>
+          <span class="date">Nov. 7</span>
+          <span class="title">
+            <h5>Project help</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
         <li><a href="classes/12">
-          <span class="date">Nov. 14</span><span class="title">Project help</span>
+          <span class="date">Nov. 14</span>
+          <span class="title">
+            <h5>Project help</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
         <li><a href="classes/13">
-          <span class="date">Nov. 21</span><span class="title">Project help</span>
+          <span class="date">Nov. 21</span>
+          <span class="title">
+            <h5>Project help</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
         <li><a href="classes/14">
-          <span class="date">Dec. 5</span><span class="title">Project help</span>
+          <span class="date">Dec. 5</span>
+          <span class="title">
+            <h5>Project help</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
         <li><a href="classes/15">
-          <span class="date">Dec. 12</span><span class="title">Presentations</span>
+          <span class="date">Dec. 12</span>
+          <span class="title">
+            <h5>Presentations</h5>
+            <span class="description"></span>
+          </span>
         </a></li>
       </ol>
     </div>
