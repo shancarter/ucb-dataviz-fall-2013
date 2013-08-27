@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../../base.css">
+
+<title>Week 1 — Introductions</title>
+<body class="lesson">
+  <header>
+    <a href="../../index.html">UCB — Fall 2013</a> / <span>Week 1</span>
+    <div class="stepper"><span class="disabled">Previous</span> | <a href="../02">Next</a></div>
+  </header>
+  <div class="main">
+    <h1>Why we’re here, the big deal about data journalism and making the sausage of the internet</h1>
+    <p>After doing basic first-day-type activities and introductions, we'll go over a short history of data journalism, show some prominent examples of great science journalism, and then get right into coding up a page from scratch.</p>
+
+    <h2>Lab</h2>
+    <p>Before we do anything super useful or innovative with our soon-to-be-shiny data skills, we need to be able to have a place to write our files so they are public on the internet. This exercise will make sure everyone is properly set up to publish files on Github pages.</p>
+    <p>Steps to publishing your file on <a href="http://pages.github.com/">Github pages</a>.</p>
+
+    <ol class="steps">
+
+      <li>You'll need to have git installed on your machine. <a href="https://help.github.com/articles/user-organization-and-project-pages">Here's a helper</a>, though we'll spend some time in class doing this as well.</li>
+
+      <li>The first step is to create an account with GitHub. Create a username and password. Once you log in, click on "Create a repository."</li>
+
+      <li>You want to create a <strong>user page</strong> with Github pages, which will let you publish files to the web for free. <a href="https://help.github.com/articles/user-organization-and-project-pages">Here's some documentation</a> if you stray from the instructions below.</li>
+
+      <li>The name of your repository <strong>must be</strong> <code>username/username.github.io</code>. Here's what Amanda's looked like:
+
+      <img src="amanvin-gh-pages.png">
+      </li>
+
+      <li>Make sure you check "Initialize this repository with a README" as well. Then click the button that says "Create repository."</li>
+
+      <li>You've just intialized a git repository! Nice. Now we should start adding to it.</li>
+
+      <li>Somewhere on your computer, make a folder called <code>data-journalism</code> and navigate to it in the Terminal. (Ask your neighbor if you have trouble.)</li>
+
+      <li>Copy the clone address, shown below, to your clipboard.
+          <img src="git-clone.png" width="800">
+      </li>
+
+      <li>In the terminal, type <code>git clone</code> followed by the url you copied. So, in Amanda's case, she would tyoe <code>git clone https://github.com/amandacox/amandacox.github.io.git</code> and then hit enter. If it worked, you should get some messages saying things like this:
+
+      <img src = "success.png" style="margin-top:20px;">
+
+      </li>
+
+      <li>Navigate to the folder you just cloned using the terminal.</li>
+
+      <li>Using either the terminal or your Finder window, move the <code>index.html</code> file you created above (the table with homework dates on it) to your project folder.</li>
+
+      <li>Now you're ready to check in some code. (Sweet!) From the terminal, type the following: <br>
+
+        <code> git add .</code><br>
+        <code> git commit -m "initial commit for class"</code> <br>
+        <code> git push </code> <br>
+      </li>
+
+      <li>It should take about 10 minutes for that to show up. But when it does, you will find it at [yourusername].github.io. If you think you did it right, show your instructors, then help a friend.</li>
+
+
+    </ol>
+  </div>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="../../base.js" charset="utf-8"></script>

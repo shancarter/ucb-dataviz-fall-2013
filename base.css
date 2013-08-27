@@ -2,7 +2,6 @@ body {
   margin:0;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, "Trebuchet MS", Futura;
-  background: hsl(130, 100%, 95%);
 }
 
 header {
@@ -53,12 +52,33 @@ h4 {
 }
 
 p {
-  color: #444;
-  font-size: 17px;
+  font-size: 16px;
+  line-height: 1.4em;
   margin-top:6px;
-  line-height: 1.5em;
+}
+
+li {
+  font-size: 16px;
+  line-height: 1.4em;
 }
 
 a {
   color: #004276;
+}
+
+
+/*lessons*/
+.lesson .main {
+  width: 750px;
+}
+.lesson header {
+  width: 750px;
+}
+ol.steps li {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #ccc;
+}
+.lesson .main img {
+  width: 100%;
 }
