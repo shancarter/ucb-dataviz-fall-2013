@@ -75,10 +75,14 @@ a {
   width: 750px;
 }
 ol.steps li {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: solid 1px #ccc;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: solid 1px #ccc;
 }
 .lesson .main img {
   width: 100%;
+  border: solid 1px #ddd;
+}
+.lesson .main img.no-border {
+  border: none;
 }
