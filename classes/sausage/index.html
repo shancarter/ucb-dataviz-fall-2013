@@ -13,10 +13,12 @@
     <p>After doing basic first-day-type activities and introductions, we'll go over a short history of data journalism, show some prominent examples of great data visualizations, and then get right into coding up a page from scratch.</p>
 
     <h2>Lab</h2>
-    <p>Before we do anything super useful or innovative with our soon-to-be-shiny data skills, we need to be able to have a place to write our files so they are public on the internet and all the apps and settings that go along with that. This exercise will make sure everyone is properly set up to publish our projects on Github.</p>
+    <p>Before we do anything super useful or innovative with our soon-to-be-shiny data skills, we need to be able to have a place to write our files so they are public on the internet. This exercise will make sure everyone is properly set up to publish your projects on Github.</p>
+    <p>Github might at first seem tricky and a little bit of overkill, but it’s the industry standard for using and sharing code. Nearly every major code library you will encounter these days is hosted on Github.</p>
+    <p>More relevant for this particular class though, Github offers free hosting of websites. For instance, this entire syllabus is being served from Github for free (as is Kevin’s <a href="http://kpq.github.io/">porfolio site</a>). So it’s pretty handy.</p>
 
     <h3>Signing up for Github</h3>
-    <p>We’ll be creating all our projects through <a href="https://github.com/">Github</a>. If you’ve never used <a href="http://git-scm.com/">Git</a> or Github before, don’t worry, it’s not as scary as it may seem at first. It’s basically like <a href="https://www.dropbox.com/">Dropbox</a> for programmers.</p>
+    <p>If you’ve never used <a href="http://git-scm.com/">Git</a> or <a href="https://github.com">Github</a> before, don’t worry, it’s not as scary as it may seem at first. It’s basically like <a href="https://www.dropbox.com/">Dropbox</a> for programmers, with enough goofy names and concepts to make it all feel a little more complicated than it really is.</p>
     <ol class="steps">
       <li>
         <p>First, go to <a href="https://github.com/">Github</a> and create a username and password, etc.</p>
@@ -31,7 +33,6 @@
       </li>
       <li>
         <p>You’ve just intialized a Git repository! Nice. Now we need to copy it to our computers.</p>
-        <p><img src="create-repo-success.png"></p>
       </li>
     </ol>
 
@@ -128,21 +129,85 @@
         <p><img src="github-changes.png"></p>
       </li>
       <li>
-        <p>In Git, you bundle changes together into a “commit” which requires a short description. I’ve typed in “Added index page”. We also want to click the button with a plus and rotating arrows to mark that we want to automatically sync with Github servers each time we make a commit.</p>
+        <p>In Git, you bundle changes together into a “commit” which requires a short description. I’ve typed in “Added index page”. We also want to click the button with a plus and rotating arrows to mark that we want to automatically sync with Github servers each time we make a commit. Finally, push the button that says “Commit & Sync” to make your commit and sync it to the Github servers.</p>
         <p><img src="github-commit-sync.png"></p>
       </li>
       <li>
-        <p>Now, finally, make your commit — push the button that says “Commit & Sync”. Now click over to the "History" tab and you should see two commits listed. You can click back and forth on the commits to see what changes were made.</p>
+        <p>Now click over to the "History" tab and you should see two commits listed. You can click back and forth on the commits to see what changes were made.</p>
         <p><img src="github-successful-commit.png"></p>
       </li>
       <li>
-        <p>If you want to go deep, here’s a <a href="http://git-scm.com/book">very detailed overview of git</a>.</p></li>
+        <p>Let’s see what it looks like on the Github website. Click on the settings tab, then click the button that says “View on Github”.</p>
+        <p><img src="github-settings-tab.png"></p>
+      </li>
+      <li>
+        <p>Now you should see a version of your project live on Github servers. You can even edit your files through this website! For example, let’s add some text our homepage. Click on the “index.html” page.</p>
+        <p><img src="github-homescreen.png"></p>
+      </li>
+      <li>
+        <p>Now, click the “Edit” button.</p>
+        <p><img src="github-edit.png"></p>
+      </li>
+      <li>
+        <p>Once you’ve added a line or two of text, scroll down to the bottom and click the “Commit Changes” button.</p>
+        <p><img src="github-commit-changes.png"></p>
+      </li>
+      <li>
+        <p>Now, we need to sync those changes back to our computer. So let’s go back to the Github app and click on the “History” tab. Click the button on top labeled “Sync Branch”.</p>
+        <p><img src="github-sync-branch.png"></p>
+        <p>You should see a new entry in your commit history, and if you open the file up in Sublime, you should see the changes you made through the website.</p>
+      </li>
     </ol>
 
     <h3>Now, Let’s Publish</h3>
+    <p>When we started we promised that we’d be able to publish something to the internet for free. Well, when we viewed the “index.html” file on Github, it didn’t exactly look like how it would if you were sharing a link with someone. We’ll fix that now.</p>
+    <ol class="steps">
+      <li>
+        <p>The last major concept in Git we need to cover is “Branches”. Click on the “Braches” tab for your “dataviz-home” repo.</p>
+        <p><img src="github-branches.png"></p>
+      </li>
+      <li>
+        <p>Click the plus button to create a new branch based on the existing branch and name it “gh-pages”.</p>
+        <p><img src="github-branches-add.png"></p>
+      </li>
+      <li>
+        <p>Then click “Publish” to create it on the Github servers.</p>
+        <p><img src="github-branches-publish.png"></p>
+      </li>
+      <li>
+        <p>This branch has a special name “gh-pages” which is short for for “GitHub Pages” and tells github that this branch is meant to be served as webpages and not code. The URLs for these Github pages follow a formula: <a href="#">http://[your-user-name].github.io/[your-repo-name]</a>. For instance, mine is available at: <a href="http://shancarter.github.io/dataviz-home/">http://shancarter.github.io/dataviz-home/</a>. Go to your URL and see if it shows up. It can sometimes take a few minutes to be live. Read up more on <a href="http://pages.github.com/">Github Pages</a>.</p>
+      </li>
+      <li>
+        <p>Let’s make an edit to our page and publish the changes. Add the following stylesheet to your index.html page.</p>
+      </li>
+      <li>
+        <p>Then, go back to the Github app, the “Changes” tab and commit and sync that change.</p>
+      </li>
+      <li>
+        <p>Refresh your <a href="http://shancarter.github.io/dataviz-home/">http://shancarter.github.io/dataviz-home/</a> url and see if it shows up.</p>
+      </li>
+      <li>
+        <p>Now that we have it all setup, that is the cycle for publishing changes to your project: Edit files, then “Commit & Sync”. That’s it, all those edits will then be live on your page.</p>
+      </li>
+      <li>
+        <p>We have one last small thing to do, and that’s to set “gh-pages” to be our default branch so we don’t get confused. Unfortunately we can only do this through the Github website. The setting is located in your repos “Settings” screen.</p>
+        <p><img src="github-settings-page.png"></p>
+        <p>Set the default branch from “master” to “gh-pages”.</p>
+        <p><img src="github-default-branch.png"></p>
+      </li>
+      <li>
+        <p>And finally, if you ever need to get back to the original screen where it lists all your repos, click the top bar where it says “Repositories >”.</p>
+        <p><img src="github-back-to-home.png"></p>
+
+      </li>
+      <li>
+        <p>So far this has just scratched the surface of Git and Github. If you want to go deep, here’s a <a href="http://git-scm.com/book">very detailed overview</a>.</p>
+      </li>
 
 
-    <h3>R</h3>
+    </ol>
+
+    <h3>Installing R Studio</h3>
     <p><a href="http://cran.us.r-project.org/">Download</a></p>
     <p><a href="http://www.rstudio.com/">R Studio</a></p>
 
