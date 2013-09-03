@@ -39,7 +39,7 @@ h2 {
 }
 
 h3 {
-  border-top: solid 1px rgba(0, 0, 0, 0.15);
+  border-top: solid 1px rgba(0, 0, 0, 0.20);
   font-size: 26px;
   font-weight: normal;
   margin: 30px 0 15px;
@@ -74,15 +74,32 @@ a {
 .lesson header {
   width: 750px;
 }
+ol.steps {
+  counter-reset: step-counter;
+  padding: 0;
+  margin: 0;
+}
 ol.steps li {
-  padding-top: 20px;
-  margin-top: 20px;
-  border-top: solid 1px #ccc;
+  padding: 0 0 0 20px;
+  margin: 20px 0 20px 40px;
+  border-left: solid 1px #ddd;
+  display: block;
+  position: relative;
+}
+ol.steps li:before {
+  position: absolute;
+  left: -40px;
+  top: 0px;
+  font-size: 20px;
+  color: #999;
+  text-align: right;
+  width: 25px;
+  content: counter(step-counter);
+  counter-increment: step-counter;
 }
 .lesson .main img {
   width: 100%;
-  border: solid 1px #ddd;
 }
-.lesson .main img.no-border {
-  border: none;
+.lesson .main img.border {
+  border: solid 1px #ddd;
 }
