@@ -10,12 +10,12 @@
   </header>
   <div class="main">
     <h1>Why we’re here, how we approach graphics at The New York Times and making the sausage of the internet</h1>
-    <p>After doing basic first-day-type activities and introductions, we'll go over a short personal history of how I got started in the biz, then an overview of a interactive we made recently, and then get right into using Github.</p>
+    <p>After doing basic first-day-type activities and introductions, I'll give a short lecture and then we’ll get right into using Github.</p>
     <h2>Lecture</h2>
-    <p><a href="lecture.html">Time for some coffee</a>.</p>
+    <p><a href="lecture.html">Sit back and enjoy</a>.</p>
     <h2>Lab</h2>
-    <p>Before we do anything super useful or innovative with our soon-to-be-shiny data skills, we need to be able to have a place to write our files so they are public on the internet. This exercise will make sure everyone is properly set up to publish your projects on Github.</p>
-    <p>Github might at first seem tricky and a little bit of overkill, but it’s the industry standard for using and sharing code. Nearly every major code library you will encounter these days is hosted on Github.</p>
+    <p>Before we do anything super useful or innovative with our soon-to-be-shiny data skills, we need to be able to have a place to write our files so they are public on the internet. This exercise will make sure everyone is properly set up to publish stuff to Github.</p>
+    <p>Github might at first seem tricky and a little bit of overkill, but it’s the industry standard for sharing code. Nearly every major code library you will encounter these days is hosted on Github.</p>
     <p>More relevant for this particular class though, Github offers free hosting of websites. For instance, this entire syllabus is being served from Github for free (as is Kevin’s <a href="http://kpq.github.io/">porfolio site</a>). So it’s pretty handy.</p>
 
     <h3>Signing up for Github</h3>
@@ -42,7 +42,7 @@
 
     <ol class="steps">
       <li>
-        <p>Go to your home directory, it’s the one in your sidebar with a house icon. (Mine is called “shan”. Keyboard shortcut to go there: <code>⌘⇧H</code>)</p>
+        <p>Go to your home directory, it’s the one in your sidebar with a house icon. Mine is called “shan” and the keyboard shortcut to go there is: ⌘⇧H</p>
       </li>
       <li>
         <p>Inside this folder, create a new folder called “dataviz-fall-2013”. This is where we’re going to store all of our repositories.</p>
@@ -176,7 +176,7 @@
         <p><img src="github-branches-publish.png"></p>
       </li>
       <li>
-        <p>This branch has a special name “gh-pages” which is short for for “GitHub Pages” and tells github that this branch is meant to be served as webpages and not code. The URLs for these Github pages follow a formula: <a href="#">http://[your-user-name].github.io/[your-repo-name]</a>. For instance, mine is available at: <a href="http://shancarter.github.io/dataviz-home/">http://shancarter.github.io/dataviz-home/</a>. Go to your URL and see if it shows up. It can sometimes take a few minutes to be live. Read up more on <a href="http://pages.github.com/">Github Pages</a>.</p>
+        <p>This branch has a special name “gh-pages” which is short for for “GitHub Pages” and tells github that this branch is meant to be served as webpages and not code. The URLs for these Github pages follow a formula: <a href="http://[your-user-name].github.io/[your-repo-name]">http://[your-user-name].github.io/[your-repo-name]</a>. For instance, mine is available at: <a href="http://shancarter.github.io/dataviz-home/">http://shancarter.github.io/dataviz-home/</a>. Go to your URL and see if it shows up. It can sometimes take a few minutes to be live. Read up more on <a href="http://pages.github.com/">Github Pages</a>.</p>
       </li>
       <li>
         <p>Let’s make an edit to our page and publish the changes. Add the following stylesheet to your index.html page.</p>
@@ -209,9 +209,16 @@
     </ol>
 
     <h3>Installing R Studio</h3>
-    <p><a href="http://cran.us.r-project.org/">Download</a></p>
-    <p><a href="http://www.rstudio.com/">R Studio</a></p>
-
+    <ol class="steps">
+      <li><p>Download and install <a href="http://cran.us.r-project.org/">R</a>.</p></li>
+      <li><p>Download and install <a href="http://www.rstudio.com/">RStudio</a>.</p></li>
+      <li>
+        <p>Open RStudio and type into the console:</p>
+        <p><code>demo(graphics)</code></p>
+        <p><img src="rstudio.png"></p>
+      </li>
+      <li><p>Congratulations, you just earned a Master’s in statistics!</p></li>
+    </ol>
   </div>
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
