@@ -1,0 +1,110 @@
+body {
+  margin:0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Trebuchet MS", Futura;
+}
+
+header {
+  text-transform: uppercase;
+  padding: 10px 0;
+  font-size: 12px;
+  margin: 20px auto;
+  width: 600px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  color: #999;
+}
+
+header .stepper {
+  float: right;
+}
+
+.main {
+  margin:20px auto;
+  width:600px;
+}
+
+h1 {
+  font-family: Georgia;
+  font-size: 50px;
+  font-weight: normal;
+  margin: 30px 0 20px;
+}
+
+h2 {
+  border-top: solid 1px rgba(0, 0, 0, 0.2);
+  font-size: 26px;
+  font-weight: normal;
+  margin: 30px 0 10px;
+  padding: 20px 0 0 0;
+}
+
+h3 {
+  border-top: solid 1px rgba(0, 0, 0, 0.20);
+  font-size: 26px;
+  font-weight: normal;
+  margin: 30px 0 15px;
+  padding: 20px 0 0 0;
+
+}
+
+h4 {
+  margin: 10px 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.4em;
+  margin-top:6px;
+}
+
+li {
+  font-size: 16px;
+  line-height: 1.4em;
+}
+
+a {
+  color: #004276;
+}
+code {
+  background-color: #f0f0f0;
+  display: block;
+  padding: 4px;
+  font-size: 12px;
+}
+
+/*lessons*/
+.lesson .main {
+  width: 750px;
+}
+.lesson header {
+  width: 750px;
+}
+ol.steps {
+  counter-reset: step-counter;
+  padding: 0;
+  margin: 0;
+}
+ol.steps li {
+  padding: 0 0 0 20px;
+  margin: 20px 0 20px 40px;
+  border-left: solid 1px #ddd;
+  display: block;
+  position: relative;
+}
+ol.steps li:before {
+  position: absolute;
+  left: -40px;
+  top: 0px;
+  font-size: 20px;
+  color: #999;
+  text-align: right;
+  width: 25px;
+  content: counter(step-counter);
+  counter-increment: step-counter;
+}
+.lesson .main img {
+  width: 100%;
+}
+.lesson .main img.border {
+  border: solid 1px #ddd;
+}
