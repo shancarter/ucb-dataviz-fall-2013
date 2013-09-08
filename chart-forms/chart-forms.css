@@ -1,0 +1,6 @@
+.chart-forms li {
+  list-style-type: none;
+  padding-bottom: 40px;
+  border-bottom: 1px dashed #dedede;
+  margin: 40px 0;
+}
