@@ -2,6 +2,10 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../../base.css">
 
+<script src="highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<link rel="stylesheet" type="text/css" href="magula.css">
+
 <title>Week 2 — Getting Started With Charts</title>
 <body class="lesson">
   <header>
@@ -18,7 +22,54 @@
 
     <h2>Lecture</h2>
     <p><a href="lecture.html">The essence vs. the fiddly bits of data graphics, and understanding chart types.</a>.</p>
+
     <h2>Lab</h2>
+    <p>We'll make some bar charts with R and D3, but mostly we'll get familiar with the console and environments of each. We'll be replicating Kevin's <a href="http://www.nytimes.com/2013/08/27/sports/ncaafootball/to-defend-its-empire-espn-stays-on-offensive.html#g-histogram">favorite bar chart</a> of 2013.</p>
+
+    <h4> Getting started with the R console</h4>
+    <p>You should have R installed on your machine or desktop. If you don't, <a href="http://cran.r-project.org/">install it</a> and run it form the applications menu. You should see the R console, which looks like this:</p>
+
+<img src = "intro.jpg">
+
+<p>Before we start breaking things, let's get our workspace set up properly. Make a folder on your desktop called <code>cuny-tutorial</code>. In that folder, make a new file called <code>tutorials.R</code> in a text editor and save it to your project folder. Start by typing your working directory in your R text file and pasting it into the R console. (Cutting and pasting from static files is not the classiest way to do things, since there's an <a href="http://www.rstudio.com/ide/">R IDE</a> now, but this is how <a href="https://twitter.com/amandacox">the Godfather</a> does it, so it's good enough for us.)</p>
+
+
+<pre>
+  <code>
+    setwd("~/Desktop/cuny-tutorial")
+  </code>
+</pre>
+
+<p>Start typing things into the console and discuss what happens after each.</p>
+
+<pre>
+  <code>
+    "I should exercise more."
+
+    1+1
+
+    1==2
+
+    1:1000
+
+    animals <- c("bears","monkeys","donkeys")
+
+    animals[1]
+
+    class(animals)
+
+    class(1==2)
+
+    class(1:1000)
+
+  </code>
+</pre>
+
+<h5 class="example-class-questions">Questions/thoughts?</h5>
+
+<p>R isn't hard, but it can feel difficult because it's picky. The difference between a map or chart that works and one that's broken can sometimes just be a missing argument to a method (like <code>stringsAsFactors=F</code> or <code>horiz=T</code>), which can be frustrating. Rather than try to cover all of thes eexhaustively, we'll just start making some projects and learn as we go. </p>
+
+    <p>
 
   </div>
 
