@@ -24,52 +24,193 @@
     <p><a href="lecture.html">The essence vs. the fiddly bits of data graphics, and understanding chart types.</a>.</p>
 
     <h2>Lab</h2>
+
+
     <p>We'll make some bar charts with R and D3, but mostly we'll get familiar with the console and environments of each. We'll be replicating Kevin's <a href="http://www.nytimes.com/2013/08/27/sports/ncaafootball/to-defend-its-empire-espn-stays-on-offensive.html#g-histogram">favorite bar chart</a> of 2013.</p>
 
     <h4> Getting started with the R console</h4>
-    <p>You should have R installed on your machine or desktop. If you don't, <a href="http://cran.r-project.org/">install it</a> and run it form the applications menu. You should see the R console, which looks like this:</p>
+    <p>R isn't hard, but it can feel difficult because it's picky. The difference between a map or chart that works and one that's broken can sometimes just be a missing argument to a method (like <code>stringsAsFactors=F</code> or <code>horiz=T</code>), which can be frustrating. Rather than try to cover all of thes eexhaustively, we'll just start making some projects and learn as we go.</p>
 
-<img src = "intro.jpg">
+    <ol class="steps">
+      <li>You should have R or RStudio installed on your machine or desktop. If you don't, <a href="http://cran.r-project.org/">install it</a> and run it form the applications menu. You should see the R console, which looks like this:
+      <img src="intro.jpg">
+      (If you have the R IDE instead of this basic R console, that's fine too. Each has its merits.)
+      </li>
+      <li>Make a folder on your desktop called <code>week2</code> or something else of your choosing. In that folder, make a new file called <code>tutorials.R</code> in a text editor and save it to your project folder. Start by typing your working directory in your R text file and pasting it into the R console.
+        <pre>
+          <code>setwd("~/Desktop/week2")</code>
+        </pre>
+      </li>
 
-<p>Before we start breaking things, let's get our workspace set up properly. Make a folder on your desktop called <code>cuny-tutorial</code>. In that folder, make a new file called <code>tutorials.R</code> in a text editor and save it to your project folder. Start by typing your working directory in your R text file and pasting it into the R console. (Cutting and pasting from static files is not the classiest way to do things, since there's an <a href="http://www.rstudio.com/ide/">R IDE</a> now, but this is how <a href="https://twitter.com/amandacox">the Godfather</a> does it, so it's good enough for us.)</p>
+      <li>
+        Start typing things into the console and discuss what happens after each.
+      <pre>
+        <code>"I should exercise more."
 
+1+1
 
-<pre>
-  <code>
-    setwd("~/Desktop/cuny-tutorial")
+1==2
+
+1:1000
+
+animals <- c("bears","monkeys","donkeys")
+
+animals[1]
+
+class(animals)
+
+class(1==2)
+
+class(1:1000)
+
+</code>
+</pre>
+</li>
+    </ol>
+
+    <h4>Making a bar chart in R</h4>
+    <ol class="steps">
+      <li>The thing we need for any chart is data. Download <a href="subscription-prices.csv">this CSV</a> of the cost of various cable channels per subscriber per month. Save it to your local project folder. (PS, do you know what a CSV is?) </li>
+      <li>Load the file under the variable name <code>prices</code>
+      <pre>
+        <code>prices <- read.csv("subscription-prices.csv")</code>
+      </pre>
+      </li>
+
+      <li>Let's try a few things, one at a time, and discuss:
+      <pre>
+<code>class(prices)
+dim(prices)
+head(prices)
+head(prices, n=20)
+names(prices)
+prices$X2013
+prices$X2013[1:10]
+class(prices$X2013)
+?head
+prices[1,]
+prices[,1]
+prices[,c("Network")]
+prices[1:10,c("Network")]</code>
+
+      </pre>
+      </li>
+
+      <li>
+        Now plot the prices.
+        <pre>
+          <code>plot(prices$X2013)</code>
+        </pre>
+        <img src="basic-plot.png">
+        We only gave it one vector to plot, but it's plotting on both X and Y coordinates. What does the X axis represent here?
+      </li>
+
+      <li>Try a different kind of plot (one R is kind of annoying about, actually).
+      <pre>
+        <code>barplot(prices$X2013)</code>
+      </pre>
+      <img src="first-barplot.png">
+        Note the difference here in the X axis.
+      </li>
+
+      <li>Note that you can give all sorts of arguments to the plot commands. Take a look through the docs with <code>?plot</code>
+      <pre>
+        <code>barplot(prices$X2013, col="lightgrey", border=F, main="Total control!", ylab="Price")</code>
+      </pre>
+      <img src="second-barplot.png">
+      </li>
+
+      <li>Let's do a little logic and sorting, then replot.
+      <pre>
+        <code>#sorting
+prices <- prices[order(prices$X2013),]
+barcolors <- ifelse(prices$Network == "ESPN", "red", "lightgrey")
+
+barplot(prices$X2013, col=barcolors, border=F, main="Now with custom colors!", ylab="Price")
+
   </code>
+      </pre>
+      <img src="third-barplot.png">
+      That's it! You made your first data visualization in R. It's not the best, but it's only about three lines of code. In a hurry, you could post this online very quickly – Nate Silver probably would too. But it's static and inflexible – what if you wanted users to be able to look up any station, or resize the chart based on which device a user was coming from? For increased flexibility, you might want to draw this chart in a web browser.
+      </li>
+
+    </ol>
+
+    <h4>Making a bar chart in D3</h4>
+
+    <ol class="steps">
+      <li>Get started by making a new file called <code>index.html</code> in your local project directory. Use the format described <a href="http://alignedleft.com/tutorials/d3/setup">in this tutorial</a> by Scott Murray. If you want, we started a sample file you can use, <a href="1-d3.html">right here</a>, which you could download and rename.</li>
+      <li>Before we start coding, let's get set up in the Terminal by starting a server on port 8000 using Python's <a href="http://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a>. To do this, use your terminal to navigate to the folder that contains your <code>index.html</code> file. Then type:
+        <pre>
+          <code>python -m SimpleHTTPServer</code>
+        </pre>
+
+      Now we're ready to start coding. Your <code>index.html</code> file is now accessible by going to <code>localhost:8000</code> on your web browser.
+      </li>
+
+      <li>
+        Open your <code>index.html</code> page (which might be blank, which is fine) and open the Console. (View > Developer > Javascript Console.) Let's try typing the same things we did with R earlier, and note the small differences.
+
+         <pre>
+        <code>"I should exercise more."
+
+1+1
+
+1==2
+
+// 1:1000 doesn't work
+
+animals = ["bears","monkeys","donkeys"] // new array syntax
+
+animals[1] //note zero-based
+
+typeof animals //not "class"
+
+typeof 1==2
+
+
+</code>
 </pre>
 
-<p>Start typing things into the console and discuss what happens after each.</p>
+      The Javascript Console is going to be one of our best ways to inspect and debug the HTML, CSS and Javascript we write. So start practicing!
+      </li>
 
-<pre>
-  <code>
-    "I should exercise more."
+      <li>On your html page, start by loading D3:
+        <pre>
+        <code></code>
+      </pre>
+      </li>
 
-    1+1
+      <li>
+        Then, toward the bottom of your page, start a <code>script</code> tag and leave some room in it. Let's start by adding an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing.
 
-    1==2
+        <pre>
+          <code>var margin = {top: 20, right: 10, bottom: 20, left: 10};
 
-    1:1000
+var width = 960 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
 
-    animals <- c("bears","monkeys","donkeys")
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          </code>
 
-    animals[1]
+        </pre>
+      </li>
 
-    class(animals)
+      <li>
+        Now we'll load the same prices data as we did in R, using d3.csv.
+      </li>
 
-    class(1==2)
 
-    class(1:1000)
+    </ol>
 
-  </code>
-</pre>
 
-<h5 class="example-class-questions">Questions/thoughts?</h5>
 
-<p>R isn't hard, but it can feel difficult because it's picky. The difference between a map or chart that works and one that's broken can sometimes just be a missing argument to a method (like <code>stringsAsFactors=F</code> or <code>horiz=T</code>), which can be frustrating. Rather than try to cover all of thes eexhaustively, we'll just start making some projects and learn as we go. </p>
 
-    <p>
+
 
   </div>
 
