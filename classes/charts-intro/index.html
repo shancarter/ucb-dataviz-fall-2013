@@ -79,7 +79,9 @@ class(1:1000)
 
     <h4>Making a bar chart in R</h4>
     <ol class="steps">
-      <li>The thing we need for any chart is data. Download <a href="subscription-prices.csv">this CSV</a> of the cost of various cable channels per subscriber per month. Save it to your local project folder. (PS, do you know what a CSV is?) </li>
+      <li>The thing we need for any chart is data. Download <a href="subscription-prices.csv">this CSV</a> of the cost of various cable channels per subscriber per month. Save it to your local project folder. (PS, do you know what a CSV is?)
+        <img src="files.png">
+      </li>
       <li>Load the file under the variable name <code>prices</code>
       <pre>
         <code class="language-r">prices <- read.csv("subscription-prices.csv")</code>
@@ -159,6 +161,15 @@ barplot(prices$X2013, col=barcolors, border=F, main="Now with custom colors!", y
       </pre>
       <img src="third-barplot.png">
       That's it! You made your first data visualization in R. It's not the best, but it's only about three lines of code. In a hurry, you could post this online very quickly – Nate Silver probably would too. But it's static and inflexible – what if you wanted users to be able to look up any station, or resize the chart based on which device a user was coming from? For increased flexibility, you might want to draw this chart in a web browser.
+      </li>
+      <li>
+        <p>If you want to learn more about any of the commands we ran, R has a convention for brining up the documentation of any method.</p>
+        <pre><code>#? then the name of the method
+?plot
+?barplot
+##or, if you want fuzzy matching, try this
+help.search("bar plot")
+        </code></pre>
       </li>
 
     </ol>
