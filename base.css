@@ -102,7 +102,13 @@ ol.steps li:before {
 .lesson .main img.border {
   border: solid 1px #ddd;
 }
-
+.quote {
+  font-style: italic;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 10px;
+  line-height: 1.4em;
+}
 pre code{
   font-size: 12px;
 }
