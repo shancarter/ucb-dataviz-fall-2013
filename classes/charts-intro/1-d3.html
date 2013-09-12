@@ -1,22 +1,48 @@
-<!-- shamelessly stolen from Scott Murray -->
 
+
+<!-- shamelessly stolen from scott murray: http://alignedleft.com/tutorials -->
 <!DOCTYPE html>
+<html lang="en">
 
-<h1>Part 1</h1>
+  <head>
+      <meta charset="utf-8">
+      <title>D3 Test</title>
+  </head>
+  <body>
 
-<script src="d3.v3.min.js">
+  <style type="text/css">
 
-<script type="text/javascript">
-var margin = {top: 20, right: 10, bottom: 20, left: 10};
+  svg {
+    border:2px solid orange
+  }
 
-var width = 960 - margin.left - margin.right,
-height = 500 - margin.top - margin.bottom;
+  .testbar {
+    fill: #ff00ff;
+  }
+  </style>
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  d3.select("body").append("h1").text("My first bar chart")
 
+  var margin = {top: 20, right: 10, bottom: 20, left: 10};
+
+  var width = 650 - margin.left - margin.right,
+  height = 200 - margin.top - margin.bottom;
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var testRectangle = svg.append("rect")
+      .attr("x", 20)
+      .attr("y", 100)
+      .attr("height", 50)
+      .attr("width", 200)
+      .attr("class", "testbar");
 
 </script>
+</body>
+</html>

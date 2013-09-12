@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../../base.css">
@@ -210,8 +211,8 @@ typeof (1 === 2)
         <pre>
           <code class="language-javascript">var margin = {top: 20, right: 10, bottom: 20, left: 10};
 
-var width = 960 - margin.left - margin.right,
-height = 500 - margin.top - margin.bottom;
+var width = 600 - margin.left - margin.right,
+height = 250 - margin.top - margin.bottom;
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -226,7 +227,46 @@ var svg = d3.select("body").append("svg")
 
       <li>
 
+        Let's add a plain rectangle to the SVG element just to get used to the syntax.
+
+        <pre>
+          <code class="language-javascript">var testRectangle = svg.append("rect")
+    .attr("x", 20)
+    .attr("y", 100)
+    .attr("height", 50)
+    .attr("width", 200)
+    .attr("class", "testbar");
+          </code>
+        </pre>
+
+        Make a CSS block on the top of your <code>index.html</code> page to style your rectangle.
+
+        <pre>
+          <code class="language-html">&lt;style type="text.css"&gt;
+.svg {
+  stroke: 2px solid orange;
+}
+
+.testbar {
+  fill: #ff00ff;
+}
+&lt;/style&gt
+
+          </code>
+        </pre>
+
+        It might look like this:
+        <img src="test-svg.png">
+
+        What do the x and y positions we set mean?
+
         </li>
+
+    <li>
+      Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data.
+    </li>
+
+
 
 
     </ol>
