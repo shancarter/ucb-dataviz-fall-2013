@@ -254,7 +254,7 @@ var svg = d3.select("body").append("svg")
 
         <pre>
           <code class="language-html">&lt;style type="text.css"&gt;
-.svg {
+svg {
   stroke: 2px solid orange;
 }
 
@@ -311,17 +311,73 @@ var svg = d3.select("body").append("svg")
     Go back to the inspector and check out the difference. Why does this matter?
   </li>
 
-    <li>We're now going to do one of the most powerful applications of D3, which is the data join. We're going to join the data we loaded to elements on the page. This is a little abstract, but it's described well in Scott Murray's <a href="http://alignedleft.com/tutorials/d3/binding-data">tutorial section</a></li>
+    <li>We're now going to do one of the most powerful applications of D3, which is the data join. We're going to join the data we loaded to elements on the page. This is a little abstract, but it's described well in Scott Murray's <a href="http://alignedleft.com/tutorials/d3/binding-data">tutorial section</a> and more abstractly by the boss himself in <a href="http://bost.ocks.org/mike/join/">this article</a>.
 
+    <pre>
+      <code class="language-javascript">var bar = d3.selectAll(".bar")
+    .data(prices)
+  .enter().append("rect")
+    .attr("class", "bar");
+</code>
+    </pre>
 
+    Check out your Chrome inspector now. You should see something like this:
+    <img src="bar-console-pic.png">
+    Why do we see it in the Inspector but nothing renders on the page?
 
+    </li>
+
+    <li>
+      Let's give bars some attributes, like heights, widths, X and Y positions. To do that, though, we'll need ways to translate our data values into pixels based on our SVG element. We do that with <code>d3.scale</code> (a very good helper is, again, <a href="http://alignedleft.com/tutorials/d3/scales">on Scott Murray's site</a> for further reading).
+
+      <pre>
+        <code class="language-javascript">var y = d3.scale.linear()
+    .domain([0,6])
+    .range([0,height]);
+
+var x = d3.scale.linear()
+    .domain([0,prices.length])
+    .range([0,width]);
+        </code>
+      </pre>
+
+      Let's make sure we know what this code does before moving on.
+
+    </li>
+
+    <li>
+
+      Let's modify the code to give height and x positions based on our data. Only two lines of this are new.
+
+      <pre>
+        <code class="language-javascript">var bar = d3.selectAll(".bar")
+          .data(prices)
+        .enter().append("rect")
+          .attr("height", function(d) { return y(d.X2013); })
+          .attr("width", 2)
+          .attr("x", function(d, i) { return 3 * i})
+          .attr("class", "bar");
+</code>
+      </pre>
+
+    Add some css so the bars are grey, too.
+
+        <pre>
+          <code class="language-html">.bar {
+  fill: #ddd;
+}</code>
+        </pre>
+
+    If your chart looks like this, you're in good shape.
+    <img src="data-join-styled-bars.png">
+    If you want to see this file, you can check it out <a href="3-d3.html">here</a>. What's still wrong with this plot? What needs adjusting?
+        </li>
+
+    <li>
+
+    </li>
 
     </ol>
-
-
-
-
-
 
   </div>
 

@@ -1,0 +1,62 @@
+
+
+<!-- shamelessly stolen from scott murray: http://alignedleft.com/tutorials -->
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="utf-8">
+      <title>D3 Test</title>
+  </head>
+  <body>
+
+  <style type="text/css">
+
+  svg {
+    border:2px solid orange
+  }
+
+  .bar {
+    fill:#ddd;
+  }
+
+  </style>
+
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  d3.select("body").append("h1").text("My first bar chart")
+
+  var margin = {top: 20, right: 10, bottom: 20, left: 10};
+
+  var width = 650 - margin.left - margin.right,
+  height = 200 - margin.top - margin.bottom;
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  d3.csv("subscription-prices.csv", function(err, prices) {
+
+      var y = d3.scale.linear()
+          .domain([0,6])
+          .range([0,height]);
+
+      var x = d3.scale.linear()
+          .domain([0,prices.length])
+          .range([0,width]);
+
+      var bar = svg.selectAll(".bar")
+          .data(prices)
+          .enter()
+          .append("rect")
+          .attr("height", function(d) { return y(d.X2013); })
+          .attr("width", 2)
+          .attr("x", function(d, i) { return 3 * i})
+          .attr("class", "bar");
+    });
+
+</script>
+</body>
+</html>
