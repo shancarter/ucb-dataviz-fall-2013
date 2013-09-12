@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../../base.css">
-
-<script src="highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<link rel="stylesheet" type="text/css" href="magula.css">
+<link rel="stylesheet" type="text/css" href="../../assets/sunburst.css">
 
 <title>Week 2 — Getting Started With Charts</title>
 <body class="lesson">
@@ -38,14 +35,14 @@
       </li>
       <li>Make a folder on your desktop called <code>week2</code> or something else of your choosing. In that folder, make a new file called <code>tutorials.R</code> in a text editor and save it to your project folder. Start by typing your working directory in your R text file and pasting it into the R console.
         <pre>
-          <code>setwd("~/Desktop/week2")</code>
+          <code class="language-r">setwd("~/Desktop/week2") #or wherever you're keeping your code</code>
         </pre>
       </li>
 
       <li>
         Start typing things into the console and discuss what happens after each.
       <pre>
-        <code>"I should exercise more."
+        <code class="language-r">"I should exercise more."
 
 1+1
 
@@ -73,13 +70,13 @@ class(1:1000)
       <li>The thing we need for any chart is data. Download <a href="subscription-prices.csv">this CSV</a> of the cost of various cable channels per subscriber per month. Save it to your local project folder. (PS, do you know what a CSV is?) </li>
       <li>Load the file under the variable name <code>prices</code>
       <pre>
-        <code>prices <- read.csv("subscription-prices.csv")</code>
+        <code class="language-r">prices <- read.csv("subscription-prices.csv")</code>
       </pre>
       </li>
 
       <li>Let's try a few things, one at a time, and discuss:
       <pre>
-<code>class(prices)
+<code class="language-r">class(prices)
 dim(prices)
 head(prices)
 head(prices, n=20)
@@ -97,12 +94,33 @@ prices[1:10,c("Network")]</code>
       </li>
 
       <li>
-        Now plot the prices.
+        Before we make any charts, let's get to know our data. How many rows does it have? How many columns? What are other meaningful questions we could ask (or should probably know the answer to)?
+      </li>
+
+      <li>
+        Let's see what a basic plot of the prices looks like.
+        <pre>
+          <code>plot(prices$X2013)</code>
+        </pre>
+        <img src="first-plot.png">
+        We only gave it one vector to plot, but it's plotting on both X and Y coordinates. What does the X axis represent here?
+      </li>
+
+      <li>
+        That chart isn't so fun. What order is our data in? Let's sort our data frame in order from highest price to lowest. (This isn't the most fun to write, but we resort a lot in R, so you this code will come in handy later.)
+        <pre>
+          <code class="language-r">prices <- prices[order(prices$X2013, decreasing=T),]</code>
+        </pre>
+      </li>
+
+
+
+      <li>
+        Now let's do the same plot as before.
         <pre>
           <code>plot(prices$X2013)</code>
         </pre>
         <img src="basic-plot.png">
-        We only gave it one vector to plot, but it's plotting on both X and Y coordinates. What does the X axis represent here?
       </li>
 
       <li>Try a different kind of plot (one R is kind of annoying about, actually).
@@ -110,10 +128,10 @@ prices[1:10,c("Network")]</code>
         <code>barplot(prices$X2013)</code>
       </pre>
       <img src="first-barplot.png">
-        Note the difference here in the X axis.
+        Note the difference here in the X axis. Which plot do you prefer?
       </li>
 
-      <li>Note that you can give all sorts of arguments to the plot commands. Take a look through the docs with <code>?plot</code>
+      <li>Note that you can give all sorts of arguments to the plot commands. Take a look through the docs with <code>?plot</code>. Here's the same plot as before, but with some extra arguments.
       <pre>
         <code>barplot(prices$X2013, col="lightgrey", border=F, main="Total control!", ylab="Price")</code>
       </pre>
@@ -122,13 +140,10 @@ prices[1:10,c("Network")]</code>
 
       <li>Let's do a little logic and sorting, then replot.
       <pre>
-        <code>#sorting
+        <code class="language-r">#sorting
 prices <- prices[order(prices$X2013),]
 barcolors <- ifelse(prices$Network == "ESPN", "red", "lightgrey")
-
-barplot(prices$X2013, col=barcolors, border=F, main="Now with custom colors!", ylab="Price")
-
-  </code>
+barplot(prices$X2013, col=barcolors, border=F, main="Now with custom colors!", ylab="Price")</code>
       </pre>
       <img src="third-barplot.png">
       That's it! You made your first data visualization in R. It's not the best, but it's only about three lines of code. In a hurry, you could post this online very quickly – Nate Silver probably would too. But it's static and inflexible – what if you wanted users to be able to look up any station, or resize the chart based on which device a user was coming from? For increased flexibility, you might want to draw this chart in a web browser.
@@ -136,20 +151,17 @@ barplot(prices$X2013, col=barcolors, border=F, main="Now with custom colors!", y
 
     </ol>
 
-    <h4>Making a bar chart in D3</h4>
+    <h4>Getting started with the Javascript console</h4>
 
     <ol class="steps">
-      <li>Get started by making a new file called <code>index.html</code> in your local project directory. Use the format described <a href="http://alignedleft.com/tutorials/d3/setup">in this tutorial</a> by Scott Murray. If you want, we started a sample file you can use, <a href="1-d3.html">right here</a>, which you could download and rename.</li>
-      <li>Before we start coding, let's get set up in the Terminal by starting a server on port 8000 using Python's <a href="http://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a>. To do this, use your terminal to navigate to the folder that contains your <code>index.html</code> file. Then type:
-        <pre>
-          <code>python -m SimpleHTTPServer</code>
-        </pre>
-
-      Now we're ready to start coding. Your <code>index.html</code> file is now accessible by going to <code>localhost:8000</code> on your web browser.
+      <li>Close your R files for now and create a blank HTML page like the one described by Scott Murray in his <a href="http://alignedleft.com/tutorials/d3/setup">great D3 tutorial</a>. You can download that file <a href="0-d3.html">right here</a>, but make sure you save it to your local directory. Name the file <code>index.html</code>.</li>
+     <li>
+        Open your <code>index.html</code> page (which might be blank, which is fine) and open the Console. (View > Developer > Javascript Console.) Type <code>d3</code> in the console and see what you get. You should get a response that says you loaded D3 successfully.
+        <img src="console-screenshot.png">
       </li>
 
-      <li>
-        Open your <code>index.html</code> page (which might be blank, which is fine) and open the Console. (View > Developer > Javascript Console.) Let's try typing the same things we did with R earlier, and note the small differences.
+
+        <li> Let's try typing the same things we did with R earlier, and note the small differences.
 
          <pre>
         <code>"I should exercise more."
@@ -158,7 +170,7 @@ barplot(prices$X2013, col=barcolors, border=F, main="Now with custom colors!", y
 
 1==2
 
-// 1:1000 doesn't work
+1:1000 // doesn't work
 
 animals = ["bears","monkeys","donkeys"] // new array syntax
 
@@ -166,26 +178,37 @@ animals[1] //note zero-based
 
 typeof animals //not "class"
 
-typeof 1==2
-
+typeof (1 === 2)
 
 </code>
 </pre>
 
-      The Javascript Console is going to be one of our best ways to inspect and debug the HTML, CSS and Javascript we write. So start practicing!
+      The Javascript Console is going to be one of our best ways to inspect and debug the HTML, CSS and Javascript we write. The sooner you get comfortable with it, the better.
       </li>
 
-      <li>On your html page, start by loading D3:
+    <!-- <h4>Making a bar chart in D3</h4> -->
+
+      <li>Before we start coding, let's get set up in the Terminal by starting a server on port 8000 using Python's <a href="http://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a>. To do this, use your terminal to navigate to the folder that contains your empty html page. Then type:
         <pre>
-        <code></code>
-      </pre>
+          <code>python -m SimpleHTTPServer</code>
+        </pre>
+
+      Now we're ready to start coding. Your <code>index.html</code> file is now accessible by going to <code>localhost:8000</code> on your web browser.
       </li>
 
       <li>
-        Then, toward the bottom of your page, start a <code>script</code> tag and leave some room in it. Let's start by adding an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing.
+        Inside your script tag, let's write some Javascript using D3. First, let's add a headline:
 
         <pre>
-          <code>var margin = {top: 20, right: 10, bottom: 20, left: 10};
+          <code class="language-javascript">d3.select("body").append("h1").text("My first bar chart")</code>
+        </pre>
+        What just happened?
+      </li>
+
+      <li>Now let's add an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing.
+
+        <pre>
+          <code class="language-javascript">var margin = {top: 20, right: 10, bottom: 20, left: 10};
 
 var width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
@@ -198,11 +221,12 @@ var svg = d3.select("body").append("svg")
           </code>
 
         </pre>
+        Use the Chrome inspector to see if your code worked. If it did, you should have an SVG element on your page.
       </li>
 
       <li>
-        Now we'll load the same prices data as we did in R, using d3.csv.
-      </li>
+
+        </li>
 
 
     </ol>
@@ -214,5 +238,9 @@ var svg = d3.select("body").append("svg")
 
   </div>
 
+<script src="../../assets/highlight.pack.js"></script>
+<script>
+  hljs.initHighlighting();
+</script>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="../../base.js" charset="utf-8"></script>

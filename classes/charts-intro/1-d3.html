@@ -1,15 +1,22 @@
 <!-- shamelessly stolen from Scott Murray -->
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Bar chart step 1</title>
-        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    </head>
-    <body>
-        <script type="text/javascript">
-            // Our beautiful D3 code will go here
-        </script>
-    </body>
-</html>
+
+<h1>Part 1</h1>
+
+<script src="d3.v3.min.js">
+
+<script type="text/javascript">
+var margin = {top: 20, right: 10, bottom: 20, left: 10};
+
+var width = 960 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+</script>

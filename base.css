@@ -102,3 +102,7 @@ ol.steps li:before {
 .lesson .main img.border {
   border: solid 1px #ddd;
 }
+
+pre code{
+  font-size: 12px;
+}
