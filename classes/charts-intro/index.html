@@ -79,7 +79,9 @@ class(1:1000)
 
     <h4>Making a bar chart in R</h4>
     <ol class="steps">
-      <li>The thing we need for any chart is data. Download <a href="subscription-prices.csv">this CSV</a> of the cost of various cable channels per subscriber per month. Save it to your local project folder. (PS, do you know what a CSV is?) </li>
+      <li>The thing we need for any chart is data. Download <a href="subscription-prices.csv">this CSV</a> of the cost of various cable channels per subscriber per month. Save it to your local project folder. (PS, do you know what a CSV is?)
+        <img src="files.png">
+      </li>
       <li>Load the file under the variable name <code>prices</code>
       <pre>
         <code class="language-r">prices <- read.csv("subscription-prices.csv")</code>
@@ -160,23 +162,40 @@ barplot(prices$X2013, col=barcolors, border=F, main="Now with custom colors!", y
       <img src="third-barplot.png">
       That's it! You made your first data visualization in R. It's not the best, but it's only about three lines of code. In a hurry, you could post this online very quickly – Nate Silver probably would too. But it's static and inflexible – what if you wanted users to be able to look up any station, or resize the chart based on which device a user was coming from? For increased flexibility, you might want to draw this chart in a web browser.
       </li>
+      <li>
+        <p>If you want to learn more about any of the commands we ran, R has a convention for brining up the documentation of any method.</p>
+        <pre><code>#? then the name of the method
+?plot
+?barplot
+##or, if you want fuzzy matching, try this
+help.search("bar plot")
+        </code></pre>
+      </li>
 
     </ol>
 
     <h4>Getting started with the Javascript console</h4>
 
     <ol class="steps">
-      <li>Close your R files for now and create a blank HTML page like the one described by Scott Murray in his <a href="http://alignedleft.com/tutorials/d3/setup">great D3 tutorial</a>. You can download that file <a href="0-d3.html">right here</a>, but make sure you save it to your local directory. Name the file <code>index.html</code>.</li>
-     <li>
-        Open your <code>index.html</code> page (which might be blank, which is fine) and open the Console. (View > Developer > Javascript Console.) Type <code>d3</code> in the console and see what you get. You should get a response that says you loaded D3 successfully.
+      <li>
+        <p>Close your R files for now and create a blank HTML page like the one described by Scott Murray in his <a href="http://alignedleft.com/tutorials/d3/setup">great D3 tutorial</a>. You can download that file <a href="0-d3.html">right here</a>, but make sure you save it (by right clicking on the link and choosing “Save Link As...”) to your local directory. Name the file <code>index.html</code>.</p>
+        <img src="files-with-index.png">
+      </li>
+      <li>
+        <p>Before we start coding, let's get set up in the Terminal by starting a server on port 8000 using Python’s <a href="http://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a>. To do this, open the terminal app, and then navigate to the folder that contains your empty html page by typing the following command.</p>
+        <pre><code>cd ~/dataviz-fall-2013/bar-chart/</code></pre>
+        <p>Then type:</p>
+        <pre><code>python -m SimpleHTTPServer</code></pre>
+        <p>This sets up a simple server to mimic the real world internet so your browsers doesn’t barf when you try to do stuff.</p>
+        <p>Now we're ready to start coding. Your <code>index.html</code> file is now accessible by going to <a href="http://localhost:8000">localhost:8000</a> in your web browser.</p>
+      </li>
+      <li>
+        <p>Open your <code>index.html</code> page (which might be blank, which is fine) and open the Console. (View > Developer > Javascript Console.) Type <code>d3</code> in the console and see what you get. You should get a response that says you loaded D3 successfully.</p>
         <img src="console-screenshot.png">
       </li>
-
-
-        <li> Let's try typing the same things we did with R earlier, and note the small differences.
-
-         <pre>
-        <code>"I should exercise more."
+      <li>
+        <p>Let's try typing the same things we did with R earlier, and note the small differences.</p>
+        <pre><code>"I should exercise more."
 
 1+1
 
@@ -192,35 +211,20 @@ typeof animals //not "class"
 
 typeof (1 === 2)
 
-</code>
-</pre>
-
-      The Javascript Console is going to be one of our best ways to inspect and debug the HTML, CSS and Javascript we write. The sooner you get comfortable with it, the better.
+        </code></pre>
+        <p>The Javascript Console is going to be one of our best ways to inspect and debug the HTML, CSS and Javascript we write. The sooner you get comfortable with it, the better.</p>
       </li>
 
     <!-- <h4>Making a bar chart in D3</h4> -->
 
-      <li>Before we start coding, let's get set up in the Terminal by starting a server on port 8000 using Python's <a href="http://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a>. To do this, use your terminal to navigate to the folder that contains your empty html page. Then type:
-        <pre>
-          <code>python -m SimpleHTTPServer</code>
-        </pre>
-
-      Now we're ready to start coding. Your <code>index.html</code> file is now accessible by going to <code>localhost:8000</code> on your web browser.
-      </li>
-
       <li>
-        Inside your script tag, let's write some Javascript using D3. First, let's add a headline:
-
-        <pre>
-          <code class="language-javascript">d3.select("body").append("h1").text("My first bar chart")</code>
-        </pre>
-        What just happened?
+        <p>Inside your script tag, let's write some Javascript using D3. First, let's add a headline:</p>
+        <pre><code class="language-javascript">d3.select("body").append("h1").text("My first bar chart")</code></pre>
+        <p>What just happened?</p>
       </li>
-
-      <li>Now let's add an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing.
-
-        <pre>
-          <code class="language-javascript">var margin = {top: 20, right: 10, bottom: 20, left: 10};
+      <li>
+        <p>Now let's add an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing.</p>
+        <pre><code class="language-javascript">var margin = {top: 20, right: 10, bottom: 20, left: 10};
 
 var width = 600 - margin.left - margin.right,
 height = 250 - margin.top - margin.bottom;
@@ -230,31 +234,21 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-          </code>
-
-        </pre>
-        Use the Chrome inspector to see if your code worked. If it did, you should have an SVG element on your page.
+        </code></pre>
+        <p>Use the Chrome inspector to see if your code worked. If it did, you should have an SVG element on your page.</p>
       </li>
-
       <li>
-
-        Let's add a plain rectangle to the SVG element just to get used to the syntax.
-
-        <pre>
-          <code class="language-javascript">var testRectangle = svg.append("rect")
+        <p>Let's add a plain rectangle to the SVG element just to get used to the syntax.</p>
+        <pre><code class="language-javascript">var testRectangle = svg.append("rect")
     .attr("x", 20)
     .attr("y", 100)
     .attr("height", 50)
     .attr("width", 200)
     .attr("class", "testbar");
-          </code>
-        </pre>
-
-        Make a CSS block on the top of your <code>index.html</code> page to style your rectangle.
-
-        <pre>
-          <code class="language-html">&lt;style type="text.css"&gt;
-svg {
+      </code></pre>
+        <p>Make a CSS block on the top of your <code>index.html</code> page to style your rectangle.</p>
+        <pre><code class="language-html">&lt;style type="text.css"&gt;
+.svg {
   stroke: 2px solid orange;
 }
 
@@ -263,47 +257,30 @@ svg {
 }
 &lt;/style&gt
 
-          </code>
-        </pre>
-
-        It might look like this. (Here's a <a href="1-d3.html">working page</a> if you want to take a look.)
+        </code></pre>
+        <p>It might look like this. (Here's a <a href="1-d3.html">working page</a> if you want to take a look.)</p>
         <img src="test-svg.png">
-
-        What do the x and y positions we set mean?
-
-        </li>
-
-    <li>
-      Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data. Let's connect data to our document using D3.
-    </li>
-
+        <p>What do the x and y positions we set mean?</p>
+      </li>
+      <li>
+        <p>Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data. Let's connect data to our document using D3.</p>
+      </li>
+    </ol>
     <h4>Making a bar chart in D3</h4>
-
     <ol class="steps">
-      <li>To load your data, add this code:
-
-      <pre>
-        <code>d3.csv("subscription-prices.csv", function(err, prices) {
+      <li>
+        <p>To load your data, add this code:</p>
+        <pre><code>d3.csv("subscription-prices.csv", function(err, prices) {
           console.log(prices)
         });
-
-        </code>
-      </pre>
-
-      Check out your Inspector. Did your data load correctly? If so, it might look like this:
-
-      <img src="data-loading.png">
-
-      What is the data type of <code>X2013</code>? How might we fix it?
-
-  </li>
-
-  <li>
-
-    Before our <code>console.log</code> code, add this, which should help turn our data from a string into a number.
-
-    <pre>
-      <code class="language-javascript">prices.forEach(function(d) {
+        </code></pre>
+        <p>Check out your Inspector. Did your data load correctly? If so, it might look like this:</p>
+        <img src="data-loading.png">
+        <p>What is the data type of <code>X2013</code>? How might we fix it?</p>
+      </li>
+      <li>
+        <p>Before our <code>console.log</code> code, add this, which should help turn our data from a string into a number.</p>
+        <pre><code class="language-javascript">prices.forEach(function(d) {
     // recasts d.2013 as a number, not a string
     d.X2013 = +d.X2013;
 })</code>
@@ -368,15 +345,75 @@ var x = d3.scale.linear()
 }</code>
         </pre>
 
-    If your chart looks like this, you're in good shape.
+    <p>If your chart looks like this, you're in good shape.</p>
     <img src="data-join-styled-bars.png">
-    If you want to see this file, you can check it out <a href="3-d3.html">here</a>. What's still wrong with this plot? What needs adjusting?
+    <p>If you want to see this file, you can check it out <a href="3-d3.html">here</a>. What's still wrong with this plot? What needs adjusting?</p>
         </li>
 
     <li>
+      <p>Let's modify the <code>y</code> attribute to get them all on the same baseline.</p>
+
+<pre><code class="language-javascript">var bar = svg.selectAll(".bar")
+    .data(prices)
+  .enter().append("rect")
+    .attr("width", 2)
+    .attr("height", function(d) { return y(d.X2013)} )
+    .attr("y", function(d) { return height - y(d.X2013)  })
+    .attr("x", function(d, i) { return 3 * i})
+    .attr("class", "bar");</code></pre>
+
+    <p>It should look sort of like this:</p>
+      <img src="working-height.png">
+    </li>
+
+    <li>We're getting closer, but we still should have our data sorted. Under the block where we cast <code>X2013</code> as a number, add this code. (Sorting in JS has never been fun, and even after 5 years this syntax is weird to Kevin.)
+
+         <pre><code class="language-javascript">prices.sort(function(a,b) {
+    return a.X2013 - b.X2013;
+});
+  </code></pre>
+      <img src="sorted-bars.png">
 
     </li>
 
+    <li>
+      <p>As a last step, we'll add a class that highlights ESPN. This says, "If the network is ESPN, class it g-ESPN. Otherwise do nothing."</p>
+
+<pre><code class="language-javascript">var bar = svg.selectAll(".bar")
+    .data(prices)
+  .enter().append("rect")
+    .attr("width", 2)
+    .attr("height", function(d) { return y(d.X2013)} )
+    .attr("y", function(d) { return height - y(d.X2013)  })
+    .attr("x", function(d, i) { return 3 * i})
+    .attr("class", "bar");
+    .classed("g-ESPN", function(d) { return d.Network == "ESPN"})</code></pre>
+
+    <p>With corresponding CSS</p>
+
+    <pre>
+    <code class="language-html">.g-ESPN {
+      fill: red;
+    }</code>
+    </pre>
+
+    </li>
+
+    <li>Finally, let's lose the orange background and add a label for ESPN.
+
+    <pre><code>svg.append("text")
+    .attr("class", "g-label")
+    .attr("x", 530)
+    .attr("y", 30)
+    .text("ESPN")
+</code></pre>
+
+  <p>With some styling and small tweaks of the height, you can make it look like this:</p>
+  <img src="mostly-finished.png">
+
+  <p>Try to get there on your own, and if you want to give up you can consult this <a href="4-d3.html">finished file</a>.
+
+  </p>
     </ol>
 
   </div>
