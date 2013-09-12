@@ -255,7 +255,7 @@ var svg = d3.select("body").append("svg")
           </code>
         </pre>
 
-        It might look like this:
+        It might look like this. (Here's a <a href="1-d3.html">working page</a> if you want to take a look.)
         <img src="test-svg.png">
 
         What do the x and y positions we set mean?
@@ -263,8 +263,44 @@ var svg = d3.select("body").append("svg")
         </li>
 
     <li>
-      Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data.
+      Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data. Let's connect data to our document using D3.
     </li>
+
+    <h4>Making a bar chart in D3</h4>
+
+    <ol class="steps">
+      <li>To load your data, add this code:
+
+      <pre>
+        <code>d3.csv("subscription-prices.csv", function(err, prices) {
+          console.log(prices)
+        });
+
+        </code>
+      </pre>
+
+      Check out your Inspector. Did your data load correctly? If so, it might look like this:
+
+      <img src="data-loading.png">
+
+      What is the data type of <code>X2013</code>? How might we fix it?
+
+  </li>
+
+  <li>
+
+    Before our <code>console.log</code> code, add this, which should help turn our data from a string into a number.
+
+    <pre>
+      <code class="language-javascript">prices.forEach(function(d) {
+    // recasts d.2013 as a number, not a string
+    d.X2013 = +d.X2013;
+})</code>
+  </pre>
+    Go back to the inspector and check out the difference. Why does this matter?
+  </li>
+
+    <li>We're now going to do one of the most powerful applications of D3, which is the data join. We're going to join the data we loaded to elements on the page. This is a little abstract, but it's described well in Scott Murray's <a href="http://alignedleft.com/tutorials/d3/binding-data">tutorial section</a></li>
 
 
 

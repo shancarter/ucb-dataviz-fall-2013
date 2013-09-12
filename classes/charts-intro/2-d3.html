@@ -1,62 +1,52 @@
-<!-- shamelessly stolen from Scott Murray -->
-
-<style type="text/css">
-
-.g-bar {
-  fill:#d0d0d0;
-}
-
-</style>
 
 
+<!-- shamelessly stolen from scott murray: http://alignedleft.com/tutorials -->
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>Part 1</h1>
-<div class="bar"></div>
+  <head>
+      <meta charset="utf-8">
+      <title>D3 Test</title>
+  </head>
+  <body>
 
+  <style type="text/css">
 
-<script type="text/javascript" src="d3.v3.min.js"></script>
-<script type="text/javascript">
+  svg {
+    border:2px solid orange
+  }
 
+  .testbar {
+    fill: #ff00ff;
+  }
+  </style>
 
-var margin = {top: 20, right: 10, bottom: 20, left: 10};
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  d3.select("body").append("h1").text("My first bar chart")
 
-var width = 960 - margin.left - margin.right,
-height = 500 - margin.top - margin.bottom;
+  var margin = {top: 20, right: 10, bottom: 20, left: 10};
 
-yScale = d3.scale.linear()
-    .range([0,height])
-    .domain([0,6]);
+  var width = 650 - margin.left - margin.right,
+  height = 200 - margin.top - margin.bottom;
 
-xScale = d3.scale.ordinal()
-  .rangeBands([0, width], .05);
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  var testRectangle = svg.append("rect")
+      .attr("x", 20)
+      .attr("y", 100)
+      .attr("height", 50)
+      .attr("width", 200)
+      .attr("class", "testbar");
 
-
-var svg = d3.select(".bar").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-d3.csv("subscription-prices.csv", function(err, prices) {
-
-  window.prices = prices;
-
-  xScale.domain(prices.map(function(d) { return d.Network}) )
-
-  // do stuff here
-  var bar = svg.selectAll(".g-bar")
-      .data(prices)
-      .enter()
-      .append("rect")
-      .attr("class", "g-bar")
-      .attr("x", function(d,i) { return xScale(d.Network); })
-      .attr("y", 20)
-      .attr("width", 3)
-      .attr("height", function(d) { return yScale(d.X2013); })
-});
-
-
+  d3.csv("subscription-prices.csv", function(err, prices) {
+      console.log(prices)
+    });
 
 </script>
-
+</body>
+</html>
