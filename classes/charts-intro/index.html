@@ -222,11 +222,9 @@ typeof (1 === 2)
         <pre><code class="language-javascript">d3.select("body").append("h1").text("My first bar chart")</code></pre>
         <p>What just happened?</p>
       </li>
-
-      <li>Now let's add an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing.
-
-        <pre>
-          <code class="language-javascript">var margin = {top: 20, right: 10, bottom: 20, left: 10};
+      <li>
+        <p>Now let's add an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing.</p>
+        <pre><code class="language-javascript">var margin = {top: 20, right: 10, bottom: 20, left: 10};
 
 var width = 600 - margin.left - margin.right,
 height = 250 - margin.top - margin.bottom;
@@ -236,30 +234,20 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-          </code>
-
-        </pre>
-        Use the Chrome inspector to see if your code worked. If it did, you should have an SVG element on your page.
+        </code></pre>
+        <p>Use the Chrome inspector to see if your code worked. If it did, you should have an SVG element on your page.</p>
       </li>
-
       <li>
-
-        Let's add a plain rectangle to the SVG element just to get used to the syntax.
-
-        <pre>
-          <code class="language-javascript">var testRectangle = svg.append("rect")
+        <p>Let's add a plain rectangle to the SVG element just to get used to the syntax.</p>
+        <pre><code class="language-javascript">var testRectangle = svg.append("rect")
     .attr("x", 20)
     .attr("y", 100)
     .attr("height", 50)
     .attr("width", 200)
     .attr("class", "testbar");
-          </code>
-        </pre>
-
-        Make a CSS block on the top of your <code>index.html</code> page to style your rectangle.
-
-        <pre>
-          <code class="language-html">&lt;style type="text.css"&gt;
+        </code></pre>
+        <p>Make a CSS block on the top of your <code>index.html</code> page to style your rectangle.</p>
+        <pre><code class="language-html">&lt;style type="text.css"&gt;
 .svg {
   stroke: 2px solid orange;
 }
@@ -269,65 +257,37 @@ var svg = d3.select("body").append("svg")
 }
 &lt;/style&gt
 
-          </code>
-        </pre>
-
-        It might look like this. (Here's a <a href="1-d3.html">working page</a> if you want to take a look.)
+        </code></pre>
+        <p>It might look like this. (Here's a <a href="1-d3.html">working page</a> if you want to take a look.)</p>
         <img src="test-svg.png">
-
-        What do the x and y positions we set mean?
-
-        </li>
-
-    <li>
-      Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data. Let's connect data to our document using D3.
-    </li>
-
+        <p>What do the x and y positions we set mean?</p>
+      </li>
+      <li>
+        <p>Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data. Let's connect data to our document using D3.</p>
+      </li>
+    </ol>
     <h4>Making a bar chart in D3</h4>
-
     <ol class="steps">
-      <li>To load your data, add this code:
-
-      <pre>
-        <code>d3.csv("subscription-prices.csv", function(err, prices) {
+      <li>
+        <p>To load your data, add this code:</p>
+        <pre><code>d3.csv("subscription-prices.csv", function(err, prices) {
           console.log(prices)
         });
-
-        </code>
-      </pre>
-
-      Check out your Inspector. Did your data load correctly? If so, it might look like this:
-
-      <img src="data-loading.png">
-
-      What is the data type of <code>X2013</code>? How might we fix it?
-
-  </li>
-
-  <li>
-
-    Before our <code>console.log</code> code, add this, which should help turn our data from a string into a number.
-
-    <pre>
-      <code class="language-javascript">prices.forEach(function(d) {
+        </code></pre>
+        <p>Check out your Inspector. Did your data load correctly? If so, it might look like this:</p>
+        <img src="data-loading.png">
+        <p>What is the data type of <code>X2013</code>? How might we fix it?</p>
+      </li>
+      <li>
+        <p>Before our <code>console.log</code> code, add this, which should help turn our data from a string into a number.</p>
+        <pre><code class="language-javascript">prices.forEach(function(d) {
     // recasts d.2013 as a number, not a string
     d.X2013 = +d.X2013;
-})</code>
-  </pre>
-    Go back to the inspector and check out the difference. Why does this matter?
-  </li>
-
-    <li>We're now going to do one of the most powerful applications of D3, which is the data join. We're going to join the data we loaded to elements on the page. This is a little abstract, but it's described well in Scott Murray's <a href="http://alignedleft.com/tutorials/d3/binding-data">tutorial section</a></li>
-
-
-
-
+})</code></pre>
+        <p>Go back to the inspector and check out the difference. Why does this matter?</p>
+      </li>
+      <li>We're now going to do one of the most powerful applications of D3, which is the data join. We're going to join the data we loaded to elements on the page. This is a little abstract, but it's described well in Scott Murray's <a href="http://alignedleft.com/tutorials/d3/binding-data">tutorial section</a></li>
     </ol>
-
-
-
-
-
 
   </div>
 
