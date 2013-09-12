@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../../base.css">
-<link rel="stylesheet" type="text/css" href="../../assets/sunburst.css">
+<link rel="stylesheet" type="text/css" href="../../assets/github.css">
 
 <title>Week 2 — Getting Started With Charts</title>
 <body class="lesson">
@@ -24,19 +24,30 @@
     <h2>Lab</h2>
 
 
-    <p>We'll make some bar charts with R and D3, but mostly we'll get familiar with the console and environments of each. We'll be replicating Kevin's <a href="http://www.nytimes.com/2013/08/27/sports/ncaafootball/to-defend-its-empire-espn-stays-on-offensive.html#g-histogram">favorite bar chart</a> of 2013.</p>
-
-    <h4> Getting started with the R console</h4>
+    <p>We'll make some bar charts with R and D3, but mostly we'll get familiar with the console and environments of each. We'll be replicating Kevin’s <a href="http://www.nytimes.com/2013/08/27/sports/ncaafootball/to-defend-its-empire-espn-stays-on-offensive.html#g-histogram">favorite bar chart</a> of 2013.</p>
+    <h4>Creating a new project</h4>
+    <p>Let’s review a bit and create a new repo in github for our project. Previously we created the repo on the github website, but today we’ll use the app</p>
+    <ol class="steps">
+      <li>
+        <p>Create a new repo with the github “cat” app. There’s a plus button at the bottom of the screen that will allow you to add a new repo.</p>
+        <img src="create-new-repo.png">
+      </li>
+      <li>
+        <p>Name it “bar-chart” and save it in the “dataviz-fall-2013” folder.</p>
+        <img src="saving-new-repo.png">
+      </li>
+    </ol>
+    <h4>Getting started with the R console</h4>
     <p>R isn't hard, but it can feel difficult because it's picky. The difference between a map or chart that works and one that's broken can sometimes just be a missing argument to a method (like <code>stringsAsFactors=F</code> or <code>horiz=T</code>), which can be frustrating. Rather than try to cover all of thes eexhaustively, we'll just start making some projects and learn as we go.</p>
 
     <ol class="steps">
       <li>You should have R or RStudio installed on your machine or desktop. If you don't, <a href="http://cran.r-project.org/">install it</a> and run it form the applications menu. You should see the R console, which looks like this:
       <img src="intro.jpg">
-      (If you have the R IDE instead of this basic R console, that's fine too. Each has its merits.)
+      (If you have RStudio instead of this basic R console, that's fine too. Each has its merits.)
       </li>
-      <li>Make a folder on your desktop called <code>week2</code> or something else of your choosing. In that folder, make a new file called <code>tutorials.R</code> in a text editor and save it to your project folder. Start by typing your working directory in your R text file and pasting it into the R console.
+      <li>Create a new repo in your Make a folder on your desktop called <code>week2</code> or something else of your choosing. In that folder, make a new file called <code>tutorials.R</code> in a text editor and save it to your project folder. Start by typing your working directory in your R text file and pasting it into the R console.
         <pre>
-          <code class="language-r">setwd("~/Desktop/week2") #or wherever you're keeping your code</code>
+          <code class="language-r">setwd("~/dataviz-fall-2013/bar-chart") #or wherever you're keeping your code</code>
         </pre>
       </li>
 
