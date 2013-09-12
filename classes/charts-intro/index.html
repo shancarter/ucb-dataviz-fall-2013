@@ -14,8 +14,21 @@
   <div class="main">
     <h1>The complicated spectrum of data graphics and getting started with charts!</h1>
     <p>We'll examine an inherent conflict of data visualizations (especially where this class is concerned) and then get our hands dirty with some basic charts in R and D3.</p>
+    <h3>Quick links</h3>
+    <a href="#r-console">R console</a>
+    <a href="#r-charts">R charts</a>
+    <a href="#javascript-console">JS console</a>
+    <a href="#d3-chart">D3 charts</a>
+
     <h2>Housekeeping</h2>
-    <p>Going over some things that we might have missed in the first class. (Self-reminder: preferred email addresses, clss Google group, how to email us, office hours, classroom behavior, what our starting skills are (and why that's hard), open questions.)</p>
+    <p>Going over some things that we might have missed in the first class: preferred email addresses, clss Google group, how to email us, office hours, classroom behavior, what our starting skills are (and why that's hard), open questions.</p>
+    <h4>Who's here</h4>
+    <img src="html-exp.png">
+    <img src="excel.png">
+    <img src="r-exp.png">
+    <img src="d3-exp.png">
+
+
     <h2>Critique</h2>
     <p>Shan and Kevin (Shavin) will give an example of the kind of critique we'll be expecting you to do in subsequent classes. Details are on the class home page. They'll be discussing <a href="http://www.nytimes.com/interactive/2009/02/02/sports/20090202_superbowl_twitter.html?_r=0">one of the first "journalistic" Twitter maps</a>, which they both worked on, sort of. On your own time, you might or might not read <a href="http://source.mozillaopennews.org/en-US/learning/perils-polling-twitter/">this article by Jake Harris</a> about problems using Twitter data.</p>
 
@@ -38,7 +51,7 @@
         <img src="saving-new-repo.png">
       </li>
     </ol>
-    <h4>Getting started with the R console</h4>
+    <h4 id="r-console">Getting started with the R console</h4>
     <p>R isn't hard, but it can feel difficult because it's picky. The difference between a map or chart that works and one that's broken can sometimes just be a missing argument to a method (like <code>stringsAsFactors=F</code> or <code>horiz=T</code>), which can be frustrating. Rather than try to cover all of these exhaustively, we'll just start making some projects and learn as we go.</p>
 
     <ol class="steps">
@@ -78,7 +91,7 @@ class(1:1000)
 </li>
     </ol>
 
-    <h4>Making a bar chart in R</h4>
+    <h4 id="r-charts">Making a bar chart in R</h4>
     <ol class="steps">
       <li>The thing we need for any chart is data. Download <a href="subscription-prices.csv">this CSV</a> of the cost of various cable channels per subscriber per month. Save it to your local project folder. (PS, do you know what a CSV is?)
         <img src="files.png">
@@ -175,7 +188,7 @@ help.search("bar plot")
 
     </ol>
 
-    <h4>Getting started with the Javascript console</h4>
+    <h4 id="javascript-console">Getting started with the Javascript console</h4>
 
     <ol class="steps">
       <li>
@@ -267,7 +280,7 @@ var svg = d3.select("body").append("svg")
         <p>Obviously, this is just a random rectangle and we need it to be a bar chart that represents our data. Let's connect data to our document using D3.</p>
       </li>
     </ol>
-    <h4>Making a bar chart in D3</h4>
+    <h4 id = "d3-chart">Making a bar chart in D3</h4>
     <ol class="steps">
       <li>
         <p>To load your data, add this code:</p>
