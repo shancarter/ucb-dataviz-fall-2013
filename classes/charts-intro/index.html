@@ -262,8 +262,8 @@ var svg = d3.select("body").append("svg")
       </code></pre>
         <p>Make a CSS block on the top of your <code>index.html</code> page to style your rectangle.</p>
         <pre><code class="language-html">&lt;style type="text.css"&gt;
-.svg {
-  stroke: 2px solid orange;
+svg {
+  border: 2px solid orange;
 }
 
 .testbar {
@@ -305,7 +305,7 @@ var svg = d3.select("body").append("svg")
     <li>We're now going to do one of the most powerful applications of D3, which is the data join. We're going to join the data we loaded to elements on the page. This is a little abstract, but it's described well in Scott Murray's <a href="http://alignedleft.com/tutorials/d3/binding-data">tutorial section</a> and more abstractly by the boss himself in <a href="http://bost.ocks.org/mike/join/">this article</a>.
 
     <pre>
-      <code class="language-javascript">var bar = d3.selectAll(".bar")
+      <code class="language-javascript">var bar = svg.selectAll(".bar")
     .data(prices)
   .enter().append("rect")
     .attr("class", "bar");
