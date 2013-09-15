@@ -67,10 +67,10 @@ a {
 }
 
 /*lessons*/
-.lesson .main {
+.main {
   width: 750px;
 }
-.lesson header {
+header {
   width: 750px;
 }
 ol.steps {
@@ -96,10 +96,10 @@ ol.steps li:before {
   content: counter(step-counter);
   counter-increment: step-counter;
 }
-.lesson .main img {
+.main img {
   width: 100%;
 }
-.lesson .main img.border {
+.main img.border {
   border: solid 1px #ddd;
 }
 

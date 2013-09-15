@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<head>
-  <title>Data Visualization — Fall 2013</title>
-</head>
-<body>
+---
+layout: default
+title: Your New Jekyll Site
+---
 
-<link rel="stylesheet" type="text/css" href="base.css">
 <style type="text/css">
   .intro {
     margin: 20px 0;
@@ -71,6 +68,14 @@
     <h3>Class Schedule</h3>
     <p>Class meets on Thursdays from 4 to 7 p.m. Kevin and I will also have weekly online office hours (time TBD).</p>
     <div class="class-calendar">
+      <ol>
+        {% for post in site.posts %}
+          <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ol>
+
+
+
       <ol>
         <li><a href="classes/sausage/">
           <span class="date">Sept. 5</span>
@@ -216,13 +221,5 @@
 
 
 </div>
-
-
-
-
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="base.js" charset="utf-8"></script>
-<script type="text/javascript"></script>
-
 
 </body>
