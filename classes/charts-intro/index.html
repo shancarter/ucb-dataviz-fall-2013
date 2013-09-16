@@ -341,7 +341,7 @@ var x = d3.scale.linear()
       Let's modify the code to give height and x positions based on our data. Only two lines of this are new.
 
       <pre>
-        <code class="language-javascript">var bar = d3.selectAll(".bar")
+        <code class="language-javascript">var bar = svg.selectAll(".bar")
           .data(prices)
         .enter().append("rect")
           .attr("height", function(d) { return y(d.X2013); })
