@@ -6,16 +6,16 @@ title: Why we’re here, how we approach graphics at The New York Times and maki
 After doing basic first-day-type activities and introductions, I'll give a short lecture and then we’ll get right into using Github.
 
 ##Lecture
-<a href="lecture.html">Sit back and enjoy</a>.
+[Sit back and enjoy](lecture.html).
 ##Lab
 Before we do anything super useful or innovative with our soon-to-be-shiny data skills, we need to be able to have a place to write our files so they are public on the internet. This exercise will make sure everyone is properly set up to publish stuff to Github.
 
-Github might at first seem tricky and a little bit of overkill, but it’s the industry standard for sharing code. Nearly every major code library you will encounter these days is hosted on Github.</p>
+Github might at first seem tricky and a little bit of overkill, but it’s the industry standard for sharing code. Nearly every major code library you will encounter these days is hosted on Github.
 
 More relevant for this particular class though, Github offers free hosting of websites. For instance, this entire syllabus is being served from Github for free (as is Kevin’s <a href="http://kpq.github.io/">porfolio site</a>). So it’s pretty handy.
 
-<h3>Signing up for Github</h3>
-<p>If you’ve never used <a href="http://git-scm.com/">Git</a> or <a href="https://github.com">Github</a> before, don’t worry, it’s not as scary as it may seem at first. It’s basically like <a href="https://www.dropbox.com/">Dropbox</a> for programmers, with enough goofy names and concepts to make it all feel a little more complicated than it really is.</p>
+###Signing up for Github
+If you’ve never used <a href="http://git-scm.com/">Git</a> or <a href="https://github.com">Github</a> before, don’t worry, it’s not as scary as it may seem at first. It’s basically like <a href="https://www.dropbox.com/">Dropbox</a> for programmers, with enough goofy names and concepts to make it all feel a little more complicated than it really is.
 <ol class="steps">
   <li>
     <p>First, go to <a href="https://github.com/">Github</a> and create a username and password, etc.</p>
@@ -33,8 +33,8 @@ More relevant for this particular class though, Github offers free hosting of we
   </li>
 </ol>
 
-<h3>Creating a Home For Our Repositories</h3>
-<p>Some of this might seem kind of fussy, but since we’ll be doing a lot of debugging on everyone’s machines, I want to make sure we’re all working the same way. So, first let’s create a home folder for all our class repositories.</p>
+###Creating a Home For Our Repositories
+Some of this might seem kind of fussy, but since we’ll be doing a lot of debugging on everyone’s machines, I want to make sure we’re all working the same way. So, first let’s create a home folder for all our class repositories.
 
 <ol class="steps">
   <li>
@@ -47,8 +47,8 @@ More relevant for this particular class though, Github offers free hosting of we
 </ol>
 
 
-<h3>Installing Github on Your Computer</h3>
-<p>Now you’ll need the Github application on your computer so you can edit and sync your projects.</p>
+###Installing Github on Your Computer
+Now you’ll need the Github application on your computer so you can edit and sync your projects.
 <ol class="steps">
   <li>
     <p>Download and install the Github application. <a href="http://mac.github.com/">Mac</a> or <a href="http://windows.github.com/">Windows</a>.</p>
@@ -79,8 +79,8 @@ More relevant for this particular class though, Github offers free hosting of we
   <li><p>Great, you should be all setup to make your first edit in your new repo, but first we need to take a short detour for a good text editor.</p></li>
 </ol>
 
-<h3>Installing Sublime Text</h3>
-<p>If you already have a text editor you like, feel free to skip this section. If not, then it’s probably best you install <a href="http://www.sublimetext.com/">Sublime Text</a>.</p>
+###Installing Sublime Text
+If you already have a text editor you like, feel free to skip this section. If not, then it’s probably best you install <a href="http://www.sublimetext.com/">Sublime Text</a>.
 <ol class="steps">
   <li>
     <p>Download and install <a href="http://www.sublimetext.com/">Sublime Text</a>.</p>
@@ -102,8 +102,8 @@ More relevant for this particular class though, Github offers free hosting of we
   </li>
 </ol>
 
-<h3>Finally, Making Something</h3>
-<p>Let’s try to put it all together and actually add something to our repo.</p>
+###Finally, Making Something
+Let’s try to put it all together and actually add something to our repo.
 <ol class="steps">
   <li>
     <p>Open up our project folder “dataviz-home” in Sublime Text. You can do this one of two ways: 1. Go to File > Open and choose the “dataviz-home” folder. 2. Drag the “dataviz-home” folder onto the Sublime Text application icon in the dock. Either way you should end up with this:</p>
@@ -156,8 +156,8 @@ More relevant for this particular class though, Github offers free hosting of we
   </li>
 </ol>
 
-<h3>Now, Let’s Publish</h3>
-<p>When we started we promised that we’d be able to publish something to the internet for free. Well, when we viewed the “index.html” file on Github, it didn’t exactly look like how it would if you were sharing a link with someone. We’ll fix that now.</p>
+###Now, Let’s Publish
+When we started we promised that we’d be able to publish something to the internet for free. Well, when we viewed the “index.html” file on Github, it didn’t exactly look like how it would if you were sharing a link with someone. We’ll fix that now.
 <ol class="steps">
   <li>
     <p>The last major concept in Git we need to cover is “Branches”. Click on the “Braches” tab for your “dataviz-home” repo.</p>
@@ -201,10 +201,9 @@ More relevant for this particular class though, Github offers free hosting of we
     <p>So far this has just scratched the surface of Git and Github. If you want to go deep, here’s a <a href="http://git-scm.com/book">very detailed overview</a>.</p>
   </li>
 
-
 </ol>
 
-<h3>Installing R Studio</h3>
+###Installing R Studio
 <ol class="steps">
   <li><p>Download and install <a href="http://cran.us.r-project.org/">R</a>.</p></li>
   <li><p>Download and install <a href="http://www.rstudio.com/">RStudio</a>.</p></li>

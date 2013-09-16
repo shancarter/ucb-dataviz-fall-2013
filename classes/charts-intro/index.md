@@ -4,14 +4,14 @@ week: 2
 title: The complicated spectrum of data graphics and getting started with charts!
 ---
 
-We'll examine an inherent conflict of data visualizations (especially where this class is concerned) and then get our hands dirty with some basic charts in R and D3.
-###Quick links
+<p>We'll examine an inherent conflict of data visualizations (especially where this class is concerned) and then get our hands dirty with some basic charts in R and D3.</p>
+<h3>Quick links</h3>
 <a href="#r-console">R console</a>
 <a href="#r-charts">R charts</a>
 <a href="#javascript-console">JS console</a>
 <a href="#d3-chart">D3 charts</a>
 
-##Housekeeping
+<h2>Housekeeping</h2>
 <p>Going over some things that we might have missed in the first class: preferred email addresses, clss Google group, how to email us, office hours, classroom behavior, what our starting skills are (and why that's hard), open questions.</p>
 <h4>Who's here</h4>
 <img src="html-exp.png">
@@ -20,13 +20,13 @@ We'll examine an inherent conflict of data visualizations (especially where this
 <img src="d3-exp.png">
 
 
-##Critique
+<h2>Critique</h2>
 <p>Shan and Kevin (Shavin) will give an example of the kind of critique we'll be expecting you to do in subsequent classes. Details are on the class home page. They'll be discussing <a href="http://www.nytimes.com/interactive/2009/02/02/sports/20090202_superbowl_twitter.html?_r=0">one of the first "journalistic" Twitter maps</a>, which they both worked on, sort of. On your own time, you might or might not read <a href="http://source.mozillaopennews.org/en-US/learning/perils-polling-twitter/">this article by Jake Harris</a> about problems using Twitter data.</p>
 
-##Lecture
+<h2>Lecture</h2>
 <p><a href="lecture.html">The essence vs. the fiddly bits of data graphics, and understanding chart types</a>.</p>
 
-##Lab
+<h2>Lab</h2>
 
 
 <p>We'll make some bar charts with R and D3, but mostly we'll get familiar with the console and environments of each. We'll be replicating Kevin’s <a href="http://www.nytimes.com/2013/08/27/sports/ncaafootball/to-defend-its-empire-espn-stays-on-offensive.html#g-histogram">favorite bar chart</a> of 2013.</p>
@@ -332,7 +332,7 @@ var x = d3.scale.linear()
   Let's modify the code to give height and x positions based on our data. Only two lines of this are new.
 
   <pre>
-    <code class="language-javascript">var bar = d3.selectAll(".bar")
+    <code class="language-javascript">var bar = svg.selectAll(".bar")
       .data(prices)
     .enter().append("rect")
       .attr("height", function(d) { return y(d.X2013); })
@@ -421,7 +421,7 @@ return a.X2013 - b.X2013;
 </p>
 </ol>
 
-##Homework
+<h2>Homework</h2>
 <p>For your homework, you should make this bar chart as much like <a href="http://www.nytimes.com/2013/08/27/sports/ncaafootball/to-defend-its-empire-espn-stays-on-offensive.html#g-histogram">the one the NYT eventually published</a> as you can. You'll need to learn some new things to do it, but your professors and the internet can help you. This should be checked into git as its own repo.</p>
 
 <p>Under this chart, write three other news-related questions or sentences you might have after viewing this chart that would be the basis for more reporting or requests for other data. For example, one of them might be, "Why do so many channels cost nothing?" or "How have these prices changed over time? It might be interesting to see whether ESPN's growth happened sharply or slowly" or "Even though they're not part of the standard cable package, how would a channel like HBO compare?</p>
@@ -430,9 +430,6 @@ return a.X2013 - b.X2013;
   This homework must be completed and checked in by <strong>Tuesday, September 17</strong> at noon. It should be linked to from your main index page.
 </p>
 
-##Useful links
+<h2>Useful links</h2>
 <p>An <a href="http://bl.ocks.org/mbostock/1166403">axis component</a> block.</p>
 <p>Scott Murray's tutorial, already referenced a few times here, <a href="http://alignedleft.com/tutorials/d3/axes">covers axes and coloring</a> too.</p>
-
-
-
