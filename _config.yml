@@ -1,4 +1,4 @@
 name: UCB — Data Visualization — Fall 2013
 markdown: redcarpet
 pygments: true
-baseurl: "/ucb-dataviz-fall-2013"
+base-url: "/ucb-dataviz-fall-2013"
