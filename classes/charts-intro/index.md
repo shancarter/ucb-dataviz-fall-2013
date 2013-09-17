@@ -388,8 +388,7 @@ R isn't hard, but it can feel difficult because it's picky. The difference betwe
 
   <img src="sorted-bars.png">
 
-8.
-  <p>As a last step, we'll add a class that highlights ESPN. This says, "If the network is ESPN, class it g-ESPN. Otherwise do nothing."
+8. As a last step, we'll add a class that highlights ESPN. This says, "If the network is ESPN, class it g-ESPN. Otherwise do nothing."
 
 <pre><code class="language-javascript">var bar = svg.selectAll(".bar")
 .data(prices)

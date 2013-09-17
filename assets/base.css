@@ -73,19 +73,19 @@ a {
 header {
   width: 750px;
 }
-ol {
+.lesson ol {
   counter-reset: step-counter;
   padding: 0;
   margin: 0;
 }
-ol li {
+.lesson ol li {
   padding: 0 0 0 20px;
   margin: 20px 0 20px 40px;
   border-left: solid 1px #ddd;
   display: block;
   position: relative;
 }
-ol li:before {
+.lesson ol li:before {
   position: absolute;
   left: -40px;
   top: 0px;
