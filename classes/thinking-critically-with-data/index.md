@@ -66,8 +66,116 @@ Say you're a sports reporter covering the Oakland Athletics and you heard one of
 
   Is the batting coach's claim true?
 
-12. Let's spend some time answering questions from the Google doc.
+12. With filtering (subset) and sorting, we should be able to answer lots of good questions about the data. Let's spend some time answering questions from the Google doc.
 
+13. Now let's make some sketches. First, let's use our ```oakland``` data frame to see if there's been a trend over time.
+
+  ```r
+  plot(oakland$year, oakland$kpg)
+  ```
+
+  <img src="oakland-scatter-1.png">
+
+  Already we're seeing something there. What observations can we make, and what new questions might we have for further reporting?
+
+14. Just to reinforce that ```plot``` has a lot of arguments that can make things a little cleaner for you, try this, which just cleans up the code and adds titles and axis labels. (You can learn more about plot by typing ```?plot``` in your R console.)
+
+  ```r
+  plot(oakland$year, oakland$kpg, pch=16, col="red", main="Strikeouts per game: A's",
+     xlab="Year", ylab="Ks per game", ylim=c(0, max(oakland$kpg)))
+  ```
+  <img src="oakland-scatter-2.png">
+
+  Is zero-basing this chart the right thing to do?
+
+15. Let's try the same plot command but with **a different type** of plot. We'll also lose the zero-basing.
+
+    ```r
+ plot(oakland$year, oakland$kpg, pch=16, col="red", main="Strikeouts per game: A's",
+    xlab="Year", ylab="Ks per game", type="l", lwd=2)
+  ```
+
+  <img src="oakland-line-1.png">
+
+  What, if any, merits does this type of chart bring? Which is better?
+
+16. Clearly we can see a trend of increasing strikeouts per game, but it's hard for us to know whether this trend is only for Oakland or if it's something that every team in the league experienced. What would we need to know whether how to characterize Oakland?
+
+17. Let's compare Oakland to another baseball team – say, the Minnesota Twins. Make a new data frame just like you did for Oakland:
+
+  ```r
+  min <- subset(strikeouts, franchise == "MIN")
+  ```
+
+  Now make a similar scatterplot for Minnesota like you did for Oakland:
+
+  ```r
+  plot(min$year, min$kpg, pch=16, col="blue", main="Strikeouts per game: Minnesota",
+     xlab="Year", ylab="Ks per game", ylim=c(0, max(min$kpg)))
+  ```
+
+  <img src="minnesota-scatter-1.png">
+
+  Let's add the Oakland data on top of this. To do this in R, if you have already created a plot, you use a method called ```points```. This adds a scatterplot **on top of an existing plot**.
+
+  ```r
+  #first, the oakland scatterplot (with a new title)
+  plot(oakland$year, oakland$kpg, pch=16, col="red", main="Oakland vs Minnesota",
+     xlab="Year", ylab="Ks per game", ylim=c(0, max(oakland$kpg)))
+
+  # now add the minnesota scatterplot.
+  # note the considerably fewer arguments
+  points(min$year, min$kpg, pch=16, col="blue")
+  ```
+
+  <img src="oakland-v-minnesota.png">
+
+  Why are there so many fewer arguments with ```points```? Also, what troubles might we get into by setting the x and y limits the way we did?
+
+  More importantly, is it easy to compare these values using this form?
+
+18. This is where line charts are handy – **to compare two or more time series**. Let's do a very similar set of plots, but using line charts instead of scatterplots. Note the differences in syntax. We'll also be more defensive about setting our ```ylim.
+
+  ```r
+  #which is bigger, oakland or Minnesota's max KPG?
+  max_kpg <- max(c(max(oakland$kpg), min$kpg))
+
+  #oakland line chart
+  plot(oakland$year, oakland$kpg, col="red", main="Oakland vs Minnesota",
+     xlab="Year", ylab="Ks per game", ylim=c(0, max_kpg), type="l", lwd=2)
+
+  # minnesota line.
+  lines(min$year, min$kpg, col="blue", lwd=2)
+  ```
+
+  <img src="oakland-minnesota-lines.png">
+
+  How does this form compare for comparing the two teams?
+
+19. With this chart, we know the trend of increasing strikeouts per game happened for both Minnesota and Oakland. But to be sure that it's a leaguewide trend, we need to learn a new and very powerful R method: ```aggregate```. For those of you familar with Excel, it's basically the same as a Pivot Table; for those of you who have worked with SQL, it's the same as a ```GROUP BY``` query. Take a look at the documentation for aggregate by typing ```?aggregate``` in the R console.
+
+  Make a new data frame called ```league_average```.
+
+  ```r
+  league_average <- aggregate(strikeouts$kpg, list(strikeouts$year), mean)
+  ```
+
+  Rename the field names something normal.
+
+  ```r
+  names(league_average) <- c("year", "meankpg")
+  ```
+
+20. Now let's take a look at a line chart of league average:
+
+  ```r
+  plot(league_average$year, league_average$meankpg, col="orange", main="MLB mean strikeouts per game",
+     xlab="Year", ylab="Ks per game", type="l", lwd=2)
+  ```
+
+  <img src="league-mean-1.png">
+
+  Now the trends are even more pronounced. What new reporting lines might this chart give us?
 
 ###R
 
