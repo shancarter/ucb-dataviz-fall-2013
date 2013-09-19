@@ -454,8 +454,6 @@ Hopefully you already have a `line-chart` repo with a `gh-pages` branch setup an
 
     <img src="styled-axis.png">
 
-    Here's a link to a working version: <a href="d3-line-chart.html">d3-line-chart.html</a>
-
 16. Final step, bring some fun. (just copy and paste this into your code)
 
     ```javascript
@@ -469,6 +467,9 @@ Hopefully you already have a `line-chart` repo with a `gh-pages` branch setup an
             .attr("r", 7);
     });
     ```
+
+17. Here's a link to a working version: <a href="d3-line-chart.html">d3-line-chart.html</a>
+
 
 ##Homework
 Your assignment is to publish a line chart with this data in D3 of your favorite team. It's due **Tuesday at noon.** It doesn't have to look like [the NYT version](http://www.nytimes.com/interactive/2013/03/29/sports/baseball/Strikeouts-Are-Still-Soaring.html?_r=0), but it might help you figure out some of the code (or not - it is pretty complex):
