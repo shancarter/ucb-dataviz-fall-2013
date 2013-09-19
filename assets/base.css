@@ -99,6 +99,9 @@ header {
 .main img {
   width: 100%;
 }
+
+
+
 .main img.border {
   border: solid 1px #ddd;
 }

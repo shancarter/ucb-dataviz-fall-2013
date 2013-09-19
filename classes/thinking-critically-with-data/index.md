@@ -9,7 +9,15 @@ Moving forward.
 
 • Are you a member of the [class Google Group](https://groups.google.com/forum/#!forum/ucb-datavis-2013)? Are you sure?
 
-• A review of homework – common mistakes, solutions, questions.
+• Check out the [gallery of bar charts](bar-chart-gallery.html) from your assignments
+
+• Common mistakes:
+
+  - github pages not hooked up correctly
+
+  - hardcoding values on labels: why it's good and why it's dangerous
+
+  - repeating code
 
 • Office hours
 
@@ -28,6 +36,8 @@ As a journalist who's literate with data, what might be a logical way to assess 
 ##R
 
 3. Start a new github repository in your "dataviz-home" folder called "line-chart". Download [this CSV file](strikeouts.csv), which has the strikeouts per team for every team in a franchise's history, into that folder. Also create a blank R file called ```strikeouts.R``` and an empty HTML file called ```index.html```. (We'll do this every class, so you should get used to it!)
+
+  <img src="screenshot-example.png">
 
   (By the way, the data comes from [baseball-reference.com](baseball-reference.com), one of the best sites on the internet for sports data. Sometimes you have to scrape it, but frequently it's available to download.)
 
