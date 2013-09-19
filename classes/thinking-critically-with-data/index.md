@@ -9,7 +9,15 @@ Moving forward.
 
 • Are you a member of the [class Google Group](https://groups.google.com/forum/#!forum/ucb-datavis-2013)? Are you sure?
 
-• A review of homework – common mistakes, solutions, questions.
+• Check out the [gallery of bar charts](bar-chart-gallery.html) from your assignments
+
+• Common mistakes:
+
+  - github pages not hooked up correctly
+
+  - hardcoding values on labels: why it's good and why it's dangerous
+
+  - repeating code
 
 • Office hours
 
