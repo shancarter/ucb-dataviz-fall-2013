@@ -87,6 +87,9 @@ As a journalist who's literate with data, what might be a logical way to assess 
 
   ```r
   oakland <- subset(strikeouts, franchise == "OAK")
+
+  oakland <- oakland[order(oakland$kpg, decreasing=T),]
+
   ```
 
   Is the batting coach's claim true?
