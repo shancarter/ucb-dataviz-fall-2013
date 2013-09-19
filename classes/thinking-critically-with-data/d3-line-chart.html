@@ -1,0 +1,67 @@
+---
+layout: default
+title: D3 Line Chart
+---
+
+<style type="text/css">
+  .chart {
+    background: #f0f0f0;
+  }
+  .stage {
+    stroke: magenta;
+    fill: none;
+  }
+</style>
+
+<h1>D3 Line Chart</h1>
+<h2>Strikeouts are on the rise</h2>
+<div class="chart"></div>
+
+<script type="text/javascript">
+
+var margin = {top: 10, right: 10, bottom: 40, left: 10};
+    width = 750 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var svg = d3.select(".chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var stage = svg.append("rect")
+    .attr("class", "stage")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.csv("../charts-intro/subscription-prices.csv", function(data) {
+
+  var xScale = d3.scale.linear()
+      .domain([0, data.length - 1])
+      .range([0, width]);
+
+  var yScale = d3.scale.linear()
+      .domain([0, 10])
+      .range([height, 0]);
+
+  var line = d3.svg.line()
+      .x(function(d, i) { return xScale(i); })
+      .y(function(d) { return yScale(d.X2013); });
+
+  svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("class", "dot")
+      .attr("r", 5)
+      .attr("cx", function(d, i) { return xScale(i); })
+      .attr("cy", function(d) { return yScale(d.X2013); })
+
+  svg.append("path")
+    .data(data)
+    .attr("d", function(d) { return line(d); })
+
+
+});
+
+
+</script>
