@@ -231,7 +231,7 @@ R isn't hard, but it can feel difficult because it's picky. The difference betwe
 
   What just happened?
 
-  Now let's add an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The <code>margin</code> stuff seems confusing at first, but these are the fiddly bits Hadley is describing, so if we want to learn D3, we need to do the fiddly stuff.
+  Now let's add an SVG element to the page with the <a href="http://bl.ocks.org/mbostock/3019563">margin conventions</a> described by Mike Bostock, the creator of D3. Basically, this code tells your browser to draw a big box (an SVG element) on the page. We're going to draw a chart inside this box. The `margin` stuff seems confusing at first, but these are the fiddly bits Hadley is describing, so if we want to learn D3, we need to do the fiddly stuff.
 
   ```javascript
   var margin = {top: 20, right: 10, bottom: 20, left: 10};
