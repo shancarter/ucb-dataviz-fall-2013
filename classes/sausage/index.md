@@ -156,7 +156,7 @@ Let’s try to put it all together and actually add something to our repo.
   </li>
 </ol>
 
-###Now, Let’s Publish
+<h3 id="gh-pages-publish">Now, Let’s Publish</h3>
 When we started we promised that we’d be able to publish something to the internet for free. Well, when we viewed the “index.html” file on Github, it didn’t exactly look like how it would if you were sharing a link with someone. We’ll fix that now.
 <ol class="steps">
   <li>
