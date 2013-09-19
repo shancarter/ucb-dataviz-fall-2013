@@ -32,6 +32,7 @@ p, h2, h1 {
 ##Line charts, like all other workhorse forms, can be made sexy
 
 <img src="whale.png" style="margin: 100px auto; width: 550px;">
+<img src="sexy-line-chart.png" style="margin: 100px auto; width: 550px;">
 
 ##But they can also be made sexy in bad way
 

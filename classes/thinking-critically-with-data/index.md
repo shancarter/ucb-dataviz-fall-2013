@@ -22,13 +22,15 @@ Mihir and Aaron will be discussing this chart TKTK.
 ##Lab
 Say you're a sports reporter covering the Oakland Athletics and you heard one of your sources talk about a shift in the way the game is played. Your source, a batting coach, says he tells his hitters to swing aggressively no matter the pitch count – in the past, he had told them to be more defensive when they had two strikes, opting to put the ball in play rather than strike out. As a result, your source says, players are striking out much more than they used to: last year, the team struck out more than than any time in franchise history.
 
-##R
+As a journalist who's literate with data, what might be a logical way to assess the veracity of this claim and provide insight on this trend to your readers? Where might you get data to prove or disprove this claim?
 
-1. As a journalist who's literate with data, what might be a logical way to assess the veracity of this claim and provide insight on this trend to your readers? Where might you get data to prove or disprove this claim?
+
+##R
 
 3. Start a new github repository in your "dataviz-home" folder called "line-chart". Download [this CSV file](strikeouts.csv), which has the strikeouts per team for every team in a franchise's history, into that folder. Also create a blank R file called ```strikeouts.R``` and an empty HTML file called ```index.html```. (We'll do this every class, so you should get used to it!)
 
   (By the way, the data comes from [baseball-reference.com](baseball-reference.com), one of the best sites on the internet for sports data. Sometimes you have to scrape it, but frequently it's available to download.)
+
 
 4. Open ```strikeouts.R``` in a text editor of your choosing. You can either cut and paste between your text editor and RStudio or just code in RStudio, but do have a place for your working code somewhere.
 
@@ -208,16 +210,23 @@ Say you're a sports reporter covering the Oakland Athletics and you heard one of
 ###D3
 
 ##Homework
-Your assignment is to publish a line chart with this data in D3 of your favorite team. It's due **Tuesday at noon.**
+Your assignment is to publish a line chart with this data in D3 of your favorite team. It's due **Tuesday at noon.** It doesn't have to look like [the NYT version](http://www.nytimes.com/interactive/2013/03/29/sports/baseball/Strikeouts-Are-Still-Soaring.html?_r=0), but it might help you figure out some of the code (or not - it is pretty complex):
 
-Requirements:
-1. It must be published on its own github branch and linked to from your dataviz-home page.
-2. It must have a line, a title, and an X and a Y axis.
-3. Meaningful annotation describing any trends or insights
+<img src="strikeouts-nyt.png">
 
-Better:
-1.
+As we've said, grading isn't the most important thing in the world to us, but here are our expectations.
 
-Best:
--Ability to interactively select any team and have the line redraw.
+####Requirements
+- It must be published on its own github branch and linked to from your dataviz-home page.
+
+- It must have a line representing the average strikeouts per game of a team of your choosing, along with a title and an X and Y axis.
+
+- It must have at least one meaningful annotation describing any trends or insights. Some are on the NYT version already, we know, so try to annotate the line for your team.
+
+####For a gold star
+
+- Try to have a select element or search box that lets you choose from any team in the league (if we don't do this in class) and the line redraws based on your selection.
+
 - Add a line for the league average calculated using d3.nest()
+
+- Clean up the design of your chart using CSS based on successful line charts you've seen in the wild. [There](http://www.nytimes.com/interactive/2011/05/31/business/economy/case-shiller-index.html) [are](http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html) [lots](http://www.nytimes.com/interactive/2013/01/15/us/a-migration-of-unmarried-men.html) [of](http://www.nytimes.com/interactive/2012/05/05/sports/baseball/mariano-rivera-and-his-peers.html) [examples](http://www.nytimes.com/interactive/2012/11/30/us/tax-burden.html).
