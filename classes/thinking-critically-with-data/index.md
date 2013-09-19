@@ -239,4 +239,6 @@ As we've said, grading isn't the most important thing in the world to us, but he
 
 - Add a line for the league average calculated using d3.nest()
 
+- Add another chart and copy that tells a more specific story, or do more reporting based on data analysis you've done here.
+
 - Clean up the design of your chart using CSS based on successful line charts you've seen in the wild. [There](http://www.nytimes.com/interactive/2011/05/31/business/economy/case-shiller-index.html) [are](http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html) [lots](http://www.nytimes.com/interactive/2013/01/15/us/a-migration-of-unmarried-men.html) [of](http://www.nytimes.com/interactive/2012/05/05/sports/baseball/mariano-rivera-and-his-peers.html) [examples](http://www.nytimes.com/interactive/2012/11/30/us/tax-burden.html).
