@@ -175,7 +175,26 @@ Say you're a sports reporter covering the Oakland Athletics and you heard one of
 
   <img src="league-mean-1.png">
 
-  Now the trends are even more pronounced. What new reporting lines might this chart give us?
+  Now the trends are even more pronounced. What new reporting lines might we now have that we didn't have before we saw this chart?
+
+21. Let's compare Oakland to the league average:
+
+    ```r
+      plot(league_average$year, league_average$meankpg, col="grey", main="Oakland vs league average",
+     xlab="Year", ylab="Ks per game", type="l", lwd=2, ylim=c(0, max(oakland$kpg)))
+
+     lines(oakland$year, oakland$kpg, col="red", lwd=2)
+    ```
+
+    <img src="oak-league-avg.png">
+
+    Oakland clearly had more strikeouts than the league average in 2012. What might be some other ways we might look at this data other than as a trend over time? What other data sets might be useful to help readers understand not just what is happening, but why?
+
+23. With some small cleanup, this chart would absolutely be good enough to provide evidence toward the batting coach's claim. **To make this point, the chart does not need to be interactive.** However, what if you want this chart to be useful for any fan, not just readers from Oakland? Or, put another way, this chart is **on the web**, but if we want it to be **of the web**, we might want to use something like D3.
+
+
+
+
 
 ###R
 
