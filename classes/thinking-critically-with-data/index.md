@@ -5,11 +5,24 @@ title: Thinking Critically with Data
 ---
 Moving forward.
 
+##Housekeeping
+
+• Are you a member of the [class Google Group](https://groups.google.com/forum/#!forum/ucb-datavis-2013)? Are you sure?
+
+• A review of homework – common mistakes, solutions, questions.
+
+• Office hours
+
+##Critique
+Mihir and Aaron will be discussing this chart TKTK.
+
 ##Lecture
 [Sit back and enjoy](lecture.html).
 
 ##Lab
 Say you're a sports reporter covering the Oakland Athletics and you heard one of your sources talk about a shift in the way the game is played. Your source, a batting coach, says he tells his hitters to swing aggressively no matter the pitch count – in the past, he had told them to be more defensive when they had two strikes, opting to put the ball in play rather than strike out. As a result, your source says, players are striking out much more than they used to: last year, the team struck out more than than any time in franchise history.
+
+##R
 
 1. As a journalist who's literate with data, what might be a logical way to assess the veracity of this claim and provide insight on this trend to your readers? Where might you get data to prove or disprove this claim?
 
@@ -192,10 +205,19 @@ Say you're a sports reporter covering the Oakland Athletics and you heard one of
 
 23. With some small cleanup, this chart would absolutely be good enough to provide evidence toward the batting coach's claim. **To make this point, the chart does not need to be interactive.** However, what if you want this chart to be useful for any fan, not just readers from Oakland? Or, put another way, this chart is **on the web**, but if we want it to be **of the web**, we might want to use something like D3.
 
-
-
-
-
-###R
-
 ###D3
+
+##Homework
+Your assignment is to publish a line chart with this data in D3 of your favorite team. It's due **Tuesday at noon.**
+
+Requirements:
+1. It must be published on its own github branch and linked to from your dataviz-home page.
+2. It must have a line, a title, and an X and a Y axis.
+3. Meaningful annotation describing any trends or insights
+
+Better:
+1.
+
+Best:
+-Ability to interactively select any team and have the line redraw.
+- Add a line for the league average calculated using d3.nest()
