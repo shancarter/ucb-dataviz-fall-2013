@@ -49,7 +49,7 @@ As a journalist who's literate with data, what might be a logical way to assess 
 6. Open RStudio or the R console, whichever you prefer. Load the data and check it out.
 
   ```r
-  setwd("/~dataviz-home/line-chart")
+  setwd("~/dataviz-fall-2013/line-chart")
 
   strikeouts <- read.csv("strikeouts.csv")
 
