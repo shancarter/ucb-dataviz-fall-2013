@@ -81,7 +81,7 @@ What questions might you want to ask this data?
 
 8. Make similiar fields in your data for percent Asian, white and black. When you're done, `names(data)` shoud look something like this:
 
-<img src="newdatahead.png">
+  <img src="newdatahead.png">
 
 9. In the past, we've said you need to be able to do only 4 things to be dangerous: filter, sort, aggregate and merge. We've done two of the four in the last two classes. Today we'll do the last two. First, let's get a data frame for the total percent of hispanics for the whole state.
 
@@ -256,6 +256,95 @@ What questions might you want to ask this data?
   ```
   <img src="ca-r-map-1.png">
 
-5. Super awesome, but not very meaningful. Take a look at the data behind the map again with ```data.frame(shapes)```. What do the field names represent? Do we have anything in our data frame that might work as a match?
+5. Super awesome, but not very meaningful. Take a look at the data behind the map again with `data.frame(shapes)`. What do the field names represent? Do we have anything in our data frame that might work as a match? (Hint, take a look at the `GEOID` field in `data.frame(shapes)`. What's the difference between that field and our `fips` field?
+
+6. Let's make a `GEOID` field in `data`. This is a formatting trick in R to get leading zeros, which we need if the fields are going to match. Let's start by only using the data from 2010.
+
+  ```r
+
+  data <- subset(data, year == 2010)
+
+  data$GEOID <- sprintf("%05d",data$fips)
+  ```
+
+  Let's see if our `GEOID` field matched up ok with this notation.
+
+  ```r
+  data$GEOID%in%data.frame(shapes)$GEOID
+  ```
+
+  <img src="better-boolean.png">
+
+  What does this mean?
+
+7. Let's join them. There are many ways to do this, but one of the safest ones is with ```match```. Let's take a look in pieces. This looks odd, but it's the answer to the question, "What row number in data.frame(shapes)$GEOID will I find the same value in `data$GEOID`?
+
+
+  ```r
+      match(data.frame(shapes)$GEOID,data$GEOID)
+  ```
+
+  What do the numbers you get back represent?
+
+8. Let's call that vector something and store it.
+
+  ```r
+     match_order <- match(data.frame(shapes)$GEOID,data$GEOID)
+  ```
+
+9. Let's compare these two vectors of numbers and see if we understand the difference.
+
+  ```r
+  data$pcthispanic
+  data$pcthispanic[match_order]
+  ```
+
+10. Let's add this field to our data.frame(shapes).
+
+  ```r
+  shapes$pctHispanic2010 <- data$pcthispanic[match_order]
+  ```
+
+11. Say we want to make a color palette from yellow to red.
+
+
+  ```r
+  hispanic_breaks <- c(0,.1, .2, .3, .4, 1)
+  colors <- brewer.pal(5,"YlOrRd")
+
+  cut(shapes$pctHispanic2010,breaks=hispanic_breaks)
+
+  as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )
+
+  hisp_bucket <-   as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )
+
+  colors[hisp_bucket]
+
+  plot(shapes,col=colors[hisp_bucket])
+
+
+   ```
+
+<!-- gun.breaks <- c(0,5000,10000,20000,25000)
+
+      # makes a 4-step vector of colors from yellow to red
+      # type display.brewer.all() for more
+
+      colors <- brewer.pal(4,"YlOrRd")
+
+      #type and discuss
+      cut(guns.for.map,breaks=gun.breaks)
+
+      #if that scares you, try thids
+      as.numeric(cut(guns.for.map,breaks=gun.breaks) )
+
+      gun.bucket <- as.numeric(cut(guns.for.map,breaks=gun.breaks) )
+
+      #does this make sense?
+      colors[gun.bucket]
+
+      plot(states,col=colors[gun.bucket])
+      title("Choropleth: guns by state")
+ -->
 
 ##Homework
