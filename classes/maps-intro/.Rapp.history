@@ -1,0 +1,486 @@
+plot(sf$year, sf$pctasain)
+plot(sf$year, sf$pctasain, type="l")
+plot(sf$year, sf$pctasain, type="l")
+plot(sf$year, sf$pctasian, type="l")
+plot(sf$year, sf$pctasian, type="l", ymin=c(0,max(data$pctasian)))
+plot(sf$year, sf$pctasian, type="l", ylim=c(0,max(data$pctasian)))
+plot(sf$year, sf$pctasian, type="l", ylim=c(0,max(data$pctasian)), main="Asains in San Francisco County")
+plot(sf$year, sf$pctasian, type="l", ylim=c(0,max(data$pctasian)), main="Asians in San Francisco County")
+sf <- sf[order(sf$pctasian), ]#
+  plot(sf$year, sf$pctasian, type="l", ylim=c(0,max(data$pctasian)))
+head(sf)
+sf <- sf[order(sf$year), ]#
+  plot(sf$year, sf$pctasian, type="l", ylim=c(0,max(data$pctasian)))
+plot(sf$year, sf$pctasian, type="l", ylim=c(0,max(data$pctasian)), main="Asians in San Francisco County")
+data$asian_pop <- data$totalpop * data$pctasian
+head(data)
+data$asian_pop <- data$totalpop * data$pctasian#
+data$white_pop <- data$totalpop * data$pctwhite#
+data$black_pop <- data$totalpop * data$pctblack#
+data$amind_pop <- data$totalpop * data$pctamind#
+data$other_pop <- data$totalpop * data$pctother#
+data$hispanic_pop <- data$totalpop * data$pcthispanic
+head(data)
+apply(data, 2, sum)
+apply(data, 1, sum)
+apply(data[,c(3:8)], 1, sum)
+apply(data[,c(3:8)], 1, sum)
+head(data)
+names(data)
+names(data)
+head(data)
+aggregate(data$white_pop, list(data$year), sum)
+aggregate(data$white_pop, list(data$year), sum)$x/data$totalpop
+aggregate(data$white_pop, list(data$year), sum)$x
+aggregate(data$white_pop, list(data$year), sum)$x/aggregate(data$total_pop, list(data$year), sum)$x
+aggregate(data$white_pop, list(data$year), sum)$x/aggregate(data$totalpop, list(data$year), sum)$x
+aggregate(data$white_pop, list(data$year), sum)$x/aggregate(data$totalpop, list(data$year), sum)$x = m
+aggregate(data$white_pop, list(data$year), sum)$x/aggregate(data$totalpop, list(data$year), sum)$x -> m
+plot(m)
+agregate(data[,c("white_pop", "black_pop"),], list(data$year), sum)
+aggregate(data[,c("white_pop", "black_pop"),], list(data$year), sum)
+plot(sf$year, sf$hispanic, type="l", ylim=c(0,max(data$hispanic)), main="Hispanics in San Francisco County")
+sf <- subset(data, county == "San Francisco")
+head(sf)
+plot(sf$year, sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)), main="Hispanics in San Francisco County")
+data <- read.delim("merged-multirace.txt")
+sf <- subset(data, county == "San Francisco")
+plot(sf$year, sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)), main="Hispanics in San Francisco County")
+sf <- sf[order(sf$year), ]#
+  plot(sf$year, sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)), main="Hispanics in San Francisco County")
+data$hispanic_pop <- data$totalpop * data$hispanic
+data$hispanic_pop <- data$totalpop * data$pcthispanic
+sf <- susbet(data, county == "San Francisco")#
+  sf <- sf[order(sf$year),]#
+  plot(sf$pcthispanic)
+plot(sf$pcthispanic, type="l")
+sf <- sf[order(sf$year),ylim=c(0, max(data$pcthispanic))]#
+  plot(sf$pcthispanic, type="l")
+sf <- sf[order(sf$year),],ylim=c(0,max(data$pcthispanic))] #
+  plot(sf$pcthispanic, type="l")
+sf <- sf[order(sf$year),]
+plot(sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic))] )
+plot(sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)) )
+plot(sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)) )
+plot(sf$year, sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)) )
+names(data)
+ca_hispanic_pop  ca_hispanic_pop <- aggregate(data$hispanic_pop, list(data$year), sum)#
+  ca_hispanic_pop <- aggregate(data$hispanic_pop, list(data$year), sum)
+ca_hispanic_pop <- aggregate(data$hispanic_pop, list(data$year), sum)
+ca_hispanic_pop
+names(ca_hispanic_pop) <- c("year", "tot_hisp_pop")
+total_ca_pop <- aggregate(data$hispanic_pop, list(data$year), sum)#
+names(total_ca_pop)#
+names(total_ca_pop) <- c("year", "tot_ca_pop")
+head(total_ca_pop)
+head(ca_hispanic_pop)
+merge(total_ca_pop, ca_hispanic_pop, by="year")
+state_totals <- merge(total_ca_pop, ca_hispanic_pop, by="year")#
+  head(state_totals)
+state_totals$pcthispanic <- state_totals$ca_hispanic_pop/state_totals$total_ca_pop
+state_totals$pcthispanic <- state_totals$ca_hispanic_pop/state_totals$tot_ca_pop
+state_totals$pcthispanic <- state_totals$tot_hisp_pop/state_totals$tot_ca_pop
+head(state_totals)
+state_totals <- merge(total_ca_pop, ca_hispanic_pop, by="year")
+total_ca_pop
+total_hisp_pop
+ca_hispanic_pop
+total_ca_pop <- aggregate(data$totalpop, list(data$year), sum)#
+  names(total_ca_pop)#
+  names(total_ca_pop) <- c("year", "tot_ca_pop")
+state_totals <- merge(total_ca_pop, ca_hispanic_pop, by="year")
+sate_totals
+state_totals
+state_totals$pcthispanic <- state_totals$tot_hisp_pop/state_totals$tot_ca_pop
+state_totals
+state_totals
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic")
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", type="l")
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)))
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)
+lines(sf$year, sf$pcthispanic)
+county_name <- "San Francisco"#
+  this_county <- subset(data, county == county_name)#
+  plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+  lines(this_county$year, this_county$pcthispanic)
+selected county#
+  county_name <- "San Francisco"#
+#
+  #filter#
+  this_county <- subset(data, county == county_name)#
+#
+  #sort#
+  this_county <- this_county[order(this_county$year),]#
+#
+  #initial plot command, with state totals in red#
+  plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #this county.#
+  lines(this_county$year, this_county$pcthispanic)
+selected county#
+  county_name <- "San Francisco"#
+#
+  #filter#
+  this_county <- subset(data, county == county_name)#
+#
+  #sort#
+  this_county <- this_county[order(this_county$year),]#
+#
+  #initial plot command, with state totals in red#
+  plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #this county.#
+  lines(this_county$year, this_county$pcthispanic)
+plot_lines_for_county <- function(county) {#
+      county_name <- county#
+      this_county <- subset(data, county == county_name)#
+      this_county <- this_county[order(this_county$year),]#
+      lines(this_county$year, this_county$pcthispanic)
+}
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+  plot_lines_for_county("Los Angeles")
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_lines_for_county("Los Angeles")  #
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_lines_for_county(i)#
+  }
+names(data)
+plot_weighted_lines_for_county <- function(county) {#
+      county_name <- county#
+      this_county <- subset(data, county == county_name)#
+      this_county <- this_county[order(this_county$year),]#
+      lines(this_county$year, this_county$pcthispanic, lwd= this_county$hispanic_pop/1000 )#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_lines_for_county(i)#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_weighted_lines_for_county(i)#
+  }
+plot_weighted_lines_for_county <- function(county) {#
+      county_name <- county#
+      this_county <- subset(data, county == county_name)#
+      this_county <- this_county[order(this_county$year),]#
+      lines(this_county$year, this_county$pcthispanic, lwd= this_county$hispanic_pop/100000 )#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_weighted_lines_for_county(i)#
+  }
+head(data)
+text(y2020$year, y2020$pcthispanic, labels=y2020$county, col="#333")
+y2020 <- subset(this_county, year == 2020)#
+      text(y2020$year, y2020$pcthispanic, labels=y2020$county, col="#333")
+plot_weighted_lines_for_county <- function(county) {#
+      county_name <- county#
+      this_county <- subset(data, county == county_name)#
+      this_county <- this_county[order(this_county$year),]#
+      lines(this_county$year, this_county$pcthispanic, lwd= this_county$hispanic_pop/100000, col="lightgrey" )#
+#
+      y2020 <- subset(this_county, year == 2020)#
+      text(y2020$year, y2020$pcthispanic, labels=y2020$county, col="lightgrey")#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_weighted_lines_for_county(i)#
+  }
+plot_weighted_lines_for_county <- function(county) {#
+      county_name <- county#
+      this_county <- subset(data, county == county_name)#
+      this_county <- this_county[order(this_county$year),]#
+      lines(this_county$year, this_county$pcthispanic, lwd= this_county$hispanic_pop/100000, col="lightgrey" )#
+#
+      y2020 <- subset(this_county, year == 2020)#
+      text(y2020$year, y2020$pcthispanic, labels=y2020$county, col="lightgrey", adj=0)#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_weighted_lines_for_county(i)#
+  }
+plot_weighted_lines_for_county <- function(county) {#
+      county_name <- county#
+      this_county <- subset(data, county == county_name)#
+      this_county <- this_county[order(this_county$year),]#
+      lines(this_county$year, this_county$pcthispanic, lwd= this_county$hispanic_pop/100000 )#
+#
+      y2020 <- subset(this_county, year == 2020)#
+      text(y2020$year, y2020$pcthispanic, labels=y2020$county, adj=0)#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_weighted_lines_for_county(i)#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic with population sizing", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_lines_for_county(i)#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic with population sizing", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2, xlim=c(1980, 2030))#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_weighted_lines_for_county(i)#
+  }
+plot_weighted_lines_for_county <- function(county) {#
+      county_name <- county#
+      this_county <- subset(data, county == county_name)#
+      this_county <- this_county[order(this_county$year),]#
+      lines(this_county$year, this_county$pcthispanic, lwd= this_county$hispanic_pop/100000 )#
+#
+      y2020 <- subset(this_county, year == 2020)#
+      text(y2020$year, y2020$pcthispanic, labels=y2020$county, adj=0, cex=.5)#
+  }
+plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic with population sizing", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2, xlim=c(1980, 2030))#
+#
+  #all the counties#
+  for (i in unique(data$county)) {#
+    plot_weighted_lines_for_county(i)#
+  }
+library(maptools)
+shapes <- readShapePoly("shapes/tl_2010_06_bg10.shp")
+plot(shapes)
+shapes <- readShapePoly("shapes/California_County.shp")
+shapes <- readShapePoly("shapes/CaliforniaCounty.shp.shp")
+shapes <- readShapePoly("shapes/CaliforniaCounty.shp")
+plot(shapes)
+shapes <- readShapePoly("shapes/CaliforniaCounty.shp")
+plot(shapes, col=rainbow(100))
+plot(shapes)
+data.frame(shapes)
+head(data)
+head(data.frame(shapes))
+sprintf("%05d",9999)
+sprintf("%05d",data$FIPS)
+sprintf("%05d",data$fips)
+data.frame(shapes)$GEOID
+data$GEOID%in%data.frame(shapes)$GEOID
+data$GEOID%in%data.frame(shapes)$GEOID  data$GEOID <- sprintf("%05d",data$fips)
+data$GEOID <- sprintf("%05d",data$fips)
+data$GEOID%in%data.frame(shapes)$GEOID  data$GEOID <- sprintf("%05d",data$fips)
+data$GEOID%in%data.frame(shapes)$GEOID
+data$GEOID%in%data.frame(shapes)$GEOID
+data$GEOID%in%data.frame(shapes)$GEOID
+data$GEOID%in%data.frame(shapes)$GEOID
+data$GEOID%in%data.frame(shapes)$GEOID
+match(data.frame(shapes)$GEOID,data$GEOID)
+data$pcthispanic#
+  data$pcthispanic[match.order]
+match_order <- match(data.frame(shapes)$GEOID,data$GEOID)
+data$pcthispanic#
+  data$pcthispanic[match.order]
+data$pcthispanic#
+  data$pcthispanic[match_order]
+data$pcthispanic
+data$pcthispanic[match.order]
+data$pcthispanic[match_order]
+data$pcthispanic
+data <- subset(data, year == 2010)
+data$GEOID <- sprintf("%05d",data$fips)
+data$GEOID%in%data.frame(shapes)$GEOID
+match(data.frame(shapes)$GEOID,data$GEOID)
+match_order <- match(data.frame(shapes)$GEOID,data$GEOID)
+data$pcthispanic#
+  data$pcthispanic[match_order]
+data$GEOID%in%data.frame(shapes)$GEOID
+data.frame(shapes)$pctHispanic2010 <- data$pcthispanic[match_order]
+data.frame(shapes)
+data.frame(shapes)$$pctHispanic2010
+data.frame(shapes)$pctHispanic2010
+data.frame(shapes)$pctHispanic2010 <- 10
+(data.frame(shapes))$pctHispanic2010 <- 10
+shapes$pct <- 0000
+head(shapes)
+names(shapes)
+shapes$pctHispanic2010 <- data$pcthispanic[match_order]
+head(shapes)
+shapes$pctHispanic2010
+head(data)
+data$pcthispanic
+shapes$pctHispanic2010
+colors <- brewer.pal(4,"YlOrRd")
+library(RColorBrewer)
+colors <- brewer.pal(4,"YlOrRd")
+colors
+hisp <- c(0,.2, .4, .6, .8, 1)
+cut(shapes$pcthispanic2010)
+cut(shapes$pctHispanic2010)
+head(data)
+names(shapes)
+cut(shapes$pctHispanic2010)
+cut(shapes$pctHispanic2010, breaks=)
+cut(shapes$pctHispanic2010, breaks=hisp)
+as.numeric(cut(shapes$pctHispanic2010, breaks=hisp))
+colors[as.numeric(cut(shapes$pctHispanic2010, breaks=hisp))]
+plot(shapes, col= colors[as.numeric(cut(shapes$pctHispanic2010, breaks=hisp))])
+hispanic_breaks <- c(0,.10,.2,.3,1)#
+  colors <- brewer.pal(4,"YlOrRd")#
+#
+  cut(shapes$pctHispanic2010,breaks=hispanic_breaks)#
+#
+  as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  hisp_bucket <-   as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  colors[hisp_bucket]#
+#
+  plot(shapes,col=colors[hisp_bucket])
+hispanic_breaks <- c(0,.05,.25,.35,1)#
+  colors <- brewer.pal(4,"YlOrRd")#
+#
+  cut(shapes$pctHispanic2010,breaks=hispanic_breaks)#
+#
+  as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  hisp_bucket <-   as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  colors[hisp_bucket]#
+#
+  plot(shapes,col=colors[hisp_bucket])
+hispanic_breaks <- c(0,.1, .2, .3, .4, .5)#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  cut(shapes$pctHispanic2010,breaks=hispanic_breaks)#
+#
+  as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  hisp_bucket <-   as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  colors[hisp_bucket]#
+#
+  plot(shapes,col=colors[hisp_bucket])
+hispanic_breaks <- c(0,.1, .2, .3, .4, 1)#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  cut(shapes$pctHispanic2010,breaks=hispanic_breaks)#
+#
+  as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  hisp_bucket <-   as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )#
+#
+  colors[hisp_bucket]#
+#
+  plot(shapes,col=colors[hisp_bucket])
+brewer.display.all()
+?brew
+?brewer
+display.brewer.all()
+shapes <- readShapePoly("shapes/ca/counties.shp")
+plot(shaped)
+plot(shapes)
+plot(shapes, col=rainbow(100))#
+  axis(1)
+map_data <- data.frame(shapes)
+map_data
+match(map_data$GEOID,data$GEOID)
+head(data)
+head(map_daya)
+head(map_data)
+data$GEOID <- sprintf("%05d",data$fips)
+data$GEOID%in%map_data$GEOID
+head(data)
+data$FIPS <- sprintf("%05d",data$fips)
+data <- subset(data, year == 2010)
+data$FIPS%in%map_data$FIPS
+data$FIPS%in%map_data$FIPS
+match(map_data$FIPS,data$FIPS)
+match_order <- match(map_data$FIPS,data$FIPS)
+match_order
+data$pcthispanic
+data$pcthispanic[match_order]
+map_data$pctHispanic2010
+hist(map_data$pctHispanic2010)
+map_data$pctHispanic2010
+map_data$pctHispanic2010 <- data$pcthispanic[match_order]
+map_data$pctHispanic2010
+hist(map_data$pctHispanic2010)
+map_breaks <- c(0, .1, .2, .3, .4, 1)
+colors <- brewer.pal(5,"YlOrRd")
+colors
+cut(map_data$pctHispanic2010,breaks=map_breaks)
+cut(map_data$pctHispanic2010,breaks=map_breaks)
+as.numeric(cut(map_data$pctHispanic2010,breaks=map_breaks))
+buckets <- cut(map_data$pctHispanic2010,breaks=map_breaks)#
+  numeric_buckets <- as.numeric(buckets)
+buckets
+numeric_buckets
+numeric_buckets
+numeric_buckets
+buckets
+numeric_buckets
+install.package("RColorBrewer")
+install.packages("RColorBrewer")
+install.packages("RColorBrewer")
+brewer.display.all()
+?brewer
+display.brewer.all()
+brewer.pal(5,"YlOrRd")
+brewer.pal(10,"YlOrRd")
+brewer.pal(9,"YlOrRd")
+colors <- brewer.pal(5,"YlOrRd")
+colors
+buckets
+numeric_buckets
+colors[map_breaks]
+map_breaks
+colors[numeric_buckets]
+colors[numeric_buckets]
+plot(shapes, col=colors[numeric_buckets])
+setwd("~/personal/j221-fall-2013/classes/maps-intro")#
+#
+library(maptools)#
+library(RColorBrewer)#
+#
+data <- read.delim("merged-multirace.txt")#
+#
+#download the shape file#
+shapes <- readShapePoly("shapes/ca/counties.shp")#
+#
+#a data frame of the map attribute data#
+map_data <- data.frame(shapes)#
+#
+#string work to add a leading zero and make a new vector that matches map_data's fips code.#
+data$FIPS <- sprintf("%05d",data$fips)#
+#
+#2010 only#
+data <- subset(data, year == 2010)#
+#
+#match order of data and shapes fields#
+match_order <- match(map_data$FIPS,data$FIPS)#
+#
+#add this field to map_data#
+map_data$pctHispanic2010 <- data$pcthispanic[match_order]#
+#
+#these can be changed...picked manually depending on our distribution#
+map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+#assign the data to one of these buckets#
+buckets <- cut(map_data$pctHispanic2010,breaks=map_breaks)#
+numeric_buckets <- as.numeric(buckets)#
+#
+#a vector of 5 colors.#
+colors <- brewer.pal(5,"YlOrRd")#
+#
+#plot#
+plot(shapes, col=colors[numeric_buckets])

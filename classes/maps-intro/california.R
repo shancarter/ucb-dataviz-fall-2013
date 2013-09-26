@@ -1,6 +1,5 @@
 setwd("~/personal/j221-fall-2013/classes/maps-intro")
 
-
 library(maptools)
 library(RColorBrewer)
 

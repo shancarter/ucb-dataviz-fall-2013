@@ -8,16 +8,21 @@ title: Intro to Mapping
 
 • Are you a member of the [class Google Group](https://groups.google.com/forum/#!forum/ucb-datavis-2013)? Are you sure? **Are you really sure?**
 
-* Are you on our github [class roster](https://github.com/shancarter/ucb-dataviz-fall-2013/wiki/Roster) page?
+• Are you on our github [class roster](https://github.com/shancarter/ucb-dataviz-fall-2013/wiki/Roster) page?
 
-• Check out the [gallery of line charts](bar-chart-gallery.html) from your assignments. You should all have gotten feedback on both assignments by now.
+• You should all have gotten feedback on both assignments by now.
 
-• Common mistakes/helpful tips:
+• Common mistakes/helpful tips (we emailed these too):
 
   - Dynamically calculating averages (or establishing any hierarchy in a data set) in Javascript can be much easier with D3.nest(). There are some examples of this [here](http://bl.ocks.org/phoebebright/raw/3176159/), but you should check out Shan's wonderful [Mister Nester](bl.ocks.org/shancarter/raw/4748131) as a guide.
 
+  - Color should be used primarily for communicating information. When you use color for anything other than encoding data or as a category label, its use gets confusing. If you use Purple text in the headline just as decoration, then when you use color to indicate something meaningful in another part of your graphic people will be confused. They will have to stop and think "is this decorative or does this color mean something". Basically, it should always mean something.
 
-• Office hours at 6:30 this weekend
+  - Choose any font you want, as long as it's not Times New Roman. It just screams out that you didn't take the time to style your page (because you probably didn't). In general, Arial, Georgia and Verdana are very popular. For now, the rule should be, "Don't make anything that you've never seen on another web site before." That means no hot-pink comic sans, etc etc. Text should be black, background colors should be white. If you want to peruse the day's graphics that went into the NYT in print (so you can see their design decisions), check out this site: https://www.nytsyn.com/images/graphics/
+
+  - Always label your axis. Rarely can you get away with having numbers on a chart without any units (the difference between "9" and "9 strikeouts" or "9 strikeouts per game"). Tell people what your numbers represent. Sometimes you can get away with it if it's super clear from your headline, but mostly it's a good habit to get into.
+
+• Office hours this weekend at 4
 
 • Two new wikis: first, a [wiki](https://github.com/shancarter/ucb-dataviz-fall-2013/wiki/Things-We-Don't-Get) where you can ask any questions you might have about D3, data, or anything. (Like "what is a data join" or "how do I make a table in D3" or "can I subset by multiple values in R?"). And another one for the [schedule for critiques](https://github.com/shancarter/ucb-dataviz-fall-2013/wiki/Class-presentation-schedule).
 
@@ -105,7 +110,7 @@ What questions might you want to ask this data?
 9. Let's take a look at the code we did to make this chart:
 
   ```r
-  sf <- susbet(data, county == "San Francisco")
+  sf <- subset(data, county == "San Francisco")
   sf <- sf[order(sf$year),]
 
   plot(sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)) )
@@ -224,7 +229,7 @@ What questions might you want to ask this data?
 
   <img src="weighted-lines-2.png">
 
-  Is this a perfect sketch, no, it is not. But it communicates information about which counties have the most people living in them. Which chart would you choose simply depends on your audience. The Times published this one:
+  Is this a perfect sketch? No, it is not. But it communicates information about which counties have the most people living in them. Which chart you would choose simply depends on your audience. The Times published this one:
 
   <img src="nyt-hisp-chart.png">
 
@@ -239,7 +244,7 @@ What questions might you want to ask this data?
   library(maptools)
   ```
 
-3. Download [this zip file](http://scec.usc.edu/internships/useit/content/california-counties-shapefiles) to your local repo. Save it to a folder called `shapes`. It's actually 5 files (if you look at it from a Mac).
+3. Download [this zip file](/shapes/ca.zip) to your local repo. Save it to a folder called `shapes`. It's actually 5 files (if you look at it from a Mac).
 
   Now load the shapefile using `readShapePoly`
 
