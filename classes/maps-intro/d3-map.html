@@ -1,0 +1,60 @@
+---
+layout: default
+title: D3 Map
+---
+
+<style>
+svg {
+  border: solid 1px #ddd;
+}
+.county {
+  fill: grey;
+  stroke: black;
+}
+</style>
+
+<h1>D3 Map</h1>
+<div class="chart"></div>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 20, left: 20};
+    width = 750 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
+
+var svg = d3.select(".chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var projection = d3.geo.albers()
+    .translate([width / 2, height / 2 - 80])
+    .parallels([34, 40.5])
+    .rotate([120, 0])
+    .scale(3000);
+
+var path = d3.geo.path().projection(projection);
+
+queue()
+    .defer(d3.tsv, "merged-multirace.txt")
+    .defer(d3.json, "shapes/ca-counties.json")
+    .await(ready);
+
+function ready(error, data, ca) {
+
+  console.log(ca)
+  // var stateGeometry = topojson.feature(ca, ca.objects.states)
+  var counties = topojson.feature(ca, ca.objects.counties)
+
+  console.log(counties);
+
+  svg.selectAll(".county")
+      .data(counties.features)
+    .enter().append("path")
+      .attr("class", "county")
+      .attr("d", path)
+
+
+}
+
+</script>
