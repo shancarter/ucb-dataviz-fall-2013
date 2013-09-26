@@ -1,33 +1,54 @@
 ---
 layout: class
-week: 3
-title: Thinking critically with data
+week: 4
+title: Formatting, cleaning, parsing and reshaping data (Part 1)
 ---
-Moving forward.
 
 ##Housekeeping
 
-• Are you a member of the [class Google Group](https://groups.google.com/forum/#!forum/ucb-datavis-2013)? Are you sure?
+• Are you a member of the [class Google Group](https://groups.google.com/forum/#!forum/ucb-datavis-2013)? Are you sure? **Are you really sure?**
 
-• Check out the [gallery of bar charts](bar-chart-gallery.html) from your assignments
+• Check out the [gallery of line charts](bar-chart-gallery.html) from your assignments. You should all have gotten feedback on both assignments by now.
 
 • Common mistakes:
 
-  - github pages not hooked up correctly
+  - Tk
 
-  - hardcoding values on labels: why it's good and why it's dangerous
-
-  - repeating code
-
-• Office hours
+• Office hours at 6:30 this weekend
 
 ##Critique
-Mihir and Aaron will be discussing this map of [NYC primary results](http://www.nytimes.com/projects/elections/2013/nyc-primary/mayor/map.html).
+Julie and Jess will be discussing this chart TKTK.
 
 ##Lecture
-[Sit back and enjoy](lecture.html).
+No lecture today, except to stress how important data cleaning is.
 
-##Lab
+##Lab Part 1
+Your job is to identify as many people as possible in [this picture](http://graphics8.nytimes.com/packages/images/multimedia/bundles/projects/2013/BostonMoment/moment1600.jpg).
+
+  1. Here is some [data](results.txt) that might help. It comes from the last page for men and women [here](http://boston-iframe.r.mikatiming.de/2013/?event=R&idp=999999117A7326000008693E&pid=start).
+
+  2. Save it to your local directory of choice.
+
+  3. Start a new R file called ```marathon.R```, also saved to your repo for today's work. Set your working directory and load the data like we've done before. )
+
+  ```r
+  setwd("path_to_your_repo")
+  results <- read.delim("results.txt")
+  ```
+
+  Take a look at the data. What are its dimensions, field names, classes, etc?
+
+  4. Let's make a new field called ```formatted_gun_time```.
+
+  2. Here is = [some information](http://registration.baa.org//2013/cf/Public/iframe_EntryLists.cfm) that might help.
+
+  3. Subtract 40 minutes from the finish gun off of everyone with a bib number less than 9000, and 20 minutes from everyone with a bib number from 9000 to 17999.
+
+  4. Make a list of runners to call. Put their first and last names into separate columns.
+
+  5. Here's the [NYT take](http://www.nytimes.com/interactive/2013/04/22/sports/boston-moment.html)
+
+<!-- ##Lab
 Say you're a sports reporter covering the Oakland Athletics and you heard one of your sources talk about a shift in the way the game is played. Your source, a batting coach, says he tells his hitters to swing aggressively no matter the pitch count – in the past, he had told them to be more defensive when they had two strikes, opting to put the ball in play rather than strike out. As a result, your source says, players are striking out much more than they used to: last year, the team struck out more than than any time in franchise history.
 
 As a journalist who's literate with data, what might be a logical way to assess the veracity of this claim and provide insight on this trend to your readers? Where might you get data to prove or disprove this claim?
@@ -497,3 +518,4 @@ As we've said, grading isn't the most important thing in the world to us, but he
 - Add another chart and copy that tells a more specific story, or do more reporting based on data analysis you've done here.
 
 - Clean up the design of your chart using CSS based on successful line charts you've seen in the wild. [There](http://www.nytimes.com/interactive/2011/05/31/business/economy/case-shiller-index.html) [are](http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html) [lots](http://www.nytimes.com/interactive/2013/01/15/us/a-migration-of-unmarried-men.html) [of](http://www.nytimes.com/interactive/2012/05/05/sports/baseball/mariano-rivera-and-his-peers.html) [examples](http://www.nytimes.com/interactive/2012/11/30/us/tax-burden.html).
+ -->
