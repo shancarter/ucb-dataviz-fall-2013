@@ -239,12 +239,12 @@ What questions might you want to ask this data?
   library(maptools)
   ```
 
-3. Download [this zip file](http://scec.usc.edu/internships/useit/content/california-counties-shapefiles) to your local repo. Make sure the folder is called "shapes" and the files are inside.
+3. Download [this zip file](http://scec.usc.edu/internships/useit/content/california-counties-shapefiles) to your local repo. Save it to a folder called `shapes`. It's actually 5 files (if you look at it from a Mac).
 
   Now load the shapefile using `readShapePoly`
 
   ```
-  shapes <- readShapePoly("shapes/CaliforniaCounty.shp")
+  shapes <- readShapePoly("shapes/ca/counties.shp")
   ```
 
   Do the things we always do with data we load: find its class, field names, etc. It's a little trickier for these kinds of objects. Also try ```data.frame(shapes)``` and check out the data.
@@ -256,40 +256,59 @@ What questions might you want to ask this data?
   ```
   <img src="ca-r-map-1.png">
 
-5. Super awesome, but not very meaningful. Take a look at the data behind the map again with `data.frame(shapes)`. What do the field names represent? Do we have anything in our data frame that might work as a match? (Hint, take a look at the `GEOID` field in `data.frame(shapes)`. What's the difference between that field and our `fips` field?
-
-6. Let's make a `GEOID` field in `data`. This is a formatting trick in R to get leading zeros, which we need if the fields are going to match. Let's start by only using the data from 2010.
+5. Like any plot, this takes the same arguments (mostly).
 
   ```r
-
-  data <- subset(data, year == 2010)
-
-  data$GEOID <- sprintf("%05d",data$fips)
+  plot(shapes, col=rainbow(100))
+  axis(1)
   ```
 
-  Let's see if our `GEOID` field matched up ok with this notation.
+  <img src="silly.png">
+
+5. Super awesome, but not very meaningful. Take a look at the data behind the map again with `data.frame(shapes)`. What do the field names represent? Do we have anything in our data frame that might work as a match? (Hint, take a look at the `FIPS` field in `data.frame(shapes)`. What's the difference between that field and our `fips` field?
+
+6. Let's store the shapefile attribute table as a variable just to save some typing:
 
   ```r
-  data$GEOID%in%data.frame(shapes)$GEOID
+  map_data <- data.frame(shapes)
+  ```
+
+6. Let's make a `FIPS` field in `data`. This is a formatting trick in R to get leading zeros, which we need if the fields are going to match.
+
+  ```r
+  data$FIPS <- sprintf("%05d",data$fips)
+  ```
+
+7. Let's reduce `data` to just the year 2010 for our map...
+
+  ```r
+  data <- subset(data, year == 2010)
+  ```
+
+  and let's see if our `FIPS` fields matched up ok with the `map_data` notation.
+
+  ```r
+  data$FIPS%in%map_data$FIPS
   ```
 
   <img src="better-boolean.png">
 
   What does this mean?
 
-7. Let's join them. There are many ways to do this, but one of the safest ones is with ```match```. Let's take a look in pieces. This looks odd, but it's the answer to the question, "What row number in data.frame(shapes)$GEOID will I find the same value in `data$GEOID`?
+7. Let's join them. There are many ways to do this, but one of the safest ones is with ```match```. Let's take a look in pieces. This looks odd, but it's the answer to the question, "What row number in map_data$FIPS will I find the same value in `data$FIPS`?
 
 
   ```r
-      match(data.frame(shapes)$GEOID,data$GEOID)
+      match(map_data$FIPS,data$FIPS)
   ```
 
+  <img src="match.png">
   What do the numbers you get back represent?
 
 8. Let's call that vector something and store it.
 
   ```r
-     match_order <- match(data.frame(shapes)$GEOID,data$GEOID)
+     match_order <- match(map_data$FIPS,data$FIPS)
   ```
 
 9. Let's compare these two vectors of numbers and see if we understand the difference.
@@ -298,53 +317,133 @@ What questions might you want to ask this data?
   data$pcthispanic
   data$pcthispanic[match_order]
   ```
+  <img src="match-2.png">
 
-10. Let's add this field to our data.frame(shapes).
+10. Let's add this field to our `map_data`.
 
   ```r
-  shapes$pctHispanic2010 <- data$pcthispanic[match_order]
+  map_data$pctHispanic2010 <- data$pcthispanic[match_order]
   ```
 
-11. Say we want to make a color palette from yellow to red.
+11. All this work is so we can associate a county on our map with a value in our data – and now we've done it. But to make a choropleth map, we still need to associate it with colors. So we need to create a vector of colors that corresponds to the values in our `map_data$pctHispanic2010`.
 
+11. Say we want to make a color palette from yellow to red. First, we need to decide what thresholds would be meaningful to color our shapes. Let's look at the distribution of our data by making a histogram of `map_data$pctHispanic2010`.
 
   ```r
-  hispanic_breaks <- c(0,.1, .2, .3, .4, 1)
+  hist(map_data$pctHispanic2010)
+  ```
+  <img src="hist.png">
+
+  If we wanted to break this up into 5 buckets, where might we divide them?
+
+12. We'll try breaks every .1 and put everything over .5 into the largest bucket.
+
+  ```r
+  map_breaks <- c(0, .1, .2, .3, .4, 1)
+  ```
+
+
+13. To find out which "bucket" each value goes in, we can use an R method called `cut`. Try both of these:
+
+  ```r
+  buckets <- cut(map_data$pctHispanic2010,breaks=map_breaks)
+  numeric_buckets <- as.numeric(buckets)
+  ```
+
+  We'll use `numeric_buckets` for sanity, but they are equivalent vectors to R.
+
+14. Now we have a bucket for our values that can correspond easily to discrete colors. All we need is the colors! Install the wonderfull R [color brewer](http://colorbrewer2.org/) R package.
+
+  ```r
+  install.packages("RColorBrewer")
+  library(RColorBrewer)
+
+  display.brewer.all()
+  ```
+
+  Let's take a look.
+
+  <img src="brewer.png">
+
+15. Let's get a vector of 5 colors on the yellow-orange-red scale ("YlOrRd").
+
+    ```r
+    colors <- brewer.pal(5,"YlOrRd")
+
+    # returns [1] "#FFFFB2" "#FECC5C" "#FD8D3C" "#F03B20" "#BD0026"
+    ```
+
+    These five colors will correspond to our 5 numeric buckets. Here's a way to help visualize how this works. `map_breaks` has six elements, but we will use it to assign one of five color values for each `pctHispanic2010` valuein our data.
+
+    <img src="helper-colors.png">
+
+
+14. This should return a vector of colors that corresponds to our data values:
+
+  ```r
+   colors[numeric_buckets]
+  ```
+
+  <img src="color-vector.png">
+
+15. Now let's put this together and plot our map:
+
+  ```r
+  plot(shapes, col=colors[numeric_buckets])
+  title("Pct Hispanic by County, 2010")
+  ```
+
+  <img src ="california-done.png">
+
+  Sweet!
+
+16. What's the good part about all this code? For one, we could customize it to any choropleth map, or we could use functions to map other races in without any extra code. Or we can tinker with the colors and buckets easily without doing much work. Basically, now that we have the code, making 100 maps takes the same amount of time as making one. Or, if we had national data and a national map, the same amount of code would work.
+
+17. Here's all the code that does our mapping in one place:
+
+  ```r
+  setwd("~/YOUR-WORKING-DIRECTORY")
+
+  # we'll need these packages
+  library(maptools)
+  library(RColorBrewer)
+
+  # load our data
+  data <- read.delim("merged-multirace.txt")
+
+  # load the shape file
+  shapes <- readShapePoly("shapes/ca/counties.shp")
+
+  #a data frame of the map attribute data
+  map_data <- data.frame(shapes)
+
+  #string work to add a leading zero and make a new vector that matches map_data's fips code.
+  data$FIPS <- sprintf("%05d",data$fips)
+
+  #2010 only
+  data <- subset(data, year == 2010)
+
+  #match order of data and shapes fields
+  match_order <- match(map_data$FIPS,data$FIPS)
+
+  #add this field to map_data
+  map_data$pctHispanic2010 <- data$pcthispanic[match_order]
+
+  #these can be changed...picked manually depending on our distribution
+  map_breaks <- c(0, .1, .2, .3, .4, 1)
+
+  #assign the data to one of these buckets
+  buckets <- cut(map_data$pctHispanic2010,breaks=map_breaks)
+  numeric_buckets <- as.numeric(buckets)
+
+  #a vector of 5 colors.
   colors <- brewer.pal(5,"YlOrRd")
 
-  cut(shapes$pctHispanic2010,breaks=hispanic_breaks)
+  #plot
+  plot(shapes, col=colors[numeric_buckets])
+  ```
 
-  as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )
+19. Produce these maps for 1980, 1990, 2000 and 2020.
 
-  hisp_bucket <-   as.numeric(cut(shapes$pctHispanic2010,breaks=hispanic_breaks) )
-
-  colors[hisp_bucket]
-
-  plot(shapes,col=colors[hisp_bucket])
-
-
-   ```
-
-<!-- gun.breaks <- c(0,5000,10000,20000,25000)
-
-      # makes a 4-step vector of colors from yellow to red
-      # type display.brewer.all() for more
-
-      colors <- brewer.pal(4,"YlOrRd")
-
-      #type and discuss
-      cut(guns.for.map,breaks=gun.breaks)
-
-      #if that scares you, try thids
-      as.numeric(cut(guns.for.map,breaks=gun.breaks) )
-
-      gun.bucket <- as.numeric(cut(guns.for.map,breaks=gun.breaks) )
-
-      #does this make sense?
-      colors[gun.bucket]
-
-      plot(states,col=colors[gun.bucket])
-      title("Choropleth: guns by state")
- -->
 
 ##Homework
