@@ -18,7 +18,7 @@ title: Intro to Mapping
 
   - Color should be used primarily for communicating information. When you use color for anything other than encoding data or as a category label, its use gets confusing. If you use Purple text in the headline just as decoration, then when you use color to indicate something meaningful in another part of your graphic people will be confused. They will have to stop and think "is this decorative or does this color mean something". Basically, it should always mean something.
 
-  - Choose any font you want, as long as it's not Times New Roman. It just screams out that you didn't take the time to style your page (because you probably didn't). In general, Arial, Georgia and Verdana are very popular. For now, the rule should be, "Don't make anything that you've never seen on another web site before." That means no hot-pink comic sans, etc etc. Text should be black, background colors should be white. If you want to peruse the day's graphics that went into the NYT in print (so you can see their design decisions), check out this site: https://www.nytsyn.com/images/graphics/
+  - Choose any font you want, as long as it's not Times New Roman. It just screams out that you didn't take the time to style your page (because you probably didn't). In general, Arial, Georgia and Verdana are very popular. For now, the rule should be, "Don't make anything that you've never seen on another web site before." That means no hot-pink comic sans, etc etc. Text should be black, background colors should be white. If you want to peruse the day's graphics that went into the NYT in print (so you can see their design decisions), check out [this site](https://www.nytsyn.com/images/graphics/)
 
   - Always label your axis. Rarely can you get away with having numbers on a chart without any units (the difference between "9" and "9 strikeouts" or "9 strikeouts per game"). Tell people what your numbers represent. Sometimes you can get away with it if it's super clear from your headline, but mostly it's a good habit to get into.
 
@@ -244,7 +244,7 @@ What questions might you want to ask this data?
   library(maptools)
   ```
 
-3. Download [this zip file](/shapes/ca.zip) to your local repo. Save it to a folder called `shapes`. It's actually 5 files (if you look at it from a Mac).
+3. Download [this zip file](shancarter.github.io/ucb-dataviz-fall-2013/classes/maps-intro/shapes/ca.zip) to your local repo. Save it to a folder called `shapes`. It's actually 5 files (if you look at it from a Mac).
 
   Now load the shapefile using `readShapePoly`
 
@@ -287,13 +287,13 @@ What questions might you want to ask this data?
 7. Let's reduce `data` to just the year 2010 for our map...
 
   ```r
-  data <- subset(data, year == 2010)
+  y2010 <- subset(data, year == 2010)
   ```
 
   and let's see if our `FIPS` fields matched up ok with the `map_data` notation.
 
   ```r
-  data$FIPS%in%map_data$FIPS
+  y2010$FIPS%in%map_data$FIPS
   ```
 
   <img src="better-boolean.png">
@@ -304,7 +304,7 @@ What questions might you want to ask this data?
 
 
   ```r
-      match(map_data$FIPS,data$FIPS)
+      match(map_data$FIPS,y2010$FIPS)
   ```
 
   <img src="match.png">
@@ -313,21 +313,21 @@ What questions might you want to ask this data?
 8. Let's call that vector something and store it.
 
   ```r
-     match_order <- match(map_data$FIPS,data$FIPS)
+     match_order <- match(map_data$FIPS,y2010$FIPS)
   ```
 
 9. Let's compare these two vectors of numbers and see if we understand the difference.
 
   ```r
-  data$pcthispanic
-  data$pcthispanic[match_order]
+  y2010$pcthispanic
+  y2010$pcthispanic[match_order]
   ```
   <img src="match-2.png">
 
 10. Let's add this field to our `map_data`.
 
   ```r
-  map_data$pctHispanic2010 <- data$pcthispanic[match_order]
+  map_data$pctHispanic2010 <- y2010$pcthispanic[match_order]
   ```
 
 11. All this work is so we can associate a county on our map with a value in our data – and now we've done it. But to make a choropleth map, we still need to associate it with colors. So we need to create a vector of colors that corresponds to the values in our `map_data$pctHispanic2010`.
@@ -355,7 +355,7 @@ What questions might you want to ask this data?
   numeric_buckets <- as.numeric(buckets)
   ```
 
-  We'll use `numeric_buckets` for sanity, but they are equivalent vectors to R.
+  We'll use `numeric_buckets` for sanity, but as far as R is concerned, they are equivalent.
 
 14. Now we have a bucket for our values that can correspond easily to discrete colors. All we need is the colors! Install the wonderfull R [color brewer](http://colorbrewer2.org/) R package.
 
@@ -448,7 +448,40 @@ What questions might you want to ask this data?
   plot(shapes, col=colors[numeric_buckets])
   ```
 
-19. Produce these maps for 1980, 1990, 2000 and 2020.
-
-
 ##Homework
+
+UPDATE: Class ended up going a little bit long, so homework will be relatively simple.
+
+**Required**
+
+Post an image (screenshot, export, whatever) of a map of the percent of hispanics by county in 2010 to your maps-intro repo. You should link to this on your dataviz-home site just like you have done for the other assignments. You are free to choose a different color scale or make other stylisting decisions if you prefer.
+
+**Gold stars**
+
+Most of you should be able to do the homework without too much trouble just by working through the lab. But getting comfortable with the R console will be worth your time int he future, and it's an extremely powerful tool for mapping, so extra practice will help. So try to do what you can from these:
+
+We didn't go over these in class, so they are not required, but in general every map should have these:
+
+• A title (either in R or in HTML)
+
+• A key or legend (either in R or in HTML/CSS)
+
+Try to produce maps for more races and more years. You could always repeat the code by changing the field names and values to subset, but see if you can **generalize the code enough to make a function called `plot_map_for__decade_and_race.` The goal is to tell R a racial group and a year and it produces a map for you:
+
+  ```r
+  plot_map_for_decade_and_race <- function (decade, race) {
+  #code goes here!
+  }
+  ```
+
+You would use this function like this:
+
+  ```r
+  plot_map_for_decade_and_race(1990, "pcthispanic") #produces awesome map
+  ```
+
+Shan will be at office hours starting at 4 and I might even be there a little earlier.
+
+Here is what the NYT [ended up with](http://www.nytimes.com/interactive/2013/02/20/us/hispanics-californias-next-majority.html). Look how much fun you get to have with maps once you are good at Javascript:
+
+<img src="california-nyt.png">
