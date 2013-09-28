@@ -244,7 +244,7 @@ What questions might you want to ask this data?
   library(maptools)
   ```
 
-3. Download [this zip file](shancarter.github.io/ucb-dataviz-fall-2013/classes/maps-intro/shapes/ca.zip) to your local repo. Save it to a folder called `shapes`. It's actually 5 files (if you look at it from a Mac).
+3. Download [this zip file](http://shancarter.github.io/ucb-dataviz-fall-2013/classes/maps-intro/shapes/ca.zip) to your local repo. Save it to a folder called `shapes`. It's actually 5 files (if you look at it from a Mac).
 
   Now load the shapefile using `readShapePoly`
 
@@ -341,7 +341,7 @@ What questions might you want to ask this data?
 
   If we wanted to break this up into 5 buckets, where might we divide them?
 
-12. We'll try breaks every .1 and put everything over .5 into the largest bucket.
+12. We'll try breaks every .1 and put everything over .4 into the largest bucket.
 
   ```r
   map_breaks <- c(0, .1, .2, .3, .4, 1)
@@ -454,7 +454,7 @@ UPDATE: Class ended up going a little bit long, so homework will be relatively s
 
 **Required**
 
-Post an image (screenshot, export, whatever) of a map of the percent of hispanics by county in 2010 to your maps-intro repo. You should link to this on your dataviz-home site just like you have done for the other assignments. You are free to choose a different color scale or make other stylisting decisions if you prefer.
+Post an image (screenshot, export, whatever) of a map of the percent of hispanics by county in 2010 to your maps-intro repo. You should link to this on your dataviz-home site just like you have done for the other assignments. You are free to choose a different color scale or make other styling decisions if you prefer.
 
 **Gold stars**
 
