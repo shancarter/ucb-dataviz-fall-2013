@@ -42,11 +42,7 @@ queue()
 
 function ready(error, data, ca) {
 
-  console.log(ca)
-  // var stateGeometry = topojson.feature(ca, ca.objects.states)
   var counties = topojson.feature(ca, ca.objects.counties)
-
-  console.log(counties);
 
   svg.selectAll(".county")
       .data(counties.features)
