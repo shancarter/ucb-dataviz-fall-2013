@@ -370,7 +370,9 @@ What questions might you want to ask this data?
 
   <img src="brewer.png">
 
-15. Let's get a vector of 5 colors on the yellow-orange-red scale ("YlOrRd").
+
+
+15. ColorBrewer gives a color vector for any of these palettes for any number of colors. Here's how to use it to get a vector of 5 colors on the yellow-orange-red scale ("YlOrRd").
 
     ```r
     colors <- brewer.pal(5,"YlOrRd")
