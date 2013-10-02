@@ -2,6 +2,7 @@
 layout: default
 title: You Asked, We Answered
 ---
+These are questions from the class wiki about [things we don't get](https://github.com/shancarter/ucb-dataviz-fall-2013/wiki/Things-We-Don't-Get). The more you ask, the better this is.
 
 <h1>You asked, we answered</h1>
 
