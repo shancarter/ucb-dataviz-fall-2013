@@ -100,8 +100,6 @@ header {
   width: 100%;
 }
 
-
-
 .main img.border {
   border: solid 1px #ddd;
 }
@@ -112,6 +110,15 @@ header {
   margin-bottom: 10px;
   line-height: 1.4em;
 }
+code {
+  padding: 3px 6px;
+  background: #f0f4f5;
+  border: solid 1px #dfdfdf;
+  border-radius: 3px;
+}
 pre code{
   font-size: 12px;
+  background: none;
+  border: none;
+  padding: 0;
 }
