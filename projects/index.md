@@ -94,11 +94,11 @@ Each pitch should include:
 
 Here's an example of a couple pitches of projects we've worked on in class already. It doesn't need to be in exactly this format, but this is the general idea we're looking for. (Again, we're looking for three.)
 
-**Project proposal demo**
+**Project proposal example**
 
 Last year, on average, Major League baseball teams struck out more than at any time in its 112 year history. This subject has been [written about before](http://bleacherreport.com/articles/1687201-why-the-single-season-hitter-strikeouts-record-will-be-the-next-to-fall-in-mlb), but no news organization has visualized the distribution or, to my satisfaction, offered a significant answer to why it has been rising so steadily, even in the post-steroids era. This could be published soon, with a focus on how teams currently in the playoffs have been affected, or it could be published at the beginning of next year, as a preview to the next season.
 
-My project would be an interartive chart that shows the average strikeouts per year of every team in the Major Leagues for every year their franchise has been in existence. Ideally, this chart would be interactive, allowing readers to see the chart in the context of their favorite team. All the [historical data](http://www.baseball-reference.com/teams/MIN/2012.shtml) is available on [baseball-reference.com](http://www.baseball-reference.com).
+My project would be an interactive chart that shows the average strikeouts per year of every team in the Major Leagues for every year their franchise has been in existence. Ideally, this chart would be interactive, allowing readers to see the chart in the context of their favorite team. All the [historical data](http://www.baseball-reference.com/teams/MIN/2012.shtml) is available on [baseball-reference.com](http://www.baseball-reference.com).
 
 I'd like to talk to a couple hitting coaches to see if they have recognized this difference and if they are telling their batters to hit differently than they did in the past. Chili Davis, the batting coach of the Oakland Athletics, would be ideal, but I've identified some minor league coaches as well.
 
