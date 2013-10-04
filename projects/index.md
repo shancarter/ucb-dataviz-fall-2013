@@ -107,6 +107,8 @@ I would probably need to learn how to scrape the data from baseball-reference, s
 There are a number of stat-based sports sites that I could pitch this to, including the [Baseball Prospectus blog](http://www.baseballprospectus.com/blog/), [FanGraphs](http://www.fangraphs.com/blogs/) or more local sites, like the sports desks of the San Francisco Chronicle or the Oakland Tribune.
 
 
+Email shavin with any questions.
+
 
 
 
