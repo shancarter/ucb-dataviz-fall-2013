@@ -12,10 +12,6 @@ title: Interactive Maps
 
 - Here’s a cool [free book](http://chimera.labs.oreilly.com/books/1230000000345/index.html).
 
-- [Finished lab](http://shancarter.github.io/ucb-dataviz-fall-2013/classes/interactive-maps/final-map.html)
-
-- [Lab with slider](http://shancarter.github.io/ucb-dataviz-fall-2013/classes/interactive-maps/slider-map.html)
-
 ##Critique
 
 Diego will be discussing this [animated video of income inequality](http://youtu.be/QPKKQnijnsM).
@@ -25,6 +21,10 @@ Diego will be discussing this [animated video of income inequality](http://youtu
 [Let’s talk projects](http://shancarter.github.io/ucb-dataviz-fall-2013/projects/)
 
 ##Lab
+
+- [Finished lab](http://shancarter.github.io/ucb-dataviz-fall-2013/classes/interactive-maps/final-map.html)
+
+- [Lab with slider](http://shancarter.github.io/ucb-dataviz-fall-2013/classes/interactive-maps/slider-map.html)
 
 This week we’ll be building a D3 version of last week’s map.
 
