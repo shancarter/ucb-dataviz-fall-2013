@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<style>
+body {
+  font-family: Helvetica;
+}
+
+svg {
+  border: solid 1px #ddd;
+}
+
+.county {
+  fill: grey;
+  stroke: white;
+}
+
+.county:hover {
+  stroke: black;
+}
+
+input {
+  display: block;
+  width: 200px;
+  margin: 10px 0;
+}
+</style>
+
+<h1>Slider Map</h1>
+<h2 class="year"></h2>
+<div class="slider"></div>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+<script>
+
+var margin = {top: 20, right: 20, bottom: 20, left: 20};
+    width = 750 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+queue()
+    .defer(d3.tsv, "merged-multirace.txt")
+    .defer(d3.json, "ca-counties.json")
+    .await(ready);
+
+function ready(error, data, ca) {
+
+  var counties = topojson.feature(ca, ca.objects.counties);
+
+  // convert our data into numbers
+  data.forEach(function(d) {
+    d.year = +d.year;
+    d.fips = +d.fips;
+    d.pcthispanic = +d.pcthispanic;
+  });
+
+  // d3.nest the data by couty then by year
+  var dataByCountyByYear = d3.nest()
+    .key(function(d) { return d.fips; })
+    .key(function(d) { return d.year; })
+    .map(data);
+
+  // merge geo data with our census data
+  counties.features.forEach(function(county) {
+    county.properties.years = dataByCountyByYear[+county.id]
+  });
+
+  var color = d3.scale.linear()
+    .domain([0, 1])
+    .range(["orange", "blue"]);
+
+  var projection = d3.geo.albers()
+    .translate([width / 2, height / 2 - 100])
+    .parallels([34, 40.5])
+    .rotate([120, 0])
+    .scale(3000);
+
+  var path = d3.geo.path()
+    .projection(projection);
+
+  var countyShapes = svg.selectAll(".county")
+      .data(counties.features)
+    .enter().append("path")
+      .attr("class", "county")
+      .attr("d", path);
+
+  function update(year){
+    slider.property("value", year);
+    d3.select(".year").text(year);
+    countyShapes.style("fill", function(d) {
+      return color(d.properties.years[year][0].pcthispanic)
+    });
+  }
+
+  var slider = d3.select(".slider").append("input")
+      .attr("type", "range")
+      .attr("min", 1980)
+      .attr("max", 2020)
+      .attr("step", 10)
+      .on("change", function() {
+        var year = this.value;
+        update(year);
+      });
+
+  update(2020);
+}
+
+</script>
