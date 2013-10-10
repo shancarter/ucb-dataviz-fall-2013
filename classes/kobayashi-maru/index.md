@@ -9,7 +9,7 @@ title: Breaking News Exercise
 
 • About your pitches.
 
-• Mapping homework showcase!
+• Mapping homework showcase! A handful of notable different approaches by [Erik](http://erikreyna.github.io/maps-intro/interactive-map.html), [Jess](http://jessihamel.github.io/maps-intro/) and [Sam](http://scrolens.github.io/map-intro/), to name a few.
 
 • Office hours this weekend at 4
 
