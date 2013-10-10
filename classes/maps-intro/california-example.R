@@ -38,17 +38,17 @@ plot_counties_for_decade_and_race <- function(decade, race_field_name) {
   numeric_buckets <- as.numeric(buckets)
 
   #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.
-  colors <- brewer.pal(5,"YlOrRd")
+  colors <- c("white", brewer.pal(4,"YlOrRd"))
 
   #plot the map!
-  plot(shapes, col=colors[numeric_buckets])
+  plot(shapes, col=colors[numeric_buckets], border="lightgrey")
 
   # give it a title so we know what we're looking at.
   title(paste(race_field_name, decade))
 }
 
 #fields we want to plot
-race_fields <- c("pctwhite", "pctblack", "pctasian", "pcthispanic" )
+race_fields <- c("pctwhite", "pcthispanic", "pctblack", "pctasian" )
 
 #this is puts all the plots on one screen
 par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))

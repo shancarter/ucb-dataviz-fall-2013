@@ -44,20 +44,20 @@ We'll break into 5 groups for this.
 
 ####Here’s your rough schedule###
 
-###Starting at 4:30pm###
+###Starting at 4:45pm###
 - Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
 
 - As a group, come up with at least 6 questions that you want to answer using a Google doc or raw text file
 
-###Starting at 4:45pm###
+###Starting at 5:00pm###
 - Call Shavin over to approve your questions. Don’t continue without approval.
 
-###Starting at 5pm###
+###Starting at 5:15pm###
 - Start answering your questions in text form.
 
 - Sketch **on paper** what you want to build with your new knowledge.
 
-###Starting at 5:30pm###
+###Starting at 5:45pm###
 - Get Shavin approval of your sketch before you continue.
 
 - Decide who's doing what. Here’s one idea for roles, but feel free to do whatever you want:
@@ -65,12 +65,12 @@ We'll break into 5 groups for this.
     2. R sketching and answering data questions.
     3. Web development of the whole project. (You don't need to make your chart in D3. Images are fine, but they do need to be published to the internet on a valid HTML page. )
 
-###Starting at 6:30pm###
+###Starting at 6:45pm###
 - Publish a URL to a github repo.
 
 - **6:30pm** and publish a URL to a github repo.
 
 - **6:45pm** We’re all going to share our projects.
 
-###Starting at 6:45pm###
+###Starting at 7:00 (to 7:15?)pm###
 - Show and tell.
