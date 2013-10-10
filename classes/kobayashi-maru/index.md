@@ -45,7 +45,7 @@ The Bureau of Labor Statistics has loads of data about employment, but the one y
 - Sketch **on paper** what you want to build with your new knowledge.
 
 ###5:30pm###
-- Call Shavin to approve your sketch
+- Get Shavin approval of your sketch before you continue.
 
 - Decide who's doing what. Here’s one idea for roles but feel free to do whatever you want:
     1. Research and write the text
