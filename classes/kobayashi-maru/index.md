@@ -31,7 +31,25 @@ We've done a few do-as-we-do exercises; today we'll break into groups and let yo
 
 The Bureau of Labor Statistics has loads of data about employment, but the one you're planning on using is Smoothed Seasonally Adjusted Metropolitan Area Estimates for Calfornia. Today in class, you'll explore this data, ask and answer questions, make a visualization and publish it to the internet.
 
+We'll break into 5 groups for this.
+
+**Group 1:** Erik Reyna, Chelsi Moy, Stephen Fisher
+
+**Group 2:** Diego Barido, Aaron Mendelson, Samantha Masunaga
+
+**Group 3:** Mihir Zaveri, Julie Brown, Angela Lyn Hart
+
+**Group 4:** Jessica Hamel, Sean Greene, Tawanda Kanhema
+
+**Group 5:** Pearly Tan, Sam Rolens, Nausheen Husain
+
+
+
+**Here's your rough schedule**
+
 ###4:30pm###
+- Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
+
 - Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
 
 - As a group, come up with 6 questions that you want to answer
@@ -54,6 +72,10 @@ The Bureau of Labor Statistics has loads of data about employment, but the one y
 
 ###6:30pm###
 - Publish a URL to a github repo.
+- **6:30pm** and publish a URL to a github repo.
+
+
+- **6:45pm** We’re all going to share our projects.
 
 ###6:45pm###
 - Show and tell.
