@@ -33,7 +33,6 @@ The Bureau of Labor Statistics has loads of data about employment, but the one y
 
 We'll break into 5 groups for this.
 
----
 **Group 1:** Erik Reyna, Chelsi Moy, Stephen Fisher
 
 **Group 2:** Diego Barido, Aaron Mendelson, Samantha Masunaga
@@ -44,43 +43,39 @@ We'll break into 5 groups for this.
 
 **Group 5:** Pearly Tan, Sam Rolens, Nausheen Husain
 
----
+
 
 **Here's your rough schedule**
 
-- **4:30pm** Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
+###4:30pm###
+- Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
+
+- Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
 
 - As a group, come up with 6 questions that you want to answer
 
-- **4:50pm** Call Shavin over to approve your questions. Don’t continue without approval.
+###4:45pm###
+- Call Shavin over to approve your questions. Don’t continue without approval.
 
-- Try to answer your questions.
+###5pm###
+- Answer your questions.
 
-- Sketch on paper what you want to build with your new knowledge
+- Sketch **on paper** what you want to build with your new knowledge.
 
-- **5:30pm** Call Shavin to approve your sketch
+###5:30pm###
+- Call Shavin to approve your sketch
 
 - Decide who's doing what. Here’s one idea for roles but feel free to do whatever you want:
-    - Research and writing text analysis
-    - R sketching and answering data questions
-    - Web development of the final project
+    1. Research and write the text
+    2. R sketching and answering data questions
+    3. Web development of the whole project
 
-- Start building your sketch.
-
+###6:30pm###
+- Publish a URL to a github repo.
 - **6:30pm** and publish a URL to a github repo.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 - **6:45pm** We’re all going to share our projects.
+
+###6:45pm###
+- Show and tell.
