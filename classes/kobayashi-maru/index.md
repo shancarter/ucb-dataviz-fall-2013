@@ -31,3 +31,23 @@ We've done a few do-as-we-do exercises; today we'll break into groups and let yo
 
 The Bureau of Labor Statistics has loads of data about employment, but the one you're planning on using is [Smoothed Seasonally Adjusted Metropolitan Area Estimates](http://www.bls.gov/lau/metrossa.htm) for Calfornia. Today in class, you'll explore this data, ask and answer questions, make a visualization and publish it to the internet.
 
+**Group 1:** Erik Reyna, Chelsi Moy, Stephen Fisher
+
+**Group 2:** Diego Barido, Aaron Mendelson, Samantha Masunaga
+
+**Group 3:** Mihir Zaveri, Julie Brown, Angela Lyn Hart
+
+**Group 4:** Jessica Hamel, Sean Greene, Tawanda Kanhema
+
+**Group 5:** Pearly Tan, Sam Rolens, Nausheen Husain
+
+
+
+
+
+
+
+
+
+
+
