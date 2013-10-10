@@ -6,6 +6,7 @@ title: Breaking News Exercise
 
 ##Housekeeping
 
+
 • About your pitches.
 
 • Mapping homework showcase!
@@ -18,7 +19,11 @@ title: Breaking News Exercise
 Angela and Pearly will be discussing [tXXXXX](http://www.google.com).
 
 
+
+
 ##News exercise
+
+<img src="kobayashi-maru.jpg">
 
 We've done a few do-as-we-do exercises; today we'll break into groups and let you come up with your own visualizations.
 
