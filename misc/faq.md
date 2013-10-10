@@ -36,7 +36,7 @@ yankees2013 <- subset(data, team == "NYY" & year == 2013)
 ```
 
 <a id="bring-to-front" href="#bring-to-front">
-##How do you bring elements to front in SVG when you hover over them so they aren’t hidden by other elements?
+##How do you “bring to front” in SVG?
 </a>
 SVG unfortunately doesn’t have any z-index property, so all elements are drawn according to thier order in the DOM — elements further down the DOM are drawn on top of earlier elements. Therefore, if you hover over an element that is higher up the dom it will still be obstructed by other, newer elements.
 
