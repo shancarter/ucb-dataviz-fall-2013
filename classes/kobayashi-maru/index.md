@@ -50,8 +50,6 @@ We'll break into 5 groups for this.
 ###4:30pm
 - Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
 
-- Download and format the [data](http://www.bls.gov/lau/metrossa.htm). Load it into Excel, R or D3.
-
 - As a group, come up with 6 questions that you want to answer
 
 ###4:45pm
