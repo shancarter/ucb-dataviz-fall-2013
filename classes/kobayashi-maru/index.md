@@ -15,7 +15,7 @@ title: Breaking News Exercise
 • Free help on the [wiki](https://github.com/shancarter/ucb-dataviz-fall-2013/wiki/Things-We-Don't-Get)
 
 ##Critique
-Angela and Pearly will be discussing [tXXXXX](http://www.google.com).
+Angela and Pearly will be discussing this [Painkiller prescriptions map](http://va-opiates.apps.cironline.org).
 
 
 ##News exercise
