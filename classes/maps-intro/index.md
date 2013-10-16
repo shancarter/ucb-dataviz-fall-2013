@@ -487,3 +487,84 @@ Shan will be at office hours starting at 4 and I might even be there a little ea
 Here is what the NYT [ended up with](http://www.nytimes.com/interactive/2013/02/20/us/hispanics-californias-next-majority.html). Look how much fun you get to have with maps once you are good at Javascript:
 
 <img src="california-nyt.png">
+
+<a id="r-function" href="#r-function">
+###Update###
+</a>
+
+For those who are interested, here is one way to do the homework using functions. Why draw one map when you can draw 16 with the same amount of code?
+
+```r
+setwd("~/your-working-directory")
+
+#we'll need these
+library(maptools)
+library(RColorBrewer)
+
+#load your data
+data <- read.delim("merged-multirace.txt")
+
+#download the shape file
+shapes <- readShapePoly("shapes/ca/counties.shp")
+
+#a data frame of the map attribute data
+map_data <- data.frame(shapes)
+
+#string work to add a leading zero and make a new vector that matches map_data's fips code.
+data$FIPS <- sprintf("%05d",data$fips)
+
+
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {
+
+  # only data for this decade
+  this_decade <- subset(data, year == decade)
+
+  #match order of data and shapes fields
+  match_order <- match(map_data$FIPS,this_decade$FIPS)
+
+  # add this field to map_data
+  # NOTE: this syntax is weird. yes. but it's the same as:
+  # map_data$pcthispanic <- this_decade$pcthispanic[match_order]
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]
+
+  # breaks for colors. these are semi arbitrary, picked manually.
+  map_breaks <- c(0, .1, .2, .3, .4, 1)
+
+  # put our data into 5 groups
+  buckets <- cut(map_data[,race_field_name], breaks = map_breaks)
+
+  # make the groups numbers so they're less terrifying to look at.
+  numeric_buckets <- as.numeric(buckets)
+
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.
+  colors <- c("white", brewer.pal(4,"YlOrRd"))
+
+  #plot the map!
+  plot(shapes, col=colors[numeric_buckets], border="lightgrey")
+
+  # give it a title so we know what we're looking at.
+  title(paste(race_field_name, decade))
+}
+
+#fields we want to plot
+race_fields <- c("pctwhite", "pcthispanic", "pctblack", "pctasian" )
+
+# mfrow puts the plot commands into a 4x4 grid.
+# mar helps with the margins for each plot so they're not tiny.
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))
+
+for (i in race_fields) {
+  for (j in c(1990, 2000, 2010, 2020)) {
+    plot_counties_for_decade_and_race(j,i)
+  }
+}
+
+```
+The good thing here is the use of R here to do exploratory charting – to see what your data is like before having to take time to develop something online. Modern mapping tools like QGIS or ArcMap aren't able to produce these kinds of maps this quickly.
+
+Here's what we get:
+<img src="r-output.png">
+
+Pretty good! In print, these could be saved to a pdf and manipulated (by someone else, if necessary) in a vector graphics program like Adobe Illustrator. And anyway these maps aren't much worse than interactive versions, and with some care they could look actually professional. Post them and move on!
+
+

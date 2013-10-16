@@ -1,364 +1,695 @@
-setwd("~/NYT projects/2013-09-18-nfl-starters/r-work/")#
-setwd("~/NYT-projects/nfl-starters/r-work/")#
-# need a list of players.#
-library(stringr)#
-library(XML)#
-#
-load("data/starts.Rdata")#
-load("data/weeks.Rdata")#
-load("data/roster.Rdata")
-setwd("~/NYT projects/2013-09-18-nfl-starters/r-work/")
-setwd("~/NYT projects/2013-09-18-nfl-starters/r-work/")#
-setwd("~/NYT-projects/nfl-starters/r-work/")#
-# need a list of players.#
-library(stringr)#
-library(XML)#
-#
-load("data/starts.Rdata")#
-load("data/weeks.Rdata")#
-load("data/roster.Rdata")
-head(roster)
-head(a2)
-a2 <- aggregate(roster$year, list(player2 = roster$player2, playerid = roster$playerid), min )#
-names(a2)[3] <- "startyear"
-head(a2)
-head(starts)
-starts <- merge(starts, a2, by="playerid")#
-# starts <- subset(starts, startyear >=2004)#
-starts <- merge(starts, weeks, by="date2", all.x=TRUE)
-head(starts)
-subset(starts, teamcode=="bif")
-subset(starts, teamcode=="buf")
-subset(starts, teamcode=="buf" & season == 2013)
-teams_url <- "http://www.pro-football-reference.com/teams/"#
-page <- htmlTreeParse(readLines(teams_url), useInternalNodes=T)#
-first_col_link <- getNodeSet(page, "//table[@id='teams_active']//tr//td[1]//a")#
-team_names <- sapply(first_col_link , xmlValue)#
-team_codes <- gsub("\\/|teams", "", sapply(first_col_link, xmlGetAttr, "href"))#
-#
-lookup <- data.frame(longname=team_names, franchise_code = team_codes)#
-#
-lookup$start_year <- NA#
-#
-# find the codes for the box scores of each game of each year since 1970#
-for (i in lookup$franchise_code) {#
-  print(i)#
-  print("-------")#
-  this_team_franchise_code <- i#
-  base_team_url <- paste("http://www.pro-football-reference.com/teams/", this_team_franchise_code, sep="")#
-  team_historical_schedule_page <- htmlTreeParse(readLines(base_team_url), useInternalNodes = T)#
-  #go back to 1970 unless you started after that.#
-  start_year <- max(c(min(as.numeric(as.character((readHTMLTable(team_historical_schedule_page)$team_index$Year)))), 1970))#
-#
-  lookup$start_year[lookup$franchise_code==i] <- start_year#
-}
 head(lookup)
-tail(lookup)
-subset(lookup, franchise# fetch a team scheule for a given team code and year#
-get_schedule_for_team_and_year <- function(code, year) {#
-#
-  url <- paste("http://www.pro-football-reference.com/teams/", code, "/", year, "_games.htm", sep="")#
-  page <- htmlTreeParse(readLines(url), useInternalNodes = T)#
-  weekid <- sapply(getNodeSet(page, "//div[@id='div_team_gamelogs']//table//td[1]"), xmlValue)#
-  day <- sapply(getNodeSet(page, "//div[@id='div_team_gamelogs']//table//td[2]"), xmlValue)#
-  date <- sapply(getNodeSet(page, "//div[@id='div_team_gamelogs']//table//td[3]"), xmlValue)#
-  temp <- readHTMLTable(getNodeSet(page, "//table[@class='sortable  stats_table']")[[1]])#
-  names(temp)[4] <- "boxscore"#
-  boxlinks <- getNodeSet(page, "//table[@class='sortable  stats_table'][1]//tr//td[4]//a")#
-  temp$link <- NA#
-  temp$link[temp$boxscore=="boxscore"] <- sapply(boxlinks, xmlGetAttr, "href")#
-  sked <- data.frame(week = weekid, day=day, date=date, gameurl = temp$link, code=code, year=year)#
-  return (sked)#
-}#
-#
-# fetch a team scheule for a given team code and year#
-find_starting_qbs <- function(code, year) {#
-#
-  url <- paste("http://www.pro-football-reference.com/teams/", code, "/", year, "_roster.htm", sep="")#
-  page <- htmlTreeParse(readLines(url), useInternalNodes = T)#
-#
-  roster <- readHTMLTable(page)$games_played_team#
-  names(roster)[2] <- "player_name"#
-  roster$year <- year#
-  roster$code <- code#
-  roster$pos2 <- toupper(roster$Pos)#
-#
-  urls <- sapply(getNodeSet(page, "//div[@id='all_games_played_team']//table//tr//td[2]//a"), xmlGetAttr, "href")#
-#
-  roster$url <- urls#
-#
-  qbs <- subset(roster, pos2 == "QB")#
-  return (qbs)#
-})
-fetch a team scheule for a given team code and year#
-get_schedule_for_team_and_year <- function(code, year) {#
-#
-  url <- paste("http://www.pro-football-reference.com/teams/", code, "/", year, "_games.htm", sep="")#
-  page <- htmlTreeParse(readLines(url), useInternalNodes = T)#
-  weekid <- sapply(getNodeSet(page, "//div[@id='div_team_gamelogs']//table//td[1]"), xmlValue)#
-  day <- sapply(getNodeSet(page, "//div[@id='div_team_gamelogs']//table//td[2]"), xmlValue)#
-  date <- sapply(getNodeSet(page, "//div[@id='div_team_gamelogs']//table//td[3]"), xmlValue)#
-  temp <- readHTMLTable(getNodeSet(page, "//table[@class='sortable  stats_table']")[[1]])#
-  names(temp)[4] <- "boxscore"#
-  boxlinks <- getNodeSet(page, "//table[@class='sortable  stats_table'][1]//tr//td[4]//a")#
-  temp$link <- NA#
-  temp$link[temp$boxscore=="boxscore"] <- sapply(boxlinks, xmlGetAttr, "href")#
-  sked <- data.frame(week = weekid, day=day, date=date, gameurl = temp$link, code=code, year=year)#
-  return (sked)#
-}#
-#
-# fetch a team scheule for a given team code and year#
-find_starting_qbs <- function(code, year) {#
-#
-  url <- paste("http://www.pro-football-reference.com/teams/", code, "/", year, "_roster.htm", sep="")#
-  page <- htmlTreeParse(readLines(url), useInternalNodes = T)#
-#
-  roster <- readHTMLTable(page)$games_played_team#
-  names(roster)[2] <- "player_name"#
-  roster$year <- year#
-  roster$code <- code#
-  roster$pos2 <- toupper(roster$Pos)#
-#
-  urls <- sapply(getNodeSet(page, "//div[@id='all_games_played_team']//table//tr//td[2]//a"), xmlGetAttr, "href")#
-#
-  roster$url <- urls#
-#
-  qbs <- subset(roster, pos2 == "QB")#
-  return (qbs)#
-}
-find_starting_qbs("buf", 2013)
-get_team_schedule <- function(code, year) {#
-#
-  url <- paste("http://www.pro-football-reference.com/teams/", code, "/", year, "_roster.htm", sep="")#
-  page <- htmlTreeParse(readLines(url), useInternalNodes = T)#
-#
-  roster <- readHTMLTable(page)$games_played_team#
-  names(roster)[2] <- "player_name"#
-  roster$year <- year#
-  roster$code <- code#
-  roster$pos2 <- toupper(roster$Pos)#
-#
-  urls <- sapply(getNodeSet(page, "//div[@id='all_games_played_team']//table//tr//td[2]//a"), xmlGetAttr, "href")#
-#
-  roster$url <- urls#
-#
-  qbs <- subset(roster, pos2 == "QB")#
-  return (qbs)#
-}
-roster <- NULL#
-for (i in lookup$franchise_code) {#
-#
-  if (i == "cle") {#
-    vec <- c(1970:1995, 1999:2013)#
-  }#
-  else {#
-    vec <- lookup$start_year[lookup$franchise_code == i]:2012#
-  }#
-#
-  local <- NULL#
-  for (j in vec) {#
-    print(paste(i,j,"-----------"))#
-    df <- get_team_schedule(i,j)#
-#
-    local <- rbind(local, df)#
-  }#
-#
-  roster <- rbind(local, roster)#
-#
-}#
-#
-roster$player2 <- gsub("\\*|\\+", "", roster$player_name)#
-#
-roster$playerid <- gsub(".htm", "", sapply(strsplit(roster$url, "/"), function(x) {x[4]}))
-dim(roster)
-head(roster)
-subset(roster, code == "buf" & year == 2013)
-subset(roster, code == "buf")
+head(payrolls)
+payrolls <- merge(payrolls, lookup, by="team", all.x = T)
+payrolls <- merge(payrolls, lookup, by="team", all.x = T)
+head(payrolls)
+load("data/stats.Rdata")
+load("data/payrolls.Rdata")
+payrolls <- merge(payrolls, lookup, by="team", all.x = T)
+head(payrolls)
+is.na(payrolls$code)
+payrolls[is.na(payrolls$code),]
+payrolls[which(payrolls$team == "Los Angeles Angels"),]
+payrolls$team[which(payrolls$team == "Los Angeles Angels")]
+payrolls$code[which(payrolls$team == "Los Angeles Angels")] <- ""
+payrolls[which(payrolls$team == "Los Angeles Angels"),c("code")]
+head(lookup)
 lookup
-subset(lookup, year==2013)
-subset(roster, year==2013)
-i <- "buf"
-vec <- lookup$start_year[lookup$franchise_code == i]:2013
-df <- get_team_schedule(i,j)
-df
-j
-i
-j = 2013
-df <- get_team_schedule(i,j)
-df
-roster <- NULL#
-for (i in lookup$franchise_code) {#
+payrolls[which(payrolls$team == "Los Angeles Angels"),c("code")] <- "ANA"
+payrolls[which(payrolls$team == "Los Angeles Angels"),c("code")] <- "ANA"#
+payrolls[which(payrolls$team == "Florida Marlins"),c("code")] <- "FLA"#
+payrolls[which(payrolls$team == "Montreal Expos"),c("code")] <- "WSN"
+head(payrolls)
+table(is.na(payrolls$code))
+head(payrolls)
+head(stats)
+get_stats_for_year <- function(year) {#
+ url <- paste("http://www.baseball-reference.com/leagues/MLB/", year , "-standings.shtml", sep="")#
+ tables <- readHTMLTable(url)#
 #
-  if (i == "cle") {#
-    vec <- c(1970:1995, 1999:2013)#
-  }#
-  else {#
-    vec <- lookup$start_year[lookup$franchise_code == i]:2013#
-  }#
+ playoffs <- tables[1]#
 #
-  local <- NULL#
-  for (j in vec) {#
-    print(paste(i,j,"-----------"))#
-    df <- get_team_schedule(i,j)#
+ playoff_teams <- unique(unlist(strsplit(paste(data.frame(playoffs)[,2], collapse=" over \n"), " over \n")))#
 #
-    local <- rbind(local, df)#
-  }#
+ codes <- as.character(sapply(playoff_teams, function(x) { lookup$code[which(lookup$name == x )] }))#
 #
-  roster <- rbind(local, roster)#
+ standings <- tables$expanded_standings_overall#
+ standings <- standings[1:(nrow(standings)-1) ,1:7]#
+ standings$year <- year#
+ names(standings)[2] <- "code"#
+ return (standings)#
 #
 }#
 #
-roster$player2 <- gsub("\\*|\\+", "", roster$player_name)#
-#
-roster$playerid <- gsub(".htm", "", sapply(strsplit(roster$url, "/"), function(x) {x[4]}))
-subset(roster, year==2013)
-subset(roster, code == "buf" & year == 2013)
-save(roster, file="data/roster.rData")
-get_starts_history <- function(playerid) {#
-  url <- paste("http://www.pro-football-reference.com/boxscores/game_query.cgi?qb=", playerid, "&yr=", sep="")#
-  page <- htmlParse(url)#
-  day <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[2]"), xmlValue)#
-  date <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[3]"), xmlValue)#
-  team <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[5]"), xmlValue)#
-  opp <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[7]"), xmlValue)#
-  result <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[4]"), xmlValue)#
-  boxurl <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[10]//a"), xmlGetAttr, "href")#
-  teamcode <- gsub("/teams\\/|.htm|[0-9]|\\/", "", sapply(getNodeSet(page, "//table[@id='games']//tr//td[5]//a"), xmlGetAttr, "href"))#
-#
-  # df$year <- as.numeric(str_trim(sapply(strsplit(as.character(df$date), ","), function(x) { x[2]})))#
-#
-  df <- data.frame(day, date, team, opp, result, boxurl, teamcode)#
-#
-  if (nrow(df) == 0) {#
-#
-  }#
-#
-  else {#
-    df$playerid <- playerid#
-  }#
-#
-  return (df)#
-#
-}#
-#
-get_week_ids <- function(year) {#
-#
-  url <- paste("http://www.pro-football-reference.com/years/",year,"/games.htm", sep="")#
-  page <- htmlParse(url)#
-  week <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[1]"), xmlValue)#
-  date <- sapply(getNodeSet(page, "//table[@id='games']//tr//td[3]"), xmlValue)#
-  df <- data.frame(week, date)#
-#
-  df$season = year#
-#
-  return (unique(df))#
+stats <- NULL#
+for (i in years) {#
+  print(i)#
+  df <- get_stats_for_year(i)#
+  stats <- rbind(df, stats)#
 }
-subset(roster, code == "buf" & year == 2013)
-get_starts_history("ManuEJ00")
-starts <- NULL#
-  for (i in playerids) {#
-  print(i)#
-  df <- get_starts_history(i)#
-  starts <- rbind(starts, df)#
-}#
+head(stats)
+head(payrolls)
+merge(stats, payrolls, by=c("code, year"))
+head(payrolls)
+merge(stats, payrolls, by=c("code", "year"))
+merge(stats, payrolls, by=c("code", "year"), all.x=T)
+f <- merge(stats, payrolls, by=c("code", "year"), all.x=T)
+head(f)
+is.na(f$ppsort2)
+f[is.na(f$ppsort2),]
+load("data/payrolls.Rdata")
+load("data/stats.Rdata")
+head(payrools)
+head(payrolls)
+head(stats)
+payrolls <- merge(payrolls, lookup, by="team", all.x = T)#
+payrolls[which(payrolls$team == "Los Angeles Angels"),c("code")] <- "ANA"#
+payrolls[which(payrolls$team == "Florida Marlins"),c("code")] <- "FLA"#
+payrolls[which(payrolls$team == "Montreal Expos"),c("code")] <- "WSN"
+payrolls
+head(payrolls)
+head(lookup)
+head(stats)
+stats$Tm%in%lookup$code
+stats[!stats$Tm%in%lookup$code,]
+head(lookup)
+stats$code <- stats$Tm#
+stats <- merge(stats, lookup, by="code", all.x = T)
+head(stats)
+is.na(stats$code)
+stats
+head(stats)
+head(payrolls)
+d2 <- merge(stats, payrolls, by=c("code", "year"))
+head(d2)
+d2
+head(d2)
+plot(d2$payroll2, d2$"W-L%")
+d2$"W-L%"
+d2$pct <- as.numeric(as.character(d2$"W-L%"))
+plot(d2$payroll2, d2$pct)
+d2$payroll2
+d2$payroll2 <- as.numeric(as.character(d2$payroll2))
+plot(d2$payroll2, d2$pct)
+text(d2$payroll2, d2$pct, labels=paste(d2$code, d2$year), cex=.4)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$year == 2013, "red", "grey"))
+plot(d2$payroll2, d2$pct, col=ifelse(d2$year == 2013, "red", "grey"), pch=16)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$year == 2013, "red", "grey"), pch=16)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$year == 2013, "red", "grey"), pch=16)
+text(d2$payroll2, d2$pct, labels=paste(d2$code, d2$year), cex=.4)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$year == 2013, "red", "grey"), pch=16)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$year == 2013, "red", "grey"), pch=16)
+text(d2$payroll2, d2$pct, labels=paste(d2$code, d2$year), cex=.4)
+url <- "http://www.baseball-reference.com/postseason/"
+page <- htmlParse(url)
+getNodeSet(page, "//table[@id='nav_table']")
+getNodeSet(page, "//")
+getNodeSet(page, "")
+getNodeSet(page, "*")
+page
+getNodeSet(page, "//table")
+getNodeSet(page, "//table[@class='nav_table']")
+getNodeSet(page, "//table[@class='stats_table']")
+readHTMLTable(page)
+readHTMLTable(page)
+readHTMLTable(page)
+playoffs <- read.delim("data/playoff-data.tsv")
+load("data/payrolls.Rdata")#
+load("data/stats.Rdata")#
 #
-starts$date2 <- gsub(",", "", starts$date)
-unique(roster$playerid)
-starts <- NULL#
-  for (i in unique(roster$playerid)) {#
-  print(i)#
-  df <- get_starts_history(i)#
-  starts <- rbind(starts, df)#
-}#
+playoffs <- read.delim("data/playoff-data.tsv")
+head(stats)
+head(payrolls)
+stats$code <- stats$Tm#
+stats <- merge(stats, lookup, by="code", all.x = T)
+head(payrolls)
+stats$code <- stats$Tm#
+stats <- merge(stats, lookup, by="code", all.x = T)
+head(stats)
+payrolls <- merge(payrolls, lookup, by="team", all.x = T)#
+payrolls[which(payrolls$team == "Los Angeles Angels"),c("code")] <- "ANA"#
+payrolls[which(payrolls$team == "Florida Marlins"),c("code")] <- "FLA"#
+payrolls[which(payrolls$team == "Montreal Expos"),c("code")] <- "WSN"
+head(payrolls)
+head(playodds)
+head(playoffs)
+head(d2)
+merge(d2, playoffs, by=c("code", "year"), all.x = T)
+d2 <- merge(d2, playoffs, by=c("code", "year"), all.x = T)
+head(d2)
+d2$top_level[is.na(d2$top_level)] <- 0
+head(d2)
+library(RColorBrewer)
+brewer.display.all()
+?brewer
+display.brewer.all()
+brewer.pal("YlOrRd", 3)
+?brewer
+brewer.pal(3, "YlOrRd")
+barplot(1:4, cols=c("lightgrey", brewer.pal(3, "YlOrRd")))
+barplot(1:4, cols=c("#f0f0f0", brewer.pal(3, "YlOrRd")))
+barplot(1:4, col=c("lightgrey", brewer.pal(3, "YlOrRd")))
+c("lightgrey", brewer.pal(3, "YlOrRd"))
+cols[d2$top_level]
+cols <- c("lightgrey", brewer.pal(3, "YlOrRd"))
+cols[d2$top_level]
+head(d2)
+d2$pct
+d2$payroll2
+plot(d2$payroll2, d2$pct)
+plot(d2$payroll2, d2$pct, col=cols, pch=16)
+head(d2)
+table(d2$top_level>0)
+plot(d2$payroll2, d2$pct, col=cols, pch=16, cex=.4)
+plot(d2$payroll2, d2$pct, col=cols, pch=16, cex=.5)
+plot(d2$payroll2, d2$pct, col=cols, pch=16, cex=.7)
+plot(d2$payroll2, d2$pct, ifelse(d2$highest_level>0, "red", "lightgrey"), pch=16, cex=.7)
+plot(d2$payroll2, d2$pct, ifelse(d2$top_level>0, "red", "lightgrey"), pch=16, cex=.7)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$top_level>0, "red", "lightgrey"), pch=16, cex=.7)
+mycols <- cols[d2$top_level]
+mycols
+plot(d2$payroll2, d2$pct, col=mycols, pch=16, cex=.7)
+cols
+plot(d2$payroll2, d2$pct, col=ifelse(d2$top_level>0, "red", "lightgrey"), pch=16, cex=.7)
+text(d2$payroll2, d2$pct, labels=paste(d2$code, d2$year, sep="-"))
+plot(d2$payroll2, d2$pct, col=ifelse(d2$top_level>0, "red", "lightgrey"), pch=16, cex=.7)
+text(d2$payroll2, d2$pct, labels=paste(d2$code, d2$year, sep="-"), cex=.5)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$top_level>0, "red", "lightgrey"), pch=16, cex=.7)
+text(d2$payroll2, d2$pct, labels=paste(d2$code, d2$year, sep="-"), cex=.3)
+plot(d2$payroll2, d2$pct, col=ifelse(d2$top_level>0, "red", "lightgrey"), pch=16, cex=.7)
+cols <- c("lightgrey", rev(brewer.pal(3, "YlOrRd")))
+cols
+barplot(1:4, col=cols)
+cols[1+d2$top_level]
+plot(d2$payroll2, d2$pct, col=ifelse(d2$top_level>0, "red", "lightgrey"), pch=16, cex=.7)mycols <- cols[1+d2$top_level]
+mycols <- cols[1+d2$top_level]
+plot(d2$payroll2, d2$pct, col=mycols, pch=16, cex=.7)
+plot(d2$payroll2, d2$pct, col=mycols, pch=16, cex=.9)
+display.brewer.all()
+plot(d2$payroll2, d2$pct, col=mycols, pch=16, cex=.9)
+write.csv(d2, file="../public/_assets/data.csv")
+head(d2)
+cols
+display.brewer.all()
+brewer.pal(7, RdPu)
+brewer.pal(7, "RdPu")
+barplot(1:7, col=brewer.pal(7, "RdPu")
+barplot(1:7, col=brewer.pal(7, "RdPu"))
+barplot(1:7, col=brewer.pal(7, "RdPu")
+barplot(1:7, col=brewer.pal(7, "RdPu") )
+brewer.pal(7, "RdPu")
+barplot(1:7)
+barplot(1:7, col=brewer.pal(7, "RdPu"))
+head(d2)
+load("data/payrolls.Rdata")#
+load("data/stats.Rdata")#
 #
-starts$date2 <- gsub(",", "", starts$date)
-head(starts)
-save(starts, file="data/starts.Rdata")
-load("data/starts.Rdata")#
-load("data/weeks.Rdata")#
-load("data/roster.Rdata")#
+playoffs <- read.delim("data/playoff-data.tsv")#
 #
-# add to this the start year for each player, weed out staarts before 2004, then save#
-a2 <- aggregate(roster$year, list(player2 = roster$player2, playerid = roster$playerid), min )#
-names(a2)[3] <- "startyear"#
-starts <- merge(starts, a2, by="playerid")#
-# starts <- subset(starts, startyear >=2004)#
-starts <- merge(starts, weeks, by="date2", all.x=TRUE)
-head(starts)
-min(starts$year)
-starts <- subset(starts, year>=1970)
-min(starts$year)
-subset(starts, year == 2013 & teamcode == "buf")
-write.csv(starts, file= file="../data/starts2.csv")
-write.csv(starts, file="../data/starts2.csv")
-setwd("~personal/j221-fall-2013/classes/maps-intro")
+d2 <- merge(stats, payrolls, by=c("code", "year"))#
+d2$pct <- as.numeric(as.character(d2$"W-L%"))#
+merge(d2, playoffs, by=c("code", "year"), all.x = T)#
+#
+d2$top_level[is.na(d2$top_level)] <- 0#
+#
+cols <- c("lightgrey", rev(brewer.pal(3, "YlOrRd")))#
+mycols <- cols[1+d2$top_level]#
+plot(d2$payroll2, d2$pct, col=mycols, pch=16, cex=.9)#
+#
+write.csv(d2, file="../public/_assets/data.csv")
+load("data/payrolls.Rdata")#
+load("data/stats.Rdata")#
+#
+playoffs <- read.delim("data/playoff-data.tsv")#
+#
+d2 <- merge(stats, payrolls, by=c("code", "year"))#
+d2$pct <- as.numeric(as.character(d2$"W-L%"))
+stats$code <- stats$Tm#
+stats <- merge(stats, lookup, by="code", all.x = T)#
+#----------#
+payrolls <- merge(payrolls, lookup, by="team", all.x = T)#
+payrolls[which(payrolls$team == "Los Angeles Angels"),c("code")] <- "ANA"#
+payrolls[which(payrolls$team == "Florida Marlins"),c("code")] <- "FLA"#
+payrolls[which(payrolls$team == "Montreal Expos"),c("code")] <- "WSN"#
+#
+save(stats, file="data/stats.Rdata")#
+save(payrolls, file="data/payrolls.Rdata")
+playoffs <- read.delim("data/playoff-data.tsv")#
+#
+d2 <- merge(stats, payrolls, by=c("code", "year"))#
+d2$pct <- as.numeric(as.character(d2$"W-L%"))#
+d2 <- merge(d2, playoffs, by=c("code", "year"), all.x = T)#
+#
+d2$top_level[is.na(d2$top_level)] <- 0#
+#
+cols <- c("lightgrey", rev(brewer.pal(3, "YlOrRd")))#
+mycols <- cols[1+d2$top_level]
+write.csv(d2, file="../public/_assets/data.csv")
+setwd("/~Desktop")
+setwd("~/Desktop")
+dir()
+data <- read.delim("ssamatab2.txt")
+head(data)
+data <- read.delim("data.tsv")
+head(data)
+dim(data)
+table(data$stfips)
+unique(data$area)
+head(data)
+subset(data, area == "Chico, CA MSA")
+ca <- subset(data, stfips == 6)
+ca
+dim(ca)
+head(ca)
+plot(ca$rate)
 setwd("~/personal/j221-fall-2013/classes/maps-intro")
-ls()
+library(maptools)#
+library(RColorBrewer)#
+#
 data <- read.delim("merged-multirace.txt")
 head(data)
-sf <- subset(data, county == "San Francisco")
-sf
-plot(sf$year, sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)), main="Hispanics in San Francisco County")
-sf <- sf[order(sf$year), ]#
-plot(sf$year, sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)), main="Hispanics in San Francisco County")
-data$hispanic_pop <- data$totalpop * data$pcthispanic
-ca_hispanic_pop <- aggregate(data$hispanic_pop, list(data$year), sum)#
-names(ca_hispanic_pop)#
-names(ca_hispanic_pop) <- c("year", "tot_hisp_pop")
-total_ca_pop <- aggregate(data$totalpop, list(data$year), sum)#
-names(total_ca_pop)#
-names(total_ca_pop) <- c("year", "tot_ca_pop")
-sf <- susbet(data, county == "San Francisco")#
-sf <- sf[order(sf$year),]#
+download the shape file#
+shapes <- readShapePoly("shapes/ca/counties.shp")
+head(shapes)
+plot(shapes)
+map_data <- data.frame(shapes)
+map_data
+data$FIPS <- sprintf("%05d",data$fips)
+head(data)
+race <- "pcthispanic"
+year = 2010
+this_decade <- subset(data, year == decade)
+decade = 2010
+this_decade <- subset(data, year == decade)
+this_decade
+match(map_data$FIPS,this_decade$FIPS)
+match_order <- match(map_data$FIPS,this_decade$FIPS)
+head(this_decade)
+race_field_name <- "pcthispanic"
+data[,race_field_name]
+this_decade[,race_field_name]
+this_decade[,race_field_name][match_order]
+map_data[,race_field_name] <- this_decade[,race_field_name][match_order]
+head(map_data)
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {#
 #
-plot(sf$pcthispanic, type="l", ylim=c(0,max(data$pcthispanic)) )
-state_totals <- merge(total_ca_pop, ca_hispanic_pop, by="year")#
-head(state_totals)
-state_totals$pcthispanic <- state_totals$tot_hisp_pop/state_totals$tot_ca_pop
-plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)
-plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
-lines(sf$year, sf$pcthispanic)
-selected county#
-county_name <- "San Francisco"#
+  # only data for this decade#
+  this_decade <- subset(data, year == decade)#
 #
-#filter#
-this_county <- subset(data, county == county_name)#
+  #match order of data and shapes fields#
+  match_order <- match(map_data$FIPS,this_decade$FIPS)#
 #
-#sort#
-this_county <- this_county[order(this_county$year),]#
+  # add this field to map_data#
+  # NOTE: this syntax is weird. yes. but it's the same as:#
+  # map_data$pcthispanic <- data$pcthispanic[match_order]#
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]#
 #
-#initial plot command, with state totals in red#
-plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+  # breaks for colors. these are semi arbitrary, picked manually.#
+  map_breaks <- c(0, .1, .2, .3, .4, 1)#
 #
-#this county.#
-lines(this_county$year, this_county$pcthispanic)
-plot_lines_for_county <- function(county) {#
-  county_name <- county#
-  this_county <- subset(data, county == county_name)#
-  this_county <- this_county[order(this_county$year),]#
-  lines(this_county$year, this_county$pcthispanic)#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name, breaks = map_breaks)#
+#
+  # make the groups numbers so they're less terrifying to look at.#
+  numeric_buckets <- as.numeric(buckets)#
+#
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  #plot the map!#
+  plot(shapes, col=colors[numeric_buckets])#
+#
+  # give it a title so we know what we're looking at.#
+  title(paste(decade, race_field_name))#
+#
 }
-plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
-plot_lines_for_county("Los Angeles")
-plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2)#
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {#
 #
-#all the counties#
-for (i in unique(data$county)) {#
-plot_lines_for_county(i)#
-}
-plot_weighted_lines_for_county <- function(county) {#
-  county_name <- county#
-  this_county <- subset(data, county == county_name)#
-  this_county <- this_county[order(this_county$year),]#
-  lines(this_county$year, this_county$pcthispanic, lwd= this_county$hispanic_pop/100000 )#
+  # only data for this decade#
+  this_decade <- subset(data, year == decade)#
 #
-  y2020 <- subset(this_county, year == 2020)#
-  text(y2020$year, y2020$pcthispanic, labels=y2020$county, adj=0, cex=.5)#
-}
-plot(state_totals$year, state_totals$pcthispanic, main="Calif. pct Hispanic with population sizing", ylim=c(0,max(data$pcthispanic)), type="l", col="red", lwd=2, xlim=c(1980, 2030))#
+  #match order of data and shapes fields#
+  match_order <- match(map_data$FIPS,this_decade$FIPS)#
 #
-#all the counties#
-for (i in unique(data$county)) {#
-plot_weighted_lines_for_county(i)#
+  # add this field to map_data#
+  # NOTE: this syntax is weird. yes. but it's the same as:#
+  # map_data$pcthispanic <- data$pcthispanic[match_order]#
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]#
+#
+  # breaks for colors. these are semi arbitrary, picked manually.#
+  map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name, breaks = map_breaks)#
+#
+  # make the groups numbers so they're less terrifying to look at.#
+  numeric_buckets <- as.numeric(buckets)#
+#
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  #plot the map!#
+  plot(shapes, col=colors[numeric_buckets])#
+#
+  # give it a title so we know what we're looking at.#
+  title(paste(decade, race_field_name))#
+#
 }
-library(maptools)
+cut(map_data[,race_field_name], breaks = map_breaks)
+map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name], breaks = map_breaks)
+buckets
+numeric_buckets <- as.numeric(buckets)
+numeric_buckets
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {#
+#
+  # only data for this decade#
+  this_decade <- subset(data, year == decade)#
+#
+  #match order of data and shapes fields#
+  match_order <- match(map_data$FIPS,this_decade$FIPS)#
+#
+  # add this field to map_data#
+  # NOTE: this syntax is weird. yes. but it's the same as:#
+  # map_data$pcthispanic <- data$pcthispanic[match_order]#
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]#
+#
+  # breaks for colors. these are semi arbitrary, picked manually.#
+  map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name], breaks = map_breaks)#
+#
+  # make the groups numbers so they're less terrifying to look at.#
+  numeric_buckets <- as.numeric(buckets)#
+#
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  #plot the map!#
+  plot(shapes, col=colors[numeric_buckets])#
+#
+  # give it a title so we know what we're looking at.#
+  title(paste(decade, race_field_name))#
+#
+}
+plot_counties_for_decade_and_race(2000, "pcthispanic")
+unique(data$year)
+names(data)
+race_fields <- c("pctwhite", "pctblack", "pctamind", "pctasian", "pctother", "pcthispanic" )
+par(mfrow=c(4, 6))#
+#
+race_fields <- c("pctwhite", "pctblack", "pctamind", "pctasian", "pctother", "pcthispanic" )#
+#
+for (i in race_fields) {#
+  for (j in unique(data$year)) {#
+    plot_counties_for_decade_and_race(j,i)    #
+  }#
+}
+par(mfrow=c(6, 4))#
+#
+race_fields <- c("pctwhite", "pctblack", "pctamind", "pctasian", "pctother", "pcthispanic" )#
+#
+for (i in race_fields) {#
+  for (j in unique(data$year)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+start a new pdf ---------------------------#
+pdf(file="california-races.pdf")#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(6, 4))#
+for (i in race_fields) {#
+  for (j in unique(data$year)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}#
+#
+#stop writing to the pdf ------------------#
+dev.off()
+start a new pdf ---------------------------#
+pdf(file="california-races.pdf")#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(6, 4), mar=c(0,0,0,0))#
+for (i in race_fields) {#
+  for (j in unique(data$year)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}#
+#
+#stop writing to the pdf ------------------#
+dev.off()
+this is puts all the plots on one screen#
+par(mfrow=c(4, 4))#
+#
+# , mar=c(0,0,0,0)#
+#
+for (i in race_fields) {#
+  for (j in unique(data$year)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+plot(shapes)
+axis(1)
+plot(shapes, xlim=c(-124, -114))
+plot(shapes, xlim=c(-122, -118))
+plot(shapes, xlim=c(-120, -118))
+plot(shapes, xlim=c(-120, -119))
+axis(1)
+par(mfrow=c(4, 4), mar=c(.2, .2, .2, .2))#
+#
+# , mar=c(0,0,0,0)#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+race_fields <- c("pctwhite", "pctblack", "pctasian", "pcthispanic" )
+par(mfrow=c(4, 4), mar=c(.5, .2, .2, .2))#
+#
+# , mar=c(0,0,0,0)#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+par(mfrow=c(4, 4), mar=c(.5, .5, .5, .5))#
+#
+# , mar=c(0,0,0,0)#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))#
+#
+# , mar=c(0,0,0,0)#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {#
+#
+  # only data for this decade#
+  this_decade <- subset(data, year == decade)#
+#
+  #match order of data and shapes fields#
+  match_order <- match(map_data$FIPS,this_decade$FIPS)#
+#
+  # add this field to map_data#
+  # NOTE: this syntax is weird. yes. but it's the same as:#
+  # map_data$pcthispanic <- data$pcthispanic[match_order]#
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]#
+#
+  # breaks for colors. these are semi arbitrary, picked manually.#
+  map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name], breaks = map_breaks)#
+#
+  # make the groups numbers so they're less terrifying to look at.#
+  numeric_buckets <- as.numeric(buckets)#
+#
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  #plot the map!#
+  plot(shapes, col=colors[numeric_buckets], border="white")#
+#
+  # give it a title so we know what we're looking at.#
+  title(paste(race_field_name, decade))#
+}#
+#
+#fields we want to plot#
+race_fields <- c("pctwhite", "pctblack", "pctasian", "pcthispanic" )#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+fields we want to plot#
+race_fields <- c("pctwhite", "pctblack", "pctasian", "pcthispanic" )#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {#
+#
+  # only data for this decade#
+  this_decade <- subset(data, year == decade)#
+#
+  #match order of data and shapes fields#
+  match_order <- match(map_data$FIPS,this_decade$FIPS)#
+#
+  # add this field to map_data#
+  # NOTE: this syntax is weird. yes. but it's the same as:#
+  # map_data$pcthispanic <- data$pcthispanic[match_order]#
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]#
+#
+  # breaks for colors. these are semi arbitrary, picked manually.#
+  map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name], breaks = map_breaks)#
+#
+  # make the groups numbers so they're less terrifying to look at.#
+  numeric_buckets <- as.numeric(buckets)#
+#
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  #plot the map!#
+  plot(shapes, col=colors[numeric_buckets], border="lightgrey", lwd=.3)#
+#
+  # give it a title so we know what we're looking at.#
+  title(paste(race_field_name, decade))#
+}#
+#
+#fields we want to plot#
+race_fields <- c("pctwhite", "pctblack", "pctasian", "pcthispanic" )#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {#
+#
+  # only data for this decade#
+  this_decade <- subset(data, year == decade)#
+#
+  #match order of data and shapes fields#
+  match_order <- match(map_data$FIPS,this_decade$FIPS)#
+#
+  # add this field to map_data#
+  # NOTE: this syntax is weird. yes. but it's the same as:#
+  # map_data$pcthispanic <- data$pcthispanic[match_order]#
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]#
+#
+  # breaks for colors. these are semi arbitrary, picked manually.#
+  map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name], breaks = map_breaks)#
+#
+  # make the groups numbers so they're less terrifying to look at.#
+  numeric_buckets <- as.numeric(buckets)#
+#
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.#
+  colors <- brewer.pal(5,"YlOrRd")#
+#
+  #plot the map!#
+  plot(shapes, col=colors[numeric_buckets], border="lightgrey")#
+#
+  # give it a title so we know what we're looking at.#
+  title(paste(race_field_name, decade))#
+}#
+#
+#fields we want to plot#
+race_fields <- c("pctwhite", "pctblack", "pctasian", "pcthispanic" )#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+c("white", brewer.pal(4,"YlOrRd")
+)
+plot_counties_for_decade_and_race <- function(decade, race_field_name) {#
+#
+  # only data for this decade#
+  this_decade <- subset(data, year == decade)#
+#
+  #match order of data and shapes fields#
+  match_order <- match(map_data$FIPS,this_decade$FIPS)#
+#
+  # add this field to map_data#
+  # NOTE: this syntax is weird. yes. but it's the same as:#
+  # map_data$pcthispanic <- data$pcthispanic[match_order]#
+  map_data[,race_field_name] <- this_decade[,race_field_name][match_order]#
+#
+  # breaks for colors. these are semi arbitrary, picked manually.#
+  map_breaks <- c(0, .1, .2, .3, .4, 1)#
+#
+  # put our data into 5 groups#
+  buckets <- cut(map_data[,race_field_name], breaks = map_breaks)#
+#
+  # make the groups numbers so they're less terrifying to look at.#
+  numeric_buckets <- as.numeric(buckets)#
+#
+  #a vector of 5 colors. pick your own by typing display.brewer.all() in the R console.#
+  colors <- c("white", brewer.pal(4,"YlOrRd"))#
+#
+  #plot the map!#
+  plot(shapes, col=colors[numeric_buckets], border="lightgrey")#
+#
+  # give it a title so we know what we're looking at.#
+  title(paste(race_field_name, decade))#
+}#
+#
+#fields we want to plot#
+race_fields <- c("pctwhite", "pctblack", "pctasian", "pcthispanic" )#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}
+fields we want to plot#
+race_fields <- c("pctwhite", "pcthispanic", "pctblack", "pctasian" )#
+#
+#this is puts all the plots on one screen#
+par(mfrow=c(4, 4), mar=c(1, 1, 1, 1))#
+#
+for (i in race_fields) {#
+  for (j in c(1990, 2000, 2010, 2020)) {#
+    plot_counties_for_decade_and_race(j,i)#
+  }#
+}

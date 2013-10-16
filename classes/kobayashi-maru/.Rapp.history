@@ -1,0 +1,266 @@
+library(RColorBrewer)
+display.brewer.all()
+brewer.pal(4, "Spectral")
+barplot(1:4, col=brewer.pal(4, "Spectral"))
+barplot(1:10, col=brewer.pal(10, "Spectral"))
+display.brewer.all()
+barplot(1:10, col=brewer.pal(10, "RdYlGn"))
+d2
+display.brewer.ll()
+display.brewer.all()
+brewer.pal(3, "YlOrRd")
+barplot(1:3, col=brewer.pal(3, "YlOrRd"))
+plot(1:10)
+plot(1:20)
+par(mfrow=c(2,2))
+plot(1:20)
+plot(1:10)
+par(mfrow=c(4,1))
+plot(1:10)
+par(mfrow=c(1,4))
+plot(1:10)
+plot(1:10)
+plot(1:10)
+plot(1:10)
+setwd("~/personal/j221-fall-2013/classes/kobayashi-maru/")
+library(gdata)
+data <- read.xls("ssamatab3.xms")
+data <- read.xls("ssamatab3.xls")
+head(data)
+names(data) <- c("code", "stfips", "areafips", "area", "year", "month", "labor_force", "employment", "unemployment", "rate" )
+head(data)
+gsub(",", "", data$employmenty)
+gsub(",", "", data$employment)
+data <- read.xls("ssamatab3.xls")
+head(data)
+tail(data)
+data <- read.xls("ssamatab1-f.xls")
+head(data)
+head(data)
+data <- read.xls("ssamatab1-f.xls")
+head(data)
+names(data) <- c("code", "stfips", "areafips", "area", "year", "month", "labor_force", "employment", "unemployment", "rate" )
+head(data)
+data$labor_force <- gsub(",", "", data$labor_force )#
+data$employment <- gsub(",", "", data$employment )#
+data$unemployment <- gsub(",", "", data$unemployment )
+head(data)
+as.Date("2000-1", format=%Y-%m)
+as.Date("2000-1", format="%Y-%m")
+as.Date("2000-01", format="%Y-%m")
+as.Date("2000-01", format="%Y-%M")
+as.Date("2000-01", format="%Y-%m")
+as.Date("2000-1", format="%Y-%m")
+as.Date("2000-1-1", format="%Y-%m-%d")
+data$date <- paste(data$year, data$month, "1", sep="-")
+head(data)
+tail(data)
+as.Date(data$date, format="%Y-%m-%d")
+data$date2 <- as.Date(data$date, format="%Y-%m-%d")
+head(data)
+plot(data$date2, data$rate)
+ca <- subset(data, stfips == 6)
+head(ca)
+dim(ca)
+tail9ca
+tail9ca
+tail(ca)
+sapply(strsplit(data$area, split="-"), function(x) { x[1] })
+class(data$area)
+data <- read.xls("ssamatab1-f.xls", stringsAsFactors=F)
+head(data)
+names(data) <- c("code", "stfips", "areafips", "area", "year", "month", "labor_force", "employment", "unemployment", "rate" )#
+#
+# get rid of the commas in the employment numbers fields#
+data$labor_force <- gsub(",", "", data$labor_force )#
+data$employment <- gsub(",", "", data$employment )#
+data$unemployment <- gsub(",", "", data$unemployment )#
+#
+#a true date field, assigning the value arbitrarily to the first of the month.#
+data$date <- paste(data$year, data$month, "1", sep="-")#
+data$date2 <- as.Date(data$date, format="%Y-%m-%d")#
+#
+#just the city name, for labeling nicer. optional.#
+data$city <- sapply(strsplit(data$area, split="-"), function(x) { x[1] })
+head(data)
+data$city <- sapply(strsplit(data$area, split=","), function(x) { x[1] })
+head(data)
+ca <- subset(data, stfips == 6)
+head(ca)
+unique(ca$city)
+coastal <- ("Salinas", "Vallejo-Fairfield", "Los Angeles-Long Beach-Santa Ana", "Oxnard-Thousand Oaks-Ventura", "San Diego-Carlsbad-San Marcos", "Santa Rosa-Petaluma", "San Francisco-Oakland-Fremont", "San Luis Obispo-Paso Robles", "Santa Barbara-Santa Maria-Goleta", "Napa", "San Jose-Sunnyvale-Santa Clara", "Santa Cruz-Watsonville")#
+#
+inland <- c("Bakersfield-Delano", "Chico", "El Centro", "Fresno", "Hanford-Corcoran", "Madera-Chowchilla", "Merced", "Modesto", "Redding", "Riverside-San Bernardino-Ontario", "Sacramento--Arden-Arcade--Roseville", "Stockton", "Visalia-Porterville", "Yuba City")
+coastal <- c("Salinas", "Vallejo-Fairfield", "Los Angeles-Long Beach-Santa Ana", "Oxnard-Thousand Oaks-Ventura", "San Diego-Carlsbad-San Marcos", "Santa Rosa-Petaluma", "San Francisco-Oakland-Fremont", "San Luis Obispo-Paso Robles", "Santa Barbara-Santa Maria-Goleta", "Napa", "San Jose-Sunnyvale-Santa Clara", "Santa Cruz-Watsonville")#
+#
+inland <- c("Bakersfield-Delano", "Chico", "El Centro", "Fresno", "Hanford-Corcoran", "Madera-Chowchilla", "Merced", "Modesto", "Redding", "Riverside-San Bernardino-Ontario", "Sacramento--Arden-Arcade--Roseville", "Stockton", "Visalia-Porterville", "Yuba City")
+data$setting <- NA#
+#
+data$setting[data$city%in%coastal] <- "coastal"#
+data$setting[data$city%in%inland] <- "inland"
+table(is.na(data$setting))
+table(is.na(ca$setting))
+ca$setting <- NA#
+#
+ca$setting[ca$city%in%coastal] <- "coastal"#
+ca$setting[ca$city%in%inland] <- "inland"
+table(is.na(ca$setting))
+ca_avg <- aggregate(ca[,c("unemployment", "labor_force")], list(ca$date), sum)
+head(ca)
+ca[,c("unemployment", "labor_force", "employment")]
+aggregate(ca[,c("unemployment", "labor_force", "employment")], list(ca$date2), sum)
+aggregate(ca[,c("unemployment", "labor_force", "employment")], list(ca$month), sum)
+head(ca)
+class(ca$labor_force)
+sum(ca$labor_force)
+data$labor_force <-   as.numeric(gsub(",", "", data$labor_force ))#
+data$employment <-    as.numeric(gsub(",", "", data$employment ))#
+data$unemployment <-  as.numeric(gsub(",", "", data$unemployment ))
+aggregate(ca[,c("unemployment", "labor_force", "employment")], list(ca$date2), sum)
+ca_cities <- subset(data, stfips == 6)
+aggregate(ca[,c("unemployment", "labor_force", "employment")], list(ca$date2), sum)
+head(ca)
+ca_cities <- subset(data, stfips == 6)
+aggregate(ca_cities[,c("unemployment", "labor_force", "employment")], list(ca_cities$date2), sum)
+ca_avg <- aggregate(ca_cities[,c("unemployment", "labor_force", "employment")], list(ca_cities$date2), sum)
+head(ca)
+head(ca_avg)
+ca_avg <- aggregate(ca_cities[,c("unemployment", "labor_force", "employment")], list(date2=ca_cities$date2), sum)
+head(ca_avg)
+ca_avg$rate <- ca$unemployment / ca$labor_force
+ca_avg$rate <- ca_avg$unemployment / ca_avg$labor_force
+head(ca_avg)
+ca_avg <- ca_avg[order(ca_avg$date),]
+plot(ca_avg$date, ca_avg$rate, type="l")
+plot(ca_avg$date, ca_avg$rate, type="l", ylim=c(.04, .3))
+plot(ca_avg$date, ca_avg$rate, type="l", ylim=c(.04, .3), col="red")#
+#
+  #add lines for cities in this group#
+#
+  for (i in unique(this_region$city)) {#
+    this_city <- subset(this_region, city == i )#
+    lines(this_city$date, this_city$rate, col="lightgrey")#
+  }
+region <- "inland"
+this_region <- subset(ca_cities, setting == region)
+plot(ca_avg$date, ca_avg$rate, type="l", ylim=c(.04, .3), col="red")#
+#
+  #add lines for cities in this group#
+#
+  for (i in unique(this_region$city)) {#
+    this_city <- subset(this_region, city == i )#
+    lines(this_city$date, this_city$rate, col="lightgrey")#
+  }
+warnings()
+this_region <- subset(ca_cities, setting == region)
+head(this_region)
+unique(this_region$city)
+head(this_region)
+i = "Chico"
+this_city <- subset(this_region, city == i )
+this_city
+lines(this_city$date2, this_city$rate, col="lightgrey")
+plot(ca_avg$date, ca_avg$rate, type="l", ylim=c(.04, .3))
+lines(this_city$date2, this_city$rate, col="lightgrey")
+ca_avg$rate <- 100 * ca_avg$unemployment / ca_avg$labor_force
+lines(this_city$date2, this_city$rate, col="lightgrey")
+plot(ca_avg$date, ca_avg$rate, type="l", ylim=c(.04, .3))
+plot(ca_avg$date, ca_avg$rate, type="l", ylim=c(4, 30))
+lines(this_city$date2, this_city$rate, col="lightgrey")
+plot the ca average#
+  plot(ca_avg$date, ca_avg$rate, type = "l", ylim = c(4, 30), col="red", lwd = 2 )#
+#
+  #add lines for cities in this group#
+#
+  for (i in unique(this_region$city)) {#
+    this_city <- subset(this_region, city == i )#
+    lines(this_city$date2, this_city$rate, col="lightgrey")#
+  }
+plot_regional_rates <- function(region) {#
+#
+  this_region <- subset(ca_cities, setting == region)#
+#
+  #plot the ca average#
+  plot(ca_avg$date, ca_avg$rate, type = "l", ylim = c(4, 30), col="red", lwd = 2, xlab="Date", ylab="Rate", main = region )#
+#
+  #add lines for cities in this group#
+  for (i in unique(this_region$city)) {#
+    this_city <- subset(this_region, city == i )#
+    lines(this_city$date2, this_city$rate, col="lightgrey")#
+  }#
+#
+}
+plot_regional_rates("inland")
+plot in a 2x1 grid#
+par(mfrow=c(2,1))#
+plot_regional_rates("inland")#
+plot_regional_rates("coastal")
+plot in a 2x1 grid#
+par(mfrow=c(1,2))#
+plot_regional_rates("inland")#
+plot_regional_rates("coastal")
+setwd("~/personal/j221-fall-2013/classes/kobayashi-maru/")#
+#
+library(gdata)#
+#
+#I did loose formatting on this – deleted empty rows#
+data <- read.xls("ssamatab1-f.xls", stringsAsFactors=F)#
+#
+# rename the fields, makes for easier typing and fewer mistakes.#
+names(data) <- c("code", "stfips", "areafips", "area", "year", "month", "labor_force", "employment", "unemployment", "rate" )#
+#
+# get rid of the commas in the employment numbers fields#
+# also, turn it from a string to a number so we can do math on it.#
+data$labor_force <-   as.numeric(gsub(",", "", data$labor_force ))#
+data$employment <-    as.numeric(gsub(",", "", data$employment ))#
+data$unemployment <-  as.numeric(gsub(",", "", data$unemployment ))#
+#
+#a true date field, assigning the value arbitrarily to the first of the month.#
+data$date <- paste(data$year, data$month, "1", sep="-")#
+data$date2 <- as.Date(data$date, format="%Y-%m-%d")#
+#
+# just the city name, for labeling nicer. optional.#
+# this code says, split up each value in the vector into chunks where you see a comma,#
+# then give me the first chunk back.#
+data$city <- sapply(strsplit(data$area, split=","), function(x) { x[1] })#
+#
+#just california#
+ca_cities <- subset(data, stfips == 6)#
+#
+#this is a manual job.#
+coastal <- c("Salinas", "Vallejo-Fairfield", "Los Angeles-Long Beach-Santa Ana", "Oxnard-Thousand Oaks-Ventura", "San Diego-Carlsbad-San Marcos", "Santa Rosa-Petaluma", "San Francisco-Oakland-Fremont", "San Luis Obispo-Paso Robles", "Santa Barbara-Santa Maria-Goleta", "Napa", "San Jose-Sunnyvale-Santa Clara", "Santa Cruz-Watsonville")#
+inland <- c("Bakersfield-Delano", "Chico", "El Centro", "Fresno", "Hanford-Corcoran", "Madera-Chowchilla", "Merced", "Modesto", "Redding", "Riverside-San Bernardino-Ontario", "Sacramento--Arden-Arcade--Roseville", "Stockton", "Visalia-Porterville", "Yuba City")#
+#
+# make a new vector called setting. then set it depending on whether it's coastal or inland.#
+ca_cities$setting <- NA#
+ca_cities$setting[ca_cities$city%in%coastal] <- "coastal"#
+ca_cities$setting[ca_cities$city%in%inland] <- "inland"#
+#
+# average for california - two lines gets us what we need!#
+ca_avg <- aggregate(ca_cities[,c("unemployment", "labor_force", "employment")], list(date2=ca_cities$date2), sum)#
+ca_avg$rate <- 100 * ca_avg$unemployment / ca_avg$labor_force#
+#
+#sort it just to make sure#
+ca_avg <- ca_avg[order(ca_avg$date),]#
+#
+# make a function -- dont have to but it's cleaner to read.#
+#
+plot_regional_rates <- function(region) {#
+#
+  #just records from this setting (inland/coastal)#
+  this_region <- subset(ca_cities, setting == region)#
+#
+  #plot the ca average#
+  plot(ca_avg$date, ca_avg$rate, type = "l", ylim = c(4, 30), col="red", lwd = 2, xlab="Date", ylab="Rate", main = region )#
+#
+  #add lines for cities in this group#
+  for (i in unique(this_region$city)) {#
+    this_city <- subset(this_region, city == i )#
+    lines(this_city$date2, this_city$rate, col="lightgrey")#
+  }#
+}#
+#
+#plot in a 2x1 grid#
+par(mfrow=c(1,2))#
+plot_regional_rates("inland")#
+plot_regional_rates("coastal")
