@@ -109,6 +109,27 @@ There are a number of stat-based sports sites that I could pitch this to, includ
 
 Email shavin with any questions.
 
+<a href="#update-oct-15" id="update-oct-15">
+###Update###
+</a>
+
+We've started a small timeline for project deadlnes and progress.
+
+By **Tuesday, Oct. 22**, you should update your pitch page (or make a new one) with your final pitch for your project. Most of you will just choose one of your original pitches and incoporate our feedback from last week, but some of you may need to re-pitch a new idea or two.
+
+Under your pitch, include the following:
+
+• A news angle – why should people read your project?
+
+• A list of human sources that might provide insight or background
+
+• Links to relevant news articles or apps that have already been published that are related to your topic
+
+• A list of possible publications that might be interested in publishing your project
+
+• A list of questions you'd like to ask your data
+
+
 
 
 
