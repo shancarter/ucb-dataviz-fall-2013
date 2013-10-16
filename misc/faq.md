@@ -51,6 +51,8 @@ There are two ways to solve this problem:
 </a>
 There are a few answers here. Most importantly, it doesn't matter what data you use as long as you're comfortable with using it. In nearly every instance, any format can work to make almost any chart. If your data is "rectangular" (like an Excel spreadsheet), any format should work. Mike B. prefers .tsvs simply because they're very human-readable, but do whichever you like.
 
+If the data is not rectangular, you might use json, but chances are it's already in that format anyway.
+
 When you load any of these formats anyway, D3 turns them into the same kind of javascript objects, so it doesn't matter. We do sometimes mix and match depending on what's at hand, though.
 
 ```javascript
@@ -73,7 +75,3 @@ Beyond that, the main difference is that `select` returns just the first matchin
 <a id="d3-line-path" href="#d3-line-path">
 ##I've seen both .append("path") and .append("line") used to make a simple line chart in d3, do they do the same thing?
 </a>
-
-`Path` and `line` are two different things. The difference here is that `line` is an element in SVG, much like a `rect` or a `circle` or `text`. SVG knows what it is. If you append a line to your svg, D3 will make a line element inside your SVG, but it won't have any attributes. (Just like if you append a circle without specifying a radius, the circle will be there, but you won't see anything.)
-
-The `path` is an attribute of the line element. It's what actually draws the path on the SVG. You can have a line without a path, but you can't have a path without a line.
