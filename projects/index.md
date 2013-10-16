@@ -115,7 +115,7 @@ Email shavin with any questions.
 
 We've started a small timeline for project deadlnes and progress.
 
-By **Tuesday, Oct. 22**, you should update your pitch page (or make a new one) with your final pitch for your project. Most of you will just choose one of your original pitches and incoporate our feedback from last week, but some of you may need to re-pitch a new idea or two.
+By **Tuesday, Oct. 22**, you should update your pitch page (or make a new one) with your final pitch for your project. Most of you will just edit one of your original pitches and incoporate our feedback from last week, but some of you may need to re-pitch a new idea or two.
 
 Under your pitch, include the following:
 
