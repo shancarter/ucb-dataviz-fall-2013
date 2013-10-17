@@ -32,7 +32,7 @@ Sam and Nausheen are discussing [a recent UGC map by the Washington Post](http:/
 ##Exercise
 You're a data journalist working at the Chicago Tribune's tribapps team. The city is generally good about making its data public – there's a [data portal](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2) that keeps data of every crime, and another news site, [RedEye](http://homicides.redeyechicago.com/), maintains an app dedicated to tracking homicides in the city. Things were not so good last year – the city had its highest number of homicides in 5 years, which attracted [national attention] (http://www.nytimes.com/2013/01/03/us/a-soaring-homicide-rate-a-divide-in-chicago.html).
 
-In this exercise, you've obtained data about successful gun traces in Chicago in the last 10 years. (A gun trace is where they find out where a gun found in a crime was purchased.) Go ahead and [download it]("/county-data.txt").
+In this exercise, you've obtained data about successful gun traces in Chicago in the last 10 years. (A gun trace is where they find out where a gun found in a crime was purchased.) Go ahead and [download it](http://shancarter.github.io/ucb-dataviz-fall-2013/classes/data-practice/county-data.txt).
 
 Each row in this data represents a county in the United States and how many Chicago guns were purchased there.
 
