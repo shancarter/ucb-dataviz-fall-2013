@@ -75,3 +75,5 @@ Beyond that, the main difference is that `select` returns just the first matchin
 <a id="d3-line-path" href="#d3-line-path">
 ##I've seen both .append("path") and .append("line") used to make a simple line chart in d3, do they do the same thing?
 </a>
+
+`path` and `line` are two different SVG elements, the same way that `rect` and `circle` are different elements. Here's a good overview of [all of the shape elements in SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes) Basically, a `line` is used to draw a straight line between two points and nothing more. A `path` is used to draw a path or shape of any kind: curved, straight, triangle, zigzag, etc. Since a line chart is usually more than one straight line (they usually zigzag up and down) you should always be using ONE path element for the entire line. To draw a line chart with `line` elements, you would need to append a multiple `line` elements, one for each straight segment of your chart.
