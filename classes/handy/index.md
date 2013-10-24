@@ -19,11 +19,26 @@ Chelsi is discussing [tktktk]().
 ##Project time
 We'll start setting up the infrastructure for your projects. Everyone should end up with a new "project" repo with an a completed pitch that meets all the requirements, published to your github page.
 
-
-##Hidden files
+##Scraping the web
 The inspector in Chrome is an extremely useful tool for all sorts of functions. Today we'll use it for help in three things: styling pages, finding "hidden" data Shan and Kevin give a tour of the Chrome Inspector to find data you didn't know was there. The inspector does much more than just let you experiment with CSS. It also lets you see every asset your web page is loading &mdash; even when you can't see it.
 
-Last week, you got in touch with the press office of the [National Community Pharmacists Association](https://www.ncpanet.org/) to see if they could send you data for the locations of all 23,000 community pharmacies in the U.S. Their press office replied, saying they could not send her that data but would be willing to send her summary information.
+There are tons of resources out there to automate data collection. Here's a handy tipsheet from [Scott Klein and Michelle Minkoff](https://github.com/kleinmatic/datashow). We'll use R's [XML package](http://cran.r-project.org/web/packages/XML/index.html) to fetch HTML tables and other kinds of things that are easily automated when we think like a robot.
+
+Here's what we'll do
+
+1. Use the inspector to find out where the data lives
+2. Use R to download that table
+3. Generalize the code ito a function to download the data for any country
+4. Get a list of all countries in the database
+5. Apply the function to get a data frame representing all the adoptions in the data base.
+
+6. Visualize!
+
+<!-- http://adoption.state.gov/maps/statistics/map_files/statistics.php?special=NONE&year=ALL&country=Burkina+Faso&state=NONE -->
+
+##Using the network panel...
+
+• Say you got in touch with the press office of the [National Community Pharmacists Association](https://www.ncpanet.org/) to see if they could send you data for the locations of all 23,000 community pharmacies in the U.S. Their press office replied, saying they could not send her that data but would be willing to send her summary information.
 
 Take a look at [their web site](https://www.ncpanet.org/index.php/find-your-local-pharmacy). Enter your favorite ZIP code and note the response.
 
@@ -43,9 +58,6 @@ Let's use the Inspector to...
 - learn about [adoption trends](http://adoption.state.gov/about_us/statistics.php) in the U.S. even when downloading the isn't obvious. (Goal: find a URL that gives you the number of adoptions to the United States by country of origin since 1999.)
 
 - get a list of GIS coordinates for NYC's [citiBike stations](http://citibikenyc.com/stations)
-
-##If there's time...
-A tiny bit of scraping with R's magic XML package.
 
 
 
