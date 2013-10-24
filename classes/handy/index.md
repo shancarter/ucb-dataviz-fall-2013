@@ -43,7 +43,9 @@ Here's what we'll do
 <!-- http://adoption.state.gov/maps/statistics/map_files/statistics.php?special=NONE&year=ALL&country=Burkina+Faso&state=NONE -->
 
 ##Project time
-We'll start setting up the infrastructure for your projects and making sure your pitch is where it should be. Everyone should end up with a new "project" repo with an a completed pitch that meets all the requirements, published to your github page. If you're done, you can move on to the next exercise.
+We'll start setting up the infrastructure for your projects and making sure your pitch is where it should be. Everyone should end up with a new "project" repo with an a completed pitch that meets all the requirements, published to your github page.
+
+You should all have a url that looks like [this example](http://shancarter.github.io/final-project/pitch/index) with the same url structure. When you're done and shavin has approved, move on to the next exercises.
 
 ##Using the network panel...
 
