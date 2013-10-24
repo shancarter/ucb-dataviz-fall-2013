@@ -1,0 +1,225 @@
+setwd("~/personal/j221-fall-2013/classes/data-practice/county-data.txt")
+setwd("~/personal/j221-fall-2013/classes/data-practice/")
+data <- read.delim("county-data.txt")
+head(data)
+?read.delim
+data <- read.delim("county-data.txt", header=F)
+head(data)
+names(data) <- c("place_orig", "guns")
+head(data)
+tail(data)
+strsplit(data$place_orig, "()")
+strsplit(data$place_orig, "(")
+strsplit(data$place_orig, "\\(")
+class(data$place_orig)
+data <- read.delim("county-data.txt", header=F, stringsAsFactors=F)
+sum(data$guns)
+data$guns
+head(data)
+names(data) <- c("place_orig", "guns")
+data$guns
+sort(data$guns)
+data$guns <- as.numeric(data$guns)
+is.na(data$guns)
+data <- read.delim("county-data.txt", header=F, stringsAsFactors=F)#
+data$gunsNum <- as.numeric(data$guns)#
+names(data) <- c("place_orig", "guns")
+head(data)
+data[,is.na(data$guns)]
+data[is.na(data$guns),]
+data
+data <- read.delim("county-data.txt", header=F, stringsAsFactors=F)
+head(data)
+names(data) <- c("place_orig", "guns")
+as.numeric(data$guns)
+data$guns[as.numeric(data$guns){}
+data$guns[as.numeric(data$guns)]
+data$guns[is.na(as.numeric(data$guns))]
+gsub(",","",data$guns)
+make it a number#
+data$gunsNum <- as.numeric(gsub(",","",data$guns))
+head(data)
+sum(data$gunsNum)
+sapply(str_split(data$place_orig, "("), function (x) { x[2]})
+sapply(strsplit(data$place_orig, "("), function (x) { x[2]})
+str_split
+strsplit
+strsplit(data$place_orig, "(")
+strsplit(data$place_orig, "\\(" )
+sapply(strsplit(data$place_orig, "\\("), function (x) { x[2]})
+data$state <- sapply(strsplit(data$place_orig, "\\("), function (x) { x[2]})#
+data$state <- gsub(")", "", data$state)
+head(data)
+data$county <- sapply(strsplit(data$place_orig, "\\("), function (x) { x[1]})#
+data$county <- gsub(")", "", data$county)
+head(data)
+library(maptools)
+states <- readShapePoly("shapes/nytlayout_state.shp")
+plot(states)
+data.frame(sattes)
+data.frame(states)
+?read
+??read
+data <- read.delim("http://shancarter.github.io/ucb-dataviz-fall-2013/classes/data-practice/county-data.txt")
+head(data)
+?read.delim
+data <- read.delim("http://shancarter.github.io/ucb-dataviz-fall-2013/classes/data-practice/county-data.txt", header=F)
+head(data)
+names(data)
+names(data) <- c("county_orig", "guns_orig")
+head(data)
+data$county_orig
+head(data)
+test <- "ACCOMACK(VA)"
+?strsplit
+strsplit(test, split="(")
+strsplit(test, split="\\(")
+strsplit(test, split="K")
+strsplit(test, split="\\(")
+strsplit(test, split="\\(")[2]
+strsplit(test, split="\\(")[[2]]
+strsplit(test, split="\\(")[[1]]
+strsplit(test, split="\\(")[[1]][2]
+split <- strsplit(test, split="\\(")
+split
+class(split)
+split[[1]]
+as.character(split)
+as.character(split)[2]
+as.character(split)[1]
+sapply(split, function(x) x[2])
+class(split)
+sapply(split, function(x) x[2] )
+get_second_element <- function(item) {#
+  return item[2]#
+}
+get_second_element <- function(item) {#
+  return (item[2])#
+}
+sapply(split, get_second_element)
+?sapply
+get_second_element <- function(item) {#
+  return (item[2])#
+}
+split
+sapply(split, get_second_element)
+head(data)
+strsplit(data$county_orig, split="\\(")
+strsplit(as.character(data$county_orig), split="\\(")
+head(data)
+class(data$county_orig)
+?read.delim
+get_second_element <- function(item) {#
+  return (item[2])#
+}#
+#
+# load the data#
+data <- read.delim("http://shancarter.github.io/ucb-dataviz-fall-2013/classes/data-practice/county-data.txt", header=F, stringsAsFactors=F)#
+#
+# rename it like a human#
+names(data) <- c("county_orig", "guns_orig")#
+# split it up based on parenthesis#
+split <- strsplit(data$county_orig, split="\\(")#
+data$state_clean <- sapply(as.character(split), get_second_element)
+head(data)
+split
+class(split)
+sapply(split, get_second_element)
+data$state_clean <- sapply(split, get_second_element)
+head(data)
+head(data)
+?gsub
+gsub("\\)", "", data$state_clean)
+data$state_clean <- gsub("\\)", "", data$state_clean)
+head(data)
+get_first_element <- function(item) {#
+  return (item[1])#
+}
+data$county_clean <- sapply(split, get_first_element)
+head(data)
+head(data)
+class(data$guns_orig)
+dim(data)
+data$guns_orig
+head(data)
+head(data)
+gsub(",", "", data$guns_orig)
+head(data)
+data$guns_clean <- gsub(",", "", data$guns_orig)
+head(data)
+head(data)
+sum(data$guns_clean)
+data$guns_clean <- as.numeric(gsub(",", "", data$guns_orig))
+head(data)
+head(data)
+sum(data$guns_clean)
+get_second_element <- function(item) {#
+  return (item[2])#
+}#
+#
+get_first_element <- function(item) {#
+  return (item[1])#
+}#
+#
+# load the data#
+data <- read.delim("http://shancarter.github.io/ucb-dataviz-fall-2013/classes/data-practice/county-data.txt", header=F, stringsAsFactors=F)#
+#
+# rename it like a human#
+names(data) <- c("county_orig", "guns_orig")#
+#
+# split it up based on parenthesis#
+split <- strsplit(data$county_orig, split="\\(")#
+#
+#make a new field for state#
+data$state_clean <- sapply(split, get_second_element)#
+#
+#make a new county#
+data$county_clean <- sapply(split, get_first_element)#
+#
+#clean guns#
+data$guns_clean <- as.numeric(gsub(",", "", data$guns_orig))
+head(data)
+data$state_clean <- as.numeric(gsub(",", "", data$state_clean))
+get_second_element <- function(item) {#
+  return (item[2])#
+}#
+#
+get_first_element <- function(item) {#
+  return (item[1])#
+}#
+#
+# load the data#
+data <- read.delim("http://shancarter.github.io/ucb-dataviz-fall-2013/classes/data-practice/county-data.txt", header=F, stringsAsFactors=F)#
+#
+# rename it like a human#
+names(data) <- c("county_orig", "guns_orig")#
+#
+# split it up based on parenthesis#
+split <- strsplit(data$county_orig, split="\\(")#
+#
+#make a new field for state#
+data$state_clean <- sapply(split, get_second_element)#
+#
+#make a new county#
+data$county_clean <- sapply(split, get_first_element)#
+#
+#clean guns#
+data$guns_clean <- as.numeric(gsub(",", "", data$guns_orig))#
+#
+#clean guns#
+data$state_clean <- as.numeric(gsub(",", "", data$state_clean))
+data$state_clean <- as.numeric(gsub("\\)", "", data$state_clean))
+head(data)
+sum(data$guns_clean)
+agg <- aggregate(data$guns_clean, list(data$state_clean), sum)
+head(agg)
+head(data)
+class(data$guns_clean)
+aggregate(data$guns_clean, list(data$state_clean), sum)
+data$state_clean <- sapply(split, get_second_element)
+head(data)
+gsub("\\)", "", data$state_clean)
+data$state_clean <- gsub("\\)", "", data$state_clean)
+head(data)
+agg <- aggregate(data$guns_clean, list(data$state_clean), sum)
+head(agg)
