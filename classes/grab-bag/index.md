@@ -36,6 +36,10 @@ title: Miscellany
 
 [excel chart](http://www.storytellingwithdata.com/2011/11/how-to-do-it-in-excel.html)
 
+[Tufte](http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142)
+
+[WSJ guide to graphics](http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142)
+
 ####Clean up your page
 
 [Visual mess](http://www.visualmess.com/)
