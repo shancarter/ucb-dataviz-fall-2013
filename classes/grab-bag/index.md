@@ -22,6 +22,28 @@ title: Miscellany
 
 ##Design
 
+####Push the form
+
+[Did we show this already?](http://chartsnthings.tumblr.com/post/62679766588/19-sketches-of-quarterback-timelines)
+
+####Dataviz page designs
+
+T-shape:
+[1](http://flowingdata.com/2013/08/27/in-search-of-food-deserts/)
+[2](http://www.nytimes.com/2013/07/22/business/in-climbing-income-ladder-location-matters.html)
+
+Interactive:
+[Fixed-width](http://www.nytimes.com/interactive/2009/11/06/business/economy/unemployment-lines.html)
+[Liquid](http://www.nytimes.com/newsgraphics/2013/09/28/eli-manning-milestone/)
+
+Bigviz:
+[1](http://www.nytimes.com/interactive/2012/07/20/us/drought-footprint.html)
+[2](http://www.nytimes.com/interactive/2011/09/08/us/sept-11-reckoning/cost-graphic.html)
+[3](http://www.nytimes.com/interactive/2012/10/15/us/politics/swing-history.html)
+
+Bad:
+
+
 ##Projects
 
 - [Project schedule](http://shancarter.github.io/ucb-dataviz-fall-2013/projects/schedule.html)
