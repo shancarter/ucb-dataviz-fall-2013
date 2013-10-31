@@ -22,6 +22,10 @@ title: Miscellany
 
 ##Design
 
+[Visual mess](http://www.visualmess.com/)
+
+[excel chart](http://www.storytellingwithdata.com/2011/11/how-to-do-it-in-excel.html)
+
 ####Push the form
 
 [Did we show this already?](http://chartsnthings.tumblr.com/post/62679766588/19-sketches-of-quarterback-timelines)
