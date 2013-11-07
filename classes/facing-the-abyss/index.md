@@ -14,15 +14,35 @@ So you have your shiny new R skills and you’ve successfully loaded a cool data
 
 2. View some summary stats on your number columns (min, max, mean)
 
-3. Chart some histograms of your number columns (distributions)
+  ```r
+  summary(data)
 
-4. Chart some histograms of your categorical columns (sex, type of incident)
+  summary(data$column)
+
+  table(data$column)
+  ```
+
+3. Chart histograms of your numeric columns (distributions)
+
+4. Chart histograms of your categorical columns (gender, color, etc..)
+
+  ```r
+  plot(table(data$column), type="h")
+  ```
 
 5. Plot a time series of your date column
 
 6. Plot a time series, but aggregated up to a different time frame (days to months, months to years)
 
-7. Look for correlations
+7. Look for correlations and outliers
+
+  ```r
+  #plots all the combinations of all your columns
+  pairs(data)
+
+  #If you want to plot just one of the combinations for more detail
+  plot(data$column1, data$column2)
+  ```
 
 8. Look for outliers
 
