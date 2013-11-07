@@ -48,7 +48,7 @@ We'll go over this checklist with a [test data set](schools.tsv) from a table ab
   ```
 
 1. Make sure all your columns are the correct data type (nums, strings, factors, dates)
-  [Changing data types in R](http://localhost:9000/2000/01/01/r-transforms-data-types.html)
+  [Changing data types in R](http://shancarter.github.io/data-field-guide/2000/01/01/r-transforms-data-types.html)
 
 2. If you have dirty data, clean it and put the results in new columns. (We did this with the [Chicago guns exercise](https://gist.github.com/kpq/7034291) and have examples in the [Data field guide](http://shancarter.github.io/data-field-guide/index.html) )
 
@@ -61,7 +61,7 @@ We'll go over this checklist with a [test data set](schools.tsv) from a table ab
 
   table(data$column)
   ```
-  More detail [here](http://localhost:9000/2000/01/01/r-transforms-summary-stats-on-vectors.html)
+  More detail [here](http://shancarter.github.io/data-field-guide/2000/01/01/r-transforms-summary-stats-on-vectors.html)
 
 3. Chart histograms of your numeric columns (distributions)
 
