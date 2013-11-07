@@ -11,10 +11,10 @@ So you have your shiny new R skills and you’ve successfully loaded a cool data
 
 The best charts come from understanding your data, asking good questions from it, and displaying the answers to those questions as clearly as possible.
 
--What month was X highest or lowest?
--How has field Z changed since policy X was implemented?
--What's the relationship between X and Y?
--What does the distribution of one column of data tell us?
+- What month was X highest or lowest?
+- How has field Z changed since policy X was implemented?
+- What's the relationship between X and Y?
+- What does the distribution of one column of data tell us?
 
 Here's a basic checklist to get more familiar with any data set.
 
