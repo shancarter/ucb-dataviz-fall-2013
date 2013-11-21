@@ -4,23 +4,26 @@ week: 10
 title: Tools
 ---
 
-
 ##Map Data
 
-http://mapshaper.org/
+[Natural Earth](http://www.naturalearthdata.com/)
 
-http://www.naturalearthdata.com/
+[Map Shaper](http://mapshaper.org/)
 
-https://github.com/mbostock/us-atlas
+[Bostock US Atlas](https://github.com/mbostock/us-atlas)
 
 ##D3 Data Join
 
-http://alignedleft.com/tutorials/d3/chaining-methods
+[Chaining Methods](http://alignedleft.com/tutorials/d3/chaining-methods)
 
-http://alignedleft.com/tutorials/d3/binding-data
+[Binding Data](http://alignedleft.com/tutorials/d3/binding-data)
 
-##Designing for Screens
+[Let’s Make a Bar Chart](http://bost.ocks.org/mike/bar/)
 
-http://frankchimero.com/what-screens-want/
+[How Selections Work](http://bost.ocks.org/mike/selection/)
+
+##Thinking About Digital Design
+
+[What Screens Want](http://frankchimero.com/what-screens-want/)
 
 
