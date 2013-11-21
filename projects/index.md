@@ -30,6 +30,8 @@ dd.example a {
 
 In general, we are flexible about the format of your projects, so we don't want to have too many official requirements. Our only real goal is that you make something publishable. Below, some loose characteristics of a successful project.
 
+[Here’s the schedule](schedule.html)
+
 - **The project is a work of original journalism.**
 This is a requirement. It can be on a topic you're written about in the past, but it must contain original work and original findings. The purpose of your project should be journalistic, not technical.
 
