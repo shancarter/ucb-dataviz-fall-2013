@@ -8,9 +8,11 @@ title: Tools
 
 [Natural Earth](http://www.naturalearthdata.com/)
 
+[U.S. Atlas](http://nationalatlas.gov/index.html)
+
 [Map Shaper](http://mapshaper.org/)
 
-[Bostock US Atlas](https://github.com/mbostock/us-atlas)
+[Bostock U.S. Atlas](https://github.com/mbostock/us-atlas)
 
 ##D3 Data Join
 
