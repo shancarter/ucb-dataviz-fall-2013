@@ -4,6 +4,10 @@ week: 10
 title: Tools
 ---
 
+##Review Schedule
+
+[Project Timeline](http://shancarter.github.io/ucb-dataviz-fall-2013/projects/schedule.html)
+
 ##Map Data
 
 [Natural Earth](http://www.naturalearthdata.com/)
