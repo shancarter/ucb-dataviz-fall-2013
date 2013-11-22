@@ -4,6 +4,13 @@ week: 10
 title: Tools
 ---
 
+#Discussion
+
+[Passwords](http://america.aljazeera.com/multimedia/2013/11/123456-your-mom-andotherthingsthatshouldntbeyourpassword.html)
+
+[Crosswords](http://zed0.co.uk/crossword/)
+
+
 ##Review Schedule
 
 [Project Timeline](http://shancarter.github.io/ucb-dataviz-fall-2013/projects/schedule.html)
